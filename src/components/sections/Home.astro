@@ -1,0 +1,59 @@
+---
+import Chip from "../Chip.astro";
+---
+
+<section class="flex flex-col w-[50vw] h-[90vh] text-sm select-none">
+  <div class="h-fit w-full flex relative gap-4 items-center">
+    <div class="size-[45px] border-border border-2 rounded-sm flex items-center justify-center !stroke-accent-foreground/50">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke=""
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="lucide lucide-disc-3 animate-spin"
+        ><circle cx="12" cy="12" r="10"></circle><path
+          d="M6 12c0-1.7.7-3.2 1.8-4.2"></path><circle cx="12" cy="12" r="2"
+        ></circle><path d="M18 12c0 1.7-.7 3.2-1.8 4.2"></path></svg>
+    </div>
+    <div>
+      <div class="">Ronish</div>
+      <div class="text-foreground/50">Developer</div>
+    </div>
+  </div>
+  <div class="py-4 text-sm flex flex-col">
+    <div>
+      Loves creating <span
+        class="italic cursor-pointer text-primary-foreground hover:underline hover:text-primary"
+        >stuff</span
+      >
+    </div>
+    <div>
+      Lives in <span
+        class="italic cursor-pointer text-primary-foreground hover:underline hover:text-primary"
+        >Bangalore, India</span
+      >
+    </div>
+    <div>Likes a little bit of everything</div>
+    <div>This website was meant to be simple,</div>
+    <div>
+      I've made <span
+        class="italic cursor-pointer text-primary-foreground hover:underline hover:text-primary"
+        >too many</span
+      > of them
+    </div>
+    <div></div>
+  </div>
+  <div class="mt-auto w-full border-t-2 border-border py-1 text-[10px] flex">
+    <div>/ronishrohan/portfolio</div>
+    <div class="ml-auto flex gap-1">
+      <Chip title="React" href="https://react.dev/" />
+      <Chip title="Astro" href="https://react.dev/" />
+      <Chip title="shadcn/ui" href="https://react.dev/" />
+    </div>
+  </div>
+</section>
