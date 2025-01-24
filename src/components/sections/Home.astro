@@ -1,10 +1,29 @@
 ---
-import Chip from "../Chip.astro";
+import Footer from "../Footer.astro";
+import { Button } from "../ui/button";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardFooter,
+  CardContent,
+} from "../ui/card";
+import Chip from "../ui/Chip.astro";
+import Title from "../ui/Title.astro";
+const works = [
+  { name: "Waffle", href:"#" },
+  { name: "Reddit Clone", href:"#" },
+  { name: "Portfolio website", href:"#" },
+  { name: "Something", href:"#" },
+  { name: "Something", href:"#" },
+];
 ---
 
 <section class="flex flex-col w-[50vw] h-[90vh] text-sm select-none">
   <div class="h-fit w-full flex relative gap-4 items-center">
-    <div class="size-[45px] border-border border-2 rounded-sm flex items-center justify-center !stroke-accent-foreground/50">
+    <div
+      class="size-[45px] border-border border-2 rounded-sm flex items-center justify-center !stroke-accent-foreground/50"
+    >
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -18,7 +37,8 @@ import Chip from "../Chip.astro";
         class="lucide lucide-disc-3 animate-spin"
         ><circle cx="12" cy="12" r="10"></circle><path
           d="M6 12c0-1.7.7-3.2 1.8-4.2"></path><circle cx="12" cy="12" r="2"
-        ></circle><path d="M18 12c0 1.7-.7 3.2-1.8 4.2"></path></svg>
+        ></circle><path d="M18 12c0 1.7-.7 3.2-1.8 4.2"></path></svg
+      >
     </div>
     <div>
       <div class="">Ronish</div>
@@ -28,13 +48,13 @@ import Chip from "../Chip.astro";
   <div class="py-4 text-sm flex flex-col">
     <div>
       Loves creating <span
-        class="italic cursor-pointer text-primary-foreground hover:underline hover:text-primary"
+        class="italic cursor-pointer text-primary-foreground hover:font-black transition-all duration-75 underline hover:text-primary"
         >stuff</span
       >
     </div>
     <div>
       Lives in <span
-        class="italic cursor-pointer text-primary-foreground hover:underline hover:text-primary"
+        class="italic cursor-pointer text-primary-foreground hover:font-black transition-all duration-75 underline hover:text-primary"
         >Bangalore, India</span
       >
     </div>
@@ -42,18 +62,31 @@ import Chip from "../Chip.astro";
     <div>This website was meant to be simple,</div>
     <div>
       I've made <span
-        class="italic cursor-pointer text-primary-foreground hover:underline hover:text-primary"
+        class="italic cursor-pointer text-primary-foreground hover:font-black transition-all duration-75 underline hover:text-primary"
         >too many</span
       > of them
     </div>
-    <div></div>
   </div>
-  <div class="mt-auto w-full border-t-2 border-border py-1 text-[10px] flex">
-    <div>/ronishrohan/portfolio</div>
-    <div class="ml-auto flex gap-1">
-      <Chip title="React" href="https://react.dev/" />
-      <Chip title="Astro" href="https://react.dev/" />
-      <Chip title="shadcn/ui" href="https://react.dev/" />
+  <div class="flex flex-col h-fit w-full">
+    <Title title="Work" />
+    <div class="size-full flex flex-col py-1">
+      {
+        works.map((work, index) => (
+          <a
+            href={work.href}
+            class=" py-1 hover:font-bold hover:text-primary focus:text-primary focus:bg-accent outline-none focus:font-bold transition-all duration-75 px-1 w-full rounded-sm hover:bg-accent"
+          >
+            0{index} {work.name}
+          </a>
+        ))
+      }
     </div>
   </div>
+  <div class="flex flex-col size-full">
+    <Title title="Skills" />
+    <div class="size-full flex flex-col py-1">
+      
+    </div>
+  </div>
+  <Footer />
 </section>

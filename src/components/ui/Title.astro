@@ -1,0 +1,8 @@
+---
+const {title} = Astro.props
+---
+
+<div class="py-2 w-full flex items-center border-b border-border" >
+    <div>{title}</div>
+    <div class="ml-auto flex" ><slot /></div>
+</div>
