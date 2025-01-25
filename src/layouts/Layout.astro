@@ -1,3 +1,8 @@
+---
+import Footer from "@/components/Footer.astro";
+import '@/styles/globals.css'
+---
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -7,13 +12,17 @@
     <meta name="generator" content={Astro.generator} />
     <title>Ronish</title>
   </head>
-  <body class="dark font-geist flex items-center justify-center">
-    <slot />
+  <body class="dark font-geist flex items-center justify-center flex-col">
+    <div
+      class="flex relative dark flex-col w-full p-4 md:p-0 md:w-[600px] h-dvh md:h-[90vh] text-sm select-none"
+    >
+      <slot />
+      <Footer />
+    </div>
   </body>
 </html>
 
 <style>
-  
   html,
   body {
     margin: 0;

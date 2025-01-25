@@ -1,4 +1,6 @@
 ---
+// import { Mail } from "lucide-astro";
+import { Github, Instagram, LinkedinIcon, Mail, Twitter } from "lucide-react";
 import Footer from "../Footer.astro";
 import { Button } from "../ui/button";
 import {
@@ -10,6 +12,7 @@ import {
 } from "../ui/card";
 import Chip from "../ui/Chip.astro";
 import Title from "../ui/Title.astro";
+import { Linkedin } from "lucide-astro";
 const works = [
   { name: "Waffle", href:"#" },
   { name: "Reddit Clone", href:"#" },
@@ -19,7 +22,7 @@ const works = [
 ];
 ---
 
-<section class="flex flex-col w-full p-4 md:p-0 md:w-[600px] h-dvh md:h-[90vh] text-sm select-none">
+<section class="h-full">
   <div class="h-fit w-full flex relative gap-4 items-center">
     <div
       class="size-[45px] border-border border-2 rounded-sm flex items-center justify-center !stroke-accent-foreground/50"
@@ -40,26 +43,26 @@ const works = [
         ></circle><path d="M18 12c0 1.7-.7 3.2-1.8 4.2"></path></svg
       >
     </div>
-    <div>
-      <div class="">Ronish</div>
-      <div class="text-foreground/50">Developer</div>
+    <div class="flex flex-col">
+      <h1 class="font-normal">Ronish <span class="text-foreground/70" >Rohan</span></h1>
+      <div class="text-foreground/50 font-medium">Developer</div>
     </div>
   </div>
   <div class="py-4 text-sm flex flex-col">
     <div>
-      Loves creating <span
+      I love creating <span
         class="italic cursor-pointer text-primary-foreground hover:font-black transition-all duration-75 underline hover:text-primary"
-        >stuff</span
+        >shit</span
       >
     </div>
     <div>
-      Lives in <span
+      Based in <a href="/gallery"
         class="italic cursor-pointer text-primary-foreground hover:font-black transition-all duration-75 underline hover:text-primary"
-        >Bangalore, India</span
+        >Bangalore, India</a
       >
     </div>
-    <div>Likes a little bit of everything</div>
-    <div>This website was meant to be simple,</div>
+    <!-- <div>Likes a little bit of everything</div> -->
+    <div class="mt-4">This website was meant to be simple,</div>
     <div>
       I've made <span
         class="italic cursor-pointer text-primary-foreground hover:font-black transition-all duration-75 underline hover:text-primary"
@@ -68,25 +71,46 @@ const works = [
     </div>
   </div>
   <div class="flex flex-col h-fit w-full">
-    <Title title="Work" />
+    <Title title="Work" ><Button className="h-fit bg-accent-foreground/10 hover:bg-accent-foreground/20 !p-0 !px-1" >more</Button></Title>
     <div class="size-full flex flex-col py-1">
       {
         works.map((work, index) => (
           <a
             href={work.href}
-            class=" py-1 hover:font-bold hover:text-primary focus:text-primary focus:bg-accent outline-none focus:font-bold transition-all duration-75 px-1 w-full rounded-sm hover:bg-accent"
+            class=" py-1 hover:font-bold hover:text-primary focus:text-primary focus:bg-accent-foreground/10 outline-none focus:font-bold  px-1 w-full rounded-sm hover:bg-accent"
           >
             0{index} {work.name}
           </a>
         ))
       }
-    </div>
-  </div>
-  <div class="flex flex-col size-full">
-    <Title title="Skills" />
-    <div class="size-full flex flex-col py-1">
       
     </div>
   </div>
-  <Footer />
+  <div class="flex flex-col h-fit mt-auto">
+    <Title title="Links" />
+    <div class="w-full h-fit gap-1 flex py-1">
+      <Button variant="ghost" className="w-full" >
+        <!-- <Mail></Mail> -->
+         <Mail></Mail>
+       
+      </Button>
+      <Button variant="ghost" className="w-full" >
+        
+         <LinkedinIcon></LinkedinIcon>
+        
+      </Button>
+      <Button variant="ghost" className="w-full" >
+        
+        <Twitter></Twitter>
+       
+     </Button>
+     <Button variant="ghost" className="w-full" >
+        
+      <Github></Github>
+     
+   </Button>
+      
+    </div>
+  </div>
+  
 </section>

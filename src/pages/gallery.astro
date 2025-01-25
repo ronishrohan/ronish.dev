@@ -1,0 +1,32 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Home from "@/components/sections/Home.astro";
+import ImageCard from "@/components/ImageCard.astro";
+import { ArrowLeftIcon } from "lucide-react";
+import { Button } from "@/components/ui/button";
+---
+
+<Layout>
+  <section class="size-full flex flex-col gap-1">
+    <div class="flex gap-2 items-center">
+      <a
+        href="/"
+        class="flex gap-1  w-fit bg-transparent transition-all duration-75 hover:text-white hover:font-bold hover:bg-accent rounded-sm p-1 items-center"
+      >
+        <ArrowLeftIcon size={16} /> Back</a
+      >
+      <div class="font-bold" >Gallery</div>
+    </div>
+    <div class="flex size-full flex-col gap-1 py-1">
+      <div class="h-full flex gap-1">
+        <ImageCard src="/images/1.jpg" height="100%" width="100%" />
+        <ImageCard src="/images/2.jpg" height="100%" width="100%" />
+      </div>
+      <div class="h-full flex gap-1">
+        <ImageCard src="/images/3.jpg" height="100%" width="100%" />
+        <ImageCard src="/images/1.jpg" height="100%" width="40%" />
+      </div>
+      <ImageCard src="/images/3.jpg" height="100%" width="100%" />
+    </div>
+  </section>
+</Layout>
