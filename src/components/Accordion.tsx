@@ -1,7 +1,7 @@
 import React, { useState, type ReactNode } from "react";
 
 const Accordion = ({title, children} : {title : string, children: ReactNode}) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(true);
   return (
     <div className="flex flex-col w-full h-fit">
       <button
@@ -20,7 +20,7 @@ const Accordion = ({title, children} : {title : string, children: ReactNode}) =>
 
       <>
         <div
-          style={{ height: open ? "auto" : "0px", paddingBottom: open ? "1rem" : "0px" }}
+          style={{ height: open ? "auto" : "0px", paddingBottom: open ? "1rem" : "0px", paddingTop: open ? "0.5rem" : "0px" }}
           className={`transition-[height] duration-500 ease-in-out w-full overflow-hidden`}
         >
           {children}
