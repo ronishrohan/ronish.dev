@@ -20,6 +20,9 @@ body{
     height: 100dvh;
 }
 
+:root{
+  interpolate-size: allow-keywords;
+}
 @layer base {
   :root {
     --background: 0 0% 100%;

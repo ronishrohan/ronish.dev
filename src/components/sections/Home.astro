@@ -1,28 +1,21 @@
 ---
 // import { Mail } from "lucide-astro";
-import { Github, Instagram, LinkedinIcon, Mail, Twitter } from "lucide-react";
-import Footer from "../Footer.astro";
+import { Github, Linkedin, Mail, Twitter } from "lucide-react";
+import Accordion from "../Accordion";
 import { Button } from "../ui/button";
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardFooter,
-  CardContent,
-} from "../ui/card";
-import Chip from "../ui/Chip.astro";
+
 import Title from "../ui/Title.astro";
-import { Linkedin } from "lucide-astro";
+
 const works = [
-  { name: "Waffle", href:"#" },
-  { name: "Reddit Clone", href:"#" },
-  { name: "Portfolio website", href:"#" },
-  { name: "Something", href:"#" },
-  { name: "Something", href:"#" },
+  { name: "Waffle", href: "#" },
+  { name: "Reddit Clone", href: "#" },
+  { name: "Landing page", href: "#" },
+  { name: "Portfolio website", href: "#" },
+  { name: "Paypeek", href: "#" },
 ];
 ---
 
-<section class="h-full">
+<section class="h-full flex flex-col">
   <div class="h-fit w-full flex relative gap-4 items-center">
     <div
       class="size-[45px] border-border border-2 rounded-sm flex items-center justify-center !stroke-accent-foreground/50"
@@ -44,7 +37,9 @@ const works = [
       >
     </div>
     <div class="flex flex-col">
-      <h1 class="font-normal">Ronish <span class="text-foreground/70" >Rohan</span></h1>
+      <h1 class="font-normal">
+        Ronish <span class="text-foreground/70">Rohan</span>
+      </h1>
       <div class="text-foreground/50 font-medium">Developer</div>
     </div>
   </div>
@@ -56,7 +51,8 @@ const works = [
       >
     </div>
     <div>
-      Based in <a href="/gallery"
+      Based in <a
+        href="/gallery"
         class="italic cursor-pointer text-primary-foreground hover:font-black transition-all duration-75 underline hover:text-primary"
         >Bangalore, India</a
       >
@@ -70,9 +66,17 @@ const works = [
       > of them
     </div>
   </div>
-  <div class="flex flex-col h-fit w-full">
-    <Title title="Work" ><Button className="h-fit bg-accent-foreground/10 hover:bg-accent-foreground/20 !p-0 !px-1" >more</Button></Title>
-    <div class="size-full flex flex-col py-1">
+
+  <Accordion title="About" client:load
+    ><div>
+      Hi, I'm Ronish Rohan, a CS student from Bangalore, India. Currently I am
+      in my second year, and I'm interested in anything that has to do with
+      websites and design. <br /> I have previously worked as a 3D graphics artist
+      for about 3 years and I still continue to do graphics as a hobby.
+    </div></Accordion
+  >
+  <Accordion title="Projects" client:load>
+    <div class="flex flex-col">
       {
         works.map((work, index) => (
           <a
@@ -83,34 +87,44 @@ const works = [
           </a>
         ))
       }
-      
     </div>
-  </div>
-  <div class="flex flex-col h-fit mt-auto">
+  </Accordion>
+  <Accordion client:load  title="Skills">
+    <div class="flex flex-col"></div>
+  </Accordion>
+  <Accordion client:load  title="Contact">
+    <div class="grid grid-cols-2">
+      <Button variant="ghost" className="w-full">
+        <Mail />
+      </Butt>
+      <Button variant="ghost" className="w-full">
+        <Linkedin />
+      </Button>
+      <Button variant="ghost" className="w-full">
+        <Twitter />
+      </Button>
+      <Button variant="ghost" className="w-full">
+        <Github />
+      </Button>
+    </div>
+  </Accordion>
+
+  <!-- <div class="flex flex-col h-fit mt-auto">
     <Title title="Links" />
     <div class="w-full h-fit gap-1 flex py-1">
-      <Button variant="ghost" className="w-full" >
-        <!-- <Mail></Mail> -->
-         <Mail></Mail>
-       
+      <Button variant="ghost" className="w-full">
+        
+        <Mail />
       </Button>
-      <Button variant="ghost" className="w-full" >
-        
-         <LinkedinIcon></LinkedinIcon>
-        
+      <Button variant="ghost" className="w-full">
+        <LinkedinIcon />
       </Button>
-      <Button variant="ghost" className="w-full" >
-        
-        <Twitter></Twitter>
-       
-     </Button>
-     <Button variant="ghost" className="w-full" >
-        
-      <Github></Github>
-     
-   </Button>
-      
+      <Button variant="ghost" className="w-full">
+        <Twitter />
+      </Button>
+      <Button variant="ghost" className="w-full">
+        <Github />
+      </Button>
     </div>
-  </div>
-  
+  </div> -->
 </section>
