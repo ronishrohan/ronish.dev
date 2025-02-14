@@ -3,14 +3,25 @@
 import { Github, Linkedin, Mail, Twitter } from "lucide-react";
 import Accordion from "../Accordion";
 import { Button } from "../ui/button";
-import {Separator} from "../ui/separator"
+import { Separator } from "../ui/separator";
 
 import Title from "../ui/Title.astro";
 import Skill from "../ui/Skill.astro";
+import Chip from "../ui/Chip.astro";
+
+const contact = [
+  { title: "Mail", href: "mailto:ronish.rohan@gmail.com" },
+  { title: "Linkedin", href: "https://linkedin.com/in/ronishrohan" },
+  { title: "Twitter", href: "https://x.com/ronishroh" },
+  { title: "Github", href: "https://github.com/ronishrohan" },
+];
 
 const works = [
   { name: "Waffle", href: "https://wafl.vercel.app/" },
-  { name: "Reddit Clone", href: "https://reddit-clone-ronishrohan.vercel.app/" },
+  {
+    name: "Reddit Clone",
+    href: "https://reddit-clone-ronishrohan.vercel.app/",
+  },
   { name: "Landing page", href: "https://lnd-1.vercel.app/" },
   { name: "Portfolio website", href: "https://biscuits.ronish.dev/" },
   { name: "Paypeek", href: "https://paypeek.vercel.app/" },
@@ -82,14 +93,13 @@ const works = [
       {
         works.map((work, index) => (
           <>
-          <Separator />
+            <Separator />
             <a
               href={work.href}
               class=" py-1 my-1 hover:font-bold hover:text-primary focus:text-primary focus:bg-accent-foreground/10 outline-none focus:font-bold  px-1 w-full rounded-sm hover:bg-accent"
             >
               0{index} {work.name}
-
-              <div class="absolute right-0" ></div>
+              <div class="absolute right-0" />
             </a>
           </>
         ))
@@ -114,8 +124,22 @@ const works = [
     </div>
   </Accordion>
   <Accordion client:load title="Contact">
+    <div>
+      If you really want to contact me I'm (almost) always available on my
+      discord <span class="text-primary font-bold ">@ronish.</span> (yes with a dot), 
+    </div>
+    <div class="text-accent-foreground/50 mt-4" >Other ways to contact me </div></div>
     <div class="flex flex-col">
-      
+      {
+        contact.map((contact) => (
+          <a
+            href={contact.href}
+            class=" duration-0 hover:bg-primary hover:text-black cursor-pointer hover:font-bold hover:text-primary transition-all"
+          >
+            {contact.title}
+          </a>
+        ))
+      }
     </div>
   </Accordion>
 
