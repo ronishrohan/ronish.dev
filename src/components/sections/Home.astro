@@ -3,6 +3,7 @@ import Accordion from "../Accordion";
 import { Separator } from "../ui/separator";
 import Skill from "../ui/Skill.astro";
 
+
 const contact = [
   { title: "Mail", href: "mailto:ronish.rohan@gmail.com" },
   { title: "Linkedin", href: "https://linkedin.com/in/ronishrohan" },
@@ -145,10 +146,10 @@ const works = [
 </style>
 
 <script >
-  import gsap from "gsap";
+  import {gsap} from "gsap";
 
   const elements = document.querySelectorAll(".appear");
-
+  
   elements.forEach((element, index) => {
     gsap.set(element, { opacity: 0, y: 5, filter: "blur(2px)" });
 
