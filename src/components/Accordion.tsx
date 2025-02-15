@@ -34,7 +34,7 @@ const Accordion = ({
           style={{
             height: open ? "auto" : "0px", 
             opacity: open ? "1" : "0",
-            filter: open ? "blur(0px)" : "blur(2px)",
+            // filter: open ? "blur(0px)" : "blur(2px)",
             paddingBottom: open ? "1rem" : "0px",
             paddingTop: open ? "0.5rem" : "0px",
           }}
