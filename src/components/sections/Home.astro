@@ -1,13 +1,7 @@
 ---
-// import { Mail } from "lucide-astro";
-import { Github, Linkedin, Mail, Twitter } from "lucide-react";
 import Accordion from "../Accordion";
-import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
-
-import Title from "../ui/Title.astro";
 import Skill from "../ui/Skill.astro";
-import Chip from "../ui/Chip.astro";
 
 const contact = [
   { title: "Mail", href: "mailto:ronish.rohan@gmail.com" },
@@ -28,10 +22,10 @@ const works = [
 ];
 ---
 
-<section class="h-full flex flex-col">
-  <div class="h-fit w-full flex relative gap-4 items-center">
+<section class="h-full flex flex-col appear">
+  <div class="h-fit w-full flex relative gap-4 items-center appear">
     <div
-      class="size-[45px] border-border border-2 rounded-sm flex items-center justify-center !stroke-accent-foreground/50"
+      class="size-[45px] border-border border-2 rounded-sm flex items-center justify-center !stroke-accent-foreground/50 appear"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -50,13 +44,13 @@ const works = [
       >
     </div>
     <div class="flex flex-col">
-      <h1 class="font-normal">
+      <h1 class="font-normal ">
         Ronish <span class="text-foreground/70">Rohan</span>
       </h1>
       <div class="text-foreground/50 font-medium">Developer</div>
     </div>
   </div>
-  <div class="py-4 text-sm flex flex-col">
+  <div class="py-4 text-sm flex flex-col appear">
     <div>
       I love creating <span
         class="italic cursor-pointer text-primary-foreground hover:font-black transition-all duration-75 underline hover:text-primary"
@@ -80,15 +74,15 @@ const works = [
     </div>
   </div>
 
-  <Accordion title="About" client:load
-    ><div>
+  <Accordion title="About" client:load className="appear">
+    <div>
       Hi, I'm Ronish Rohan, a CS student from Bangalore, India. Currently I am
       in my second year, and I'm interested in anything that has to do with
       websites and design. <br /> I have previously worked as a 3D graphics artist
       for about 3 years and I still continue to do graphics as a hobby.
-    </div></Accordion
-  >
-  <Accordion title="Projects" client:load>
+    </div>
+  </Accordion>
+  <Accordion title="Projects" client:load className="appear">
     <div class="flex flex-col">
       {
         works.map((work, index) => (
@@ -107,7 +101,7 @@ const works = [
       <Separator />
     </div>
   </Accordion>
-  <Accordion client:load title="Skills">
+  <Accordion client:load title="Skills" className="appear">
     <div class="flex flex-wrap gap-1">
       <Skill name="React" />
       <Skill name="Next js " />
@@ -123,7 +117,7 @@ const works = [
       <Skill name="HTML" />
     </div>
   </Accordion>
-  <Accordion client:load title="Contact">
+  <Accordion client:load title="Contact" className="appear">
     <div>
       If you really want to contact me I'm (almost) always available on my
       discord <span class="text-primary font-bold ">@ronish.</span> (yes with a dot), 
@@ -142,23 +136,29 @@ const works = [
       }
     </div>
   </Accordion>
-
-  <!-- <div class="flex flex-col h-fit mt-auto">
-    <Title title="Links" />
-    <div class="w-full h-fit gap-1 flex py-1">
-      <Button variant="ghost" className="w-full">
-        
-        <Mail />
-      </Button>
-      <Button variant="ghost" className="w-full">
-        <LinkedinIcon />
-      </Button>
-      <Button variant="ghost" className="w-full">
-        <Twitter />
-      </Button>
-      <Button variant="ghost" className="w-full">
-        <Github />
-      </Button>
-    </div>
-  </div> -->
 </section>
+
+<style>
+  .appear{
+    opacity: 0;
+  }
+</style>
+
+<script >
+  import gsap from "gsap";
+
+  const elements = document.querySelectorAll(".appear");
+
+  elements.forEach((element, index) => {
+    gsap.set(element, { opacity: 0, y: 5, filter: "blur(2px)" });
+
+    gsap.to(element, {
+      opacity: 1,
+      filter: "blur(0px)",
+      y: 0,
+      delay: index * 0.05,
+      duration: 1, // Increase duration for elements further down
+      ease: "power4.out",
+    });
+  });
+</script>

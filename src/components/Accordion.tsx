@@ -1,15 +1,18 @@
 import React, { useState, type ReactNode } from "react";
+import { twMerge } from "tailwind-merge";
 
 const Accordion = ({
   title,
   children,
+  className
 }: {
   title: string;
   children: ReactNode;
+  className?: string;
 }) => {
   const [open, setOpen] = useState(true);
   return (
-    <div className="flex flex-col w-full h-fit">
+    <div className={twMerge("flex flex-col w-full h-fit", className)}>
       <button
         onClick={() => setOpen((prev) => !prev)}
         className={`hover:underline cursor-pointer relative flex justify-start transition-all duration-75 ${
