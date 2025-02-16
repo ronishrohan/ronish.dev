@@ -93,7 +93,10 @@ const works = [
             class="hover:text-primary underline hover:font-bold transition-all duration-75"
             href="https://github.com/sainnhe/gruvbox-material-vscode"
             >gruvbox dark</a
-          > and <a class="hover:text-primary underline hover:font-bold transition-all duration-75" href="https://github.com/tonsky/FiraCode">firacode</a>
+          > and <a
+            class="hover:text-primary underline hover:font-bold transition-all duration-75"
+            href="https://github.com/tonsky/FiraCode">firacode</a
+          >
         </div>
       </Accordion>
     </div>
@@ -139,22 +142,20 @@ const works = [
       If you really want to contact me I'm (almost) always available on my
       discord <span class="text-primary font-bold">@ronish.</span> (yes with a dot),
     </div>
-    <div class="text-accent-foreground/50 mt-4">
-      Other ways to contact me
-    </div></Accordion
-  >
-  <div class="flex flex-col">
-    {
-      contact.map((contact) => (
-        <a
-          href={contact.href}
-          class=" duration-0 hover:bg-primary hover:text-black cursor-pointer hover:font-bold  transition-all"
-        >
-          {contact.title}
-        </a>
-      ))
-    }
-  </div>
+    <div class="text-accent-foreground/50 mt-4">Other ways to contact me</div>
+    <div class="flex flex-col">
+      {
+        contact.map((contact) => (
+          <a
+            href={contact.href}
+            class=" duration-0 hover:bg-primary hover:text-black cursor-pointer hover:font-bold  transition-all"
+          >
+            {contact.title}
+          </a>
+        ))
+      }
+    </div>
+  </Accordion>
 </section>
 
 <style>
