@@ -3,7 +3,6 @@ import Accordion from "../Accordion";
 import { Separator } from "../ui/separator";
 import Skill from "../ui/Skill.astro";
 
-
 const contact = [
   { title: "Mail", href: "mailto:ronish.rohan@gmail.com" },
   { title: "Linkedin", href: "https://linkedin.com/in/ronishrohan" },
@@ -45,7 +44,7 @@ const works = [
       >
     </div>
     <div class="flex flex-col">
-      <h1 class="font-normal ">
+      <h1 class="font-normal">
         Ronish <span class="text-foreground/70">Rohan</span>
       </h1>
       <div class="text-foreground/50 font-medium">Developer</div>
@@ -81,6 +80,22 @@ const works = [
       in my second year, and I'm interested in anything that has to do with
       websites and design. <br /> I have previously worked as a 3D graphics artist
       for about 3 years and I still continue to do graphics as a hobby.
+    </div>
+    <div class="pl-4 mt-2">
+      <Accordion
+        title="Random shit about me"
+        client:load
+        className="appear flex flex-col"
+        defaultOpen={false}
+      >
+        <div>
+          I use vscode with <a
+            class="hover:text-primary underline hover:font-bold transition-all duration-75"
+            href="https://github.com/sainnhe/gruvbox-material-vscode"
+            >gruvbox dark</a
+          > and <a class="hover:text-primary underline hover:font-bold transition-all duration-75" href="https://github.com/tonsky/FiraCode">firacode</a>
+        </div>
+      </Accordion>
     </div>
   </Accordion>
   <Accordion title="Projects" client:load className="appear">
@@ -118,38 +133,41 @@ const works = [
       <Skill name="HTML" />
     </div>
   </Accordion>
+
   <Accordion client:load title="Contact" className="appear">
     <div>
       If you really want to contact me I'm (almost) always available on my
-      discord <span class="text-primary font-bold ">@ronish.</span> (yes with a dot), 
+      discord <span class="text-primary font-bold">@ronish.</span> (yes with a dot),
     </div>
-    <div class="text-accent-foreground/50 mt-4" >Other ways to contact me </div></div>
-    <div class="flex flex-col">
-      {
-        contact.map((contact) => (
-          <a
-            href={contact.href}
-            class=" duration-0 hover:bg-primary hover:text-black cursor-pointer hover:font-bold  transition-all"
-          >
-            {contact.title}
-          </a>
-        ))
-      }
-    </div>
-  </Accordion>
+    <div class="text-accent-foreground/50 mt-4">
+      Other ways to contact me
+    </div></Accordion
+  >
+  <div class="flex flex-col">
+    {
+      contact.map((contact) => (
+        <a
+          href={contact.href}
+          class=" duration-0 hover:bg-primary hover:text-black cursor-pointer hover:font-bold  transition-all"
+        >
+          {contact.title}
+        </a>
+      ))
+    }
+  </div>
 </section>
 
 <style>
-  .appear{
+  .appear {
     opacity: 0;
   }
 </style>
 
-<script >
-  import {gsap} from "gsap";
+<script>
+  import { gsap } from "gsap";
 
   const elements = document.querySelectorAll(".appear");
-  
+
   elements.forEach((element, index) => {
     gsap.set(element, { opacity: 0, y: 5, filter: "blur(2px)" });
 

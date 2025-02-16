@@ -4,13 +4,16 @@ import { twMerge } from "tailwind-merge";
 const Accordion = ({
   title,
   children,
-  className
+  className,
+  defaultOpen = true,
 }: {
   title: string;
   children: ReactNode;
   className?: string;
+  defaultOpen?: boolean;
+  
 }) => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(defaultOpen);
   return (
     <div className={twMerge("flex flex-col w-full h-fit", className)}>
       <button
