@@ -1,0 +1,20 @@
+---
+import Interaction from "@/components/interactions/Interaction.astro"
+import Layout from "@/layouts/Layout.astro"
+import { ArrowLeftIcon } from "lucide-react"
+---
+<Layout>
+    <div class="flex gap-2 items-center mb-2">
+        <a
+          href="/"
+          class="flex gap-1  w-fit bg-transparent transition-all duration-75 hover:text-white hover:font-bold hover:bg-accent rounded-sm p-1 items-center"
+        >
+          <ArrowLeftIcon size={16} /> Back</a
+        >
+        <div class="font-bold" >Interactions</div>
+      </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 mb-4 md:grid-cols-3 gap-2"  >
+        <Interaction title="Interactive Button" date="29 Feb, 2025" href="/interactions/input" />
+        
+    </div>
+</Layout>

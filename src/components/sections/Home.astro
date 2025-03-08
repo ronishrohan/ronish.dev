@@ -1,4 +1,5 @@
 ---
+import { ArrowRight } from "lucide-react";
 import Accordion from "../Accordion";
 import { Separator } from "../ui/separator";
 import Skill from "../ui/Skill.astro";
@@ -73,6 +74,12 @@ const works = [
       > of them
     </div>
   </div>
+
+  <a
+    href="/interactions"
+    class="px-4  hover:px-6 border-2 hover:border-primary border-primary transition-[font-weight,padding,background-color,border] hover:bg-accent bg-primary py-2 mt-2  mb-4 w-full items-center appear flex justify-between  rounded-sm"
+    ><div>Interactions</div><ArrowRight size={15}  /></a
+  >
 
   <Accordion title="About" client:load className="appear">
     <div>
