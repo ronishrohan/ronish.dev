@@ -1,14 +1,19 @@
 ---
+import { Picture } from "astro:assets"
+import InputGif from "@/assets/interactions/input.gif"
 const {title, date, href} = Astro.props
+
 ---
 
-<a
-    href={href}
-  class="border-border cursor-pointer duration-75 bg-gradient-to-b from-transparent to-transparent hover:to-primary/20 transition-all hover:border-primary border-2 rounded-sm h-[300px] p-2 flex flex-col gap-2"
+<div class="appear opacity-0" > <a
+  href={href}
+class="border-border  cursor-pointer duration-75 bg-gradient-to-b from-transparent to-transparent hover:to-primary/20 transition-all hover:border-primary border-2 rounded-sm h-[300px] p-2 flex flex-col gap-2"
 >
-  <div class="flex flex-col">
-    <div>{title}</div>
-    <div class="text-white/50">{date}</div>
-  </div>
-  <div class="h-full w-full rounded-sm bg-accent"></div>
-</a>
+<div class="flex flex-col">
+  <div>{title}</div>
+  <div class="text-white/50">{date}</div>
+</div>
+<div class="h-full w-full rounded-sm bg-background overflow-hidden flex relative items-center justify-center">
+  <img class="w-full object-cover relative sm:absolute" src={InputGif.src}  ></img>
+</div>
+</a></div>

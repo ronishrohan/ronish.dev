@@ -7,7 +7,7 @@ import InputInteraction from "@/components/interactions/Input/Input.tsx";
 <Layout>
   <div class="flex gap-2 items-center mb-2">
     <a
-      href="/"
+      href="/interactions/"
       class="flex gap-1 w-fit bg-transparent transition-all duration-75 hover:text-white hover:font-bold hover:bg-accent rounded-sm p-1 items-center"
     >
       <ArrowLeftIcon size={16} /> Back</a
@@ -17,4 +17,6 @@ import InputInteraction from "@/components/interactions/Input/Input.tsx";
   <div class="w-full h-[300px] flex items-center justify-center">
     <InputInteraction client:load />
   </div>
+  <div>A simple input component with a animated label, and a border.</div>
+  <div>The placeholder morphs into the label when the input is focused (much like material ui)</div>
 </Layout>

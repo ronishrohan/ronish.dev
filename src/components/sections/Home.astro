@@ -75,11 +75,18 @@ const works = [
     </div>
   </div>
 
-  <a
+  <div class="flex gap-2" >
+    <a
     href="/interactions"
-    class="px-4  hover:px-6 border-2 hover:border-primary border-primary transition-[font-weight,padding,background-color,border] hover:bg-accent bg-primary py-2 mt-2  mb-4 w-full items-center appear flex justify-between  rounded-sm"
+    class="px-4 shrink-0  hover:px-6 border-2 hover:border-primary border-primary transition-[font-weight,padding,background-color,border] hover:bg-accent bg-primary py-2 mt-2  mb-4 w-1/2 items-center appear flex justify-between  rounded-sm"
     ><div>Interactions</div><ArrowRight size={15}  /></a
   >
+  <a
+    href="/blog"
+    class="px-4  hover:px-6 border-2 hover:border-primary border-primary transition-[font-weight,padding,background-color,border] hover:bg-accent bg-primary py-2 mt-2  mb-4 w-full items-center appear flex justify-between  rounded-sm"
+    ><div>Blog</div><ArrowRight size={15}  /></a
+  >
+  </div>
 
   <Accordion title="About" client:load className="appear">
     <div>
@@ -171,21 +178,4 @@ const works = [
   }
 </style>
 
-<script>
-  import { gsap } from "gsap";
 
-  const elements = document.querySelectorAll(".appear");
-
-  elements.forEach((element, index) => {
-    gsap.set(element, { opacity: 0, y: 5, filter: "blur(2px)" });
-
-    gsap.to(element, {
-      opacity: 1,
-      filter: "blur(0px)",
-      y: 0,
-      delay: index * 0.05,
-      duration: 1, // Increase duration for elements further down
-      ease: "power4.out",
-    });
-  });
-</script>
