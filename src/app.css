@@ -2,3 +2,16 @@
 
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
+
+@theme{
+    --font-signature: 'Momo Signature', cursive;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    /* letter-spacing: -1px; */
+}
+
+*{
+    corner-shape: superellipse(1.2);
+}
