@@ -5,15 +5,11 @@
 {
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "ronish",
-	"main": "src/index.ts",
 	"compatibility_date": "2025-11-15",
 	"compatibility_flags": [
-		"global_fetch_strictly_public"
+		"nodejs_als"
 	],
-	"assets": {
-		// The path to the directory containing the `index.html` file to be served at `/`
-		"directory": "./public"
-	},
+	"pages_build_output_dir": ".svelte-kit/cloudflare",
 	"observability": {
 		"enabled": true
 	}
