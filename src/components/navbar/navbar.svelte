@@ -44,14 +44,14 @@
   }
 </style>
 
-<div class="fixed top-0 left-0 flex h-[64px] w-[100vw] items-center gap-2">
-  <div class="mx-auto flex w-full max-w-[900px] items-center p-4">
+<div class="sticky top-0 left-0 flex h-[64px] bg-gradient-to-b from-white via-white to-transparent max-w-[900px] w-full mx-auto items-center gap-2">
+  <div class="mx-auto flex w-full  items-center">
     <div class="font-signature text-xl font-medium">ronish</div>
 
     <div class="nav-container ml-auto flex h-full items-center relative gap-2 text-sm tracking-tight">
 
       <div
-        class="highlight border border-stone-200 bg-gradient-to-t from-white to-stone-200 shadow-[inset_0px_2px_2px_rgba(255,255,255,1),inset_0px_-2px_2px_rgba(0,0,0,0.1),0px_1px_2px_rgba(0,0,0,0.3)]"
+        class="highlight border border-zinc-200 bg-gradient-to-t from-white to-zinc-200 shadow-[inset_0px_2px_2px_rgba(255,255,255,1),inset_0px_-2px_2px_rgba(0,0,0,0.1),0px_1px_2px_rgba(0,0,0,0.3)]"
         bind:this={highlight}
       ></div>
 

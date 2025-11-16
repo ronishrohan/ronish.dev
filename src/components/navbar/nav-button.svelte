@@ -12,8 +12,8 @@
   on:click={onClick}
   class="relative h-[40px] px-4 py-2 transition-all rounded-full
     {active
-      ? 'text-stone-900'
-      : 'text-stone-600 hover:text-stone-950 hover:bg-stone-100'
+      ? 'text-zinc-900'
+      : 'text-zinc-600 hover:text-zinc-950 hover:bg-zinc-100'
     }"
 >
   {label}

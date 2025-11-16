@@ -2,6 +2,7 @@
 	import '../app.css';
 	import favicon from '$lib/assets/favicon.svg';
 	import Navbar from '../components/navbar/navbar.svelte';
+	import Footer from '../components/footer/footer.svelte';
 	
 	let { children } = $props();
 </script>
@@ -12,4 +13,8 @@
 
 <Navbar />
 
-{@render children?.()}
+<div class="max-w-[900px] w-full mx-auto">
+	{@render children?.()}
+</div>
+
+<Footer />
