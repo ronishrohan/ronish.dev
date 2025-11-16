@@ -44,7 +44,9 @@
   }
 </style>
 
-<div class="sticky top-0 left-0 flex h-[64px] bg-gradient-to-b from-white via-white to-transparent max-w-[900px] w-full mx-auto items-center gap-2">
+<div class="sticky top-0 left-0 flex h-[64px] to-transparent bg-white max-w-[900px] w-full mx-auto items-center gap-2">
+ <div class="absolute top-full w-full bg-gradient-to-b from-white to-transparent h-[40px]" ></div>
+ 
   <div class="mx-auto flex w-full  items-center">
     <div class="font-signature text-xl font-medium">ronish</div>
 
