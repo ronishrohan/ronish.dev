@@ -48,7 +48,7 @@
  <div class="absolute top-full w-full bg-gradient-to-b from-white to-transparent h-[40px]" ></div>
  
   <div class="mx-auto flex w-full  items-center">
-    <div class="font-signature text-xl font-medium">ronish</div>
+    <div class="font-signature text-xl font-medium tracking-normal">ronish</div>
 
     <div class="nav-container ml-auto flex h-full items-center relative gap-2 text-sm tracking-tight">
 
