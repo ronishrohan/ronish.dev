@@ -1,9 +1,80 @@
-<div class="fixed w-[100vw]  items-center left-0 top-0 h-[64px] flex gap-2 border-b border-b-2 border-stone-300">
-    <div class="max-w-[1200px] w-full mx-auto p-4 flex items-center" >
-        <div class="font-light text-lg  font-signature ">ronish</div>
+<script>
+  import { onMount } from "svelte";
+  import gsap from "gsap";
+  import NavButton from "./nav-button.svelte";
 
-        <div class="ml-auto tracking-tight h-full flex gap-2 items-center " >
-            <button class="px-4 h-[40px] text-sm py-2  hover:bg-stone-200 hover:black text-stone-900 bg-gradient-to-t from-white to-stone-200 cursor-pointer border  border-stone-200 rounded-full shadow-[inset_0px_2px_2px_rgba(255,255,255,1),inset_0px_-2px_2px_rgba(0,0,0,0.1),0px_1px_2px_rgba(0,0,0,0.3)]" >About</button>
-        </div>
+  let highlight;
+
+  // store the button DOM nodes
+  let btnRefs = [];
+
+  let activeIndex = 0;
+
+  onMount(() => {
+    moveHighlight(btnRefs[activeIndex]);
+  });
+
+  function moveHighlight(target) {
+    const rect = target.getBoundingClientRect();
+    const parentRect = target.parentElement.getBoundingClientRect();
+
+    gsap.to(highlight, {
+      x: rect.left - parentRect.left,
+      width: rect.width,
+      height: rect.height,
+      duration: 0.35,
+      ease: "power3.out"
+    });
+  }
+
+  function setActive(i) {
+    activeIndex = i;
+    moveHighlight(btnRefs[i]);
+  }
+</script>
+
+<style>
+  .highlight {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    border-radius: 9999px;
+    pointer-events: none;
+  }
+</style>
+
+<div class="fixed top-0 left-0 flex h-[64px] w-[100vw] items-center gap-2">
+  <div class="mx-auto flex w-full max-w-[900px] items-center p-4">
+    <div class="font-signature text-xl font-medium">ronish</div>
+
+    <div class="nav-container ml-auto flex h-full items-center relative gap-2 text-sm tracking-tight">
+
+      <div
+        class="highlight border border-stone-200 bg-gradient-to-t from-white to-stone-200 shadow-[inset_0px_2px_2px_rgba(255,255,255,1),inset_0px_-2px_2px_rgba(0,0,0,0.1),0px_1px_2px_rgba(0,0,0,0.3)]"
+        bind:this={highlight}
+      ></div>
+
+      <NavButton
+        label="about"
+        bind:ref={btnRefs[0]}
+        active={activeIndex === 0}
+        onClick={() => setActive(0)}
+      />
+
+      <NavButton
+        label="works"
+        bind:ref={btnRefs[1]}
+        active={activeIndex === 1}
+        onClick={() => setActive(1)}
+      />
+
+      <NavButton
+        label="contact"
+        bind:ref={btnRefs[2]}
+        active={activeIndex === 2}
+        onClick={() => setActive(2)}
+      />
     </div>
+  </div>
 </div>

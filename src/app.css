@@ -1,10 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Momo+Signature&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Pro:ital,wght@0,200..900;1,200..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 @import 'tailwindcss';
 @plugin '@tailwindcss/typography';
 
 @theme{
-    --font-signature: 'Momo Signature', cursive;
+    --font-signature: 'Crimson Pro', cursive;
 }
 
 body {
@@ -14,4 +13,8 @@ body {
 
 *{
     corner-shape: superellipse(1.2);
+}
+
+*:focus-visible{
+    outline: none;
 }
