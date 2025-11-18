@@ -49,7 +49,7 @@
   <img src="/logo.png" class="fixed size-[30vw]  -z-[100000] mix-blend-multiply opacity-10 left-1/2 -translate-1/2 top-1/2 -translate-y-1/2" alt="">
 
 
-<div class="sticky top-0 left-0 flex h-[64px] z-[1000]  max-w-[900px] w-full mx-auto items-center gap-2">
+<div class="sticky top-0 hidden sm:flex left-0 px-4 sm:px-2   h-[64px] z-[1000]  max-w-[900px] w-full mx-auto items-center gap-2">
  <!-- <div class="absolute top-full w-full bg-gradient-to-b from-white to-transparent h-[10px]" ></div> -->
  <div  style="mask: linear-gradient(black, black, transparent);" class="absolute  size-full backdrop-blur-sm bg-white/20 fixed h-[90px] bg-gradient-to-b from-white via-white/40 to-transparent left-0 w-full" ></div>
   <div class="mx-auto flex w-full z-50  items-center">

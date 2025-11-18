@@ -20,7 +20,7 @@
 <Navbar />
 <Loader />
 
-<div class="max-w-[900px] w-full mx-auto">
+<div class="max-w-[900px] w-full mx-auto  px-4 sm:px-2">
 	{@render children?.()}
 </div>
 
