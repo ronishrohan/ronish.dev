@@ -50,7 +50,7 @@
 			hi i'm <span class="font-bold">ronish rohan</span>, a software engineer at
 			<span class="font-bold">ghost</span>. <br />
 
-      i'm going to be da vinci of the web <br /><br />
+      i'm going to be da vinci of the web. <br /><br />
 
 			i'm a developer and artist, currently pursuing my bachelors in engineering. i love designing
 			and building websites, anything that has to do with colors, or typography or design. when I'm
