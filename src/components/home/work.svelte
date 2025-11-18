@@ -1,13 +1,22 @@
 <script>
 	export let href;
 	export let active = false;
+	export let content;
 </script>
 
-<a on:mouseenter on:mouseleave {href} class={`${active === null ? "opacity-100" : (active ? 'opacity-100' : 'opacity-70 ')} transition-all duration-75 underline group relative flex items-center `}>
+<a
+	{href}
+	on:mouseenter
+	on:mouseleave
+	class={`${active === null ? "opacity-100" : (active ? 'opacity-100' : 'opacity-70')}  group relative flex items-center underline transition-all duration-75`}
+>
 	<div class="absolute right-full flex size-4 items-center justify-center">
-		<div
-			class={`size-[4px] bg-black transition-[width,height] duration-100 ease-in-out `}
-		/>
+		<div class="size-[4px] bg-black transition-[width,height] duration-100 ease-in-out" />
 	</div>
-	<slot />
+
+	{#if !active}
+		<slot />
+	{:else}
+		{content}
+	{/if}
 </a>

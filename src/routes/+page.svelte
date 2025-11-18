@@ -6,31 +6,38 @@
 	const works = [
 		{
 			title: 'full-time at ghost (sf, remote) as one of the founding engineers',
-			href: '#'
+			href: '#',
+      content: `can't talk about it yet :)`
 		},
 		{
 			title: 'co-founded a startup and got bought+hired',
-			href: '#'
+			href: '#',
+      content: `built a desktop assistant called "rae" with a couple of friends`
 		},
 		{
 			title: 'helping my friend ship his dating app',
-			href: '#'
+			href: '#',
+      content: `work in progress :0`
 		},
 		{
 			title: 'trying to build a prettier google keep',
-			href: '#'
+			href: '#',
+      content: `mostly part of ui exploration`
 		},
 		{
 			title: '6 month long internship at optacloud (sg, remote)',
-			href: '#'
+			href: '#',
+      content: `worked on 2-3 client projects, mostly fullstack web development`
 		},
 		{
 			title: 'started learning webdev',
-			href: '#'
+			href: '#',
+      content: `built a few small projects, immediately fell in love with it`
 		},
 		{
 			title: 'almost went pro with 3d art using blender',
-			href: '#'
+			href: '#',
+      content: `got a fulltime job at 16, had to quit cause of school`
 		}
 	];
 
@@ -41,7 +48,9 @@
 	<div class="flex w-full items-stretch gap-6">
 		<div class=" ">
 			hi i'm <span class="font-bold">ronish rohan</span>, a software engineer at
-			<span class="font-bold">ghost</span>. <br /><br />
+			<span class="font-bold">ghost</span>. <br />
+
+      i'm going to be da vinci of the web <br /><br />
 
 			i'm a developer and artist, currently pursuing my bachelors in engineering. i love designing
 			and building websites, anything that has to do with colors, or typography or design. when I'm
@@ -63,6 +72,7 @@
             console.log("mouse enter")
             activeWork = work
           }}
+          content={work.content}
 					on:mouseleave={() => (activeWork = null)}
 					active={activeWork === null ? null : (activeWork === work)}
 				>
