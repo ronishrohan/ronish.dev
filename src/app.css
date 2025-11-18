@@ -4,6 +4,7 @@
 
 @theme{
     --font-signature: 'Crimson Pro', cursive;
+    --color-accent: #FB0C3F;
 }
 
 body {
@@ -14,7 +15,7 @@ body {
 }
 
 *{
-    corner-shape: superellipse(1.2);
+    corner-shape: superellipse(1.333);
 }
 
 *:focus-visible{
