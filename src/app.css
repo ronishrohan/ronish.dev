@@ -15,6 +15,7 @@ body {
 }
 
 *{
+    user-select: none;
     corner-shape: superellipse(1.333);
 }
 
