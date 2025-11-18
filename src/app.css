@@ -12,6 +12,7 @@ body {
     /* letter-spacing: -1px; */
      -webkit-font-smoothing: antialiased;
      text-shadow: 1px 1px 1px rgba(0,0,0,0.004);
+     background-color: white;
 }
 
 *{

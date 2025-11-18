@@ -44,8 +44,8 @@
 	let activeWork = null;
 </script>
 
-<div class="h-[90vh] pt-[80px]">
-	<div class="flex w-full items-stretch gap-6">
+<div class="min-h-[calc(100vh-108px)] h-fit pb-4 pt-[60px]">
+	<div class="flex w-full items-stretch gap-12">
 		<div class=" ">
 			hi i'm <span class="font-bold">ronish rohan</span>, a software engineer at
 			<span class="font-bold">ghost</span>. <br />

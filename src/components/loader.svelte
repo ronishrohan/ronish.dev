@@ -21,5 +21,5 @@
 
 
 <div bind:this={loaderDiv} class="bg-white fixed left-0 top-0 size-full bg-white z-[100000] overflow-hidden" >
-  <img src="/logo.png" class="absolute   left-1/2 -translate-1/2 top-1/2 -translate-y-1/2" alt="">
+  <img src="/logo.png" class="absolute size-[30vw]  left-1/2 -translate-1/2 top-1/2 -translate-y-1/2" alt="">
 </div>

@@ -46,14 +46,14 @@
 </style>
 
 
-  <img src="/logo.png" class="fixed -z-[100000] mix-blend-multiply opacity-10 left-1/2 -translate-1/2 top-1/2 -translate-y-1/2" alt="">
+  <img src="/logo.png" class="fixed size-[30vw]  -z-[100000] mix-blend-multiply opacity-10 left-1/2 -translate-1/2 top-1/2 -translate-y-1/2" alt="">
 
 
-<div class="sticky top-0 left-0 flex h-[64px] to-transparent bg-white max-w-[900px] w-full mx-auto items-center gap-2">
- <div class="absolute top-full w-full bg-gradient-to-b from-white to-transparent h-[40px]" ></div>
- 
-  <div class="mx-auto flex w-full  items-center">
-    <div class="font-signature text-lg font-medium tracking-tighter shrink-0 hover:text-accent">ronish</div>
+<div class="sticky top-0 left-0 flex h-[64px] z-[1000]  max-w-[900px] w-full mx-auto items-center gap-2">
+ <!-- <div class="absolute top-full w-full bg-gradient-to-b from-white to-transparent h-[10px]" ></div> -->
+ <div  style="mask: linear-gradient(black, black, transparent);" class="absolute  size-full backdrop-blur-sm bg-white/20 fixed h-[90px] bg-gradient-to-b from-white via-white/40 to-transparent left-0 w-full" ></div>
+  <div class="mx-auto flex w-full z-50  items-center">
+    <div class="font-signature text-lg font-medium z-[50] tracking-tighter shrink-0 hover:text-accent">ronish</div>
     
     <div class="nav-container ml-auto shrink-0 flex h-full items-center relative gap-2 text-sm tracking-tight">
 
