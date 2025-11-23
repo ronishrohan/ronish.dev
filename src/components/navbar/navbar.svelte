@@ -51,7 +51,7 @@
 
 <div class="sticky top-0 hidden sm:flex left-0 px-4 sm:px-2   h-[64px] z-[1000]  max-w-[900px] w-full mx-auto items-center gap-2">
  <!-- <div class="absolute top-full w-full bg-gradient-to-b from-white to-transparent h-[10px]" ></div> -->
- <div  style="mask: linear-gradient(black, black, transparent);" class="absolute  size-full backdrop-blur-sm bg-white/20 fixed h-[90px] bg-gradient-to-b from-white via-white/40 to-transparent left-0 w-full" ></div>
+ <div  style="mask: linear-gradient(black, black, transparent);" class="absolute  size-full backdrop-blur-[2px]  h-[90px] bg-linear-to-b from-white  to-transparent left-0 w-full" ></div>
   <div class="mx-auto flex w-full z-50  items-center">
     <div class="font-signature text-lg font-medium z-[50] tracking-tighter shrink-0 hover:text-accent">ronish</div>
     

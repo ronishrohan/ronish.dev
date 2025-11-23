@@ -45,7 +45,7 @@
 </script>
 
 <div class="h-fit min-h-[calc(100vh-108px)] pt-[60px] pb-4">
-	<div class="flex sm:flex-row flex-col w-full items-stretch gap-12">
+	<div class="flex w-full flex-col items-stretch gap-12 sm:flex-row">
 		<div class="sm:text-left">
 			hi i'm <span class="font-bold">ronish rohan</span>, a software engineer at
 			<span class="font-bold">ghost</span>. <br />
@@ -56,9 +56,11 @@
 			and building websites, anything that has to do with colors, or typography or design. when I'm
 			not coding, i'm probably watching movies, listening to music, or walking around the city.
 		</div>
-		<div class="relative w-full h-[200px] sm:h-auto sm:w-1/3  shrink-0 overflow-hidden rounded-2xl border border-stone-400">
+		<div
+			class="  sticky top-0 w-full shrink-0 overflow-hidden rounded-2xl border border-stone-400 sm:h-auto sm:w-1/3"
+		>
 			<div
-				class="absolute z-10  size-full rounded-2xl shadow-[inset_0px_2px_2px_rgba(255,255,255,0.5),inset_0px_-2px_2px_rgba(0,0,0,0.5)] sm:flex"
+				class="absolute z-10 size-full rounded-2xl shadow-[inset_0px_2px_2px_rgba(255,255,255,0.5),inset_0px_-2px_2px_rgba(0,0,0,0.5)] sm:flex"
 			></div>
 			<img src={'/ronish.webp'} class="absolute top-0 left-0 size-full object-cover" />
 		</div>
@@ -83,4 +85,5 @@
 			{/each}
 		</div>
 	</div>
+	<div class="h-[100vh]" ></div>
 </div>
