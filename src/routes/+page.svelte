@@ -57,7 +57,7 @@
 			not coding, i'm probably watching movies, listening to music, or walking around the city.
 		</div>
 		<div
-			class="  sticky top-0 w-full shrink-0 overflow-hidden rounded-2xl border border-stone-400 sm:h-auto sm:w-1/3"
+			class="relative  w-full shrink-0 overflow-hidden rounded-2xl border border-stone-400 sm:h-auto sm:w-1/3"
 		>
 			<div
 				class="absolute z-10 size-full rounded-2xl shadow-[inset_0px_2px_2px_rgba(255,255,255,0.5),inset_0px_-2px_2px_rgba(0,0,0,0.5)] sm:flex"

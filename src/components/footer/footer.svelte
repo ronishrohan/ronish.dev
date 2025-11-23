@@ -3,7 +3,7 @@
 	import FooterButton from './footer-button.svelte';
 </script>
 
-<div class="h-fit bg-gradient-to-b from-zinc-800 to-zinc-900 text-white">
+<div class="h-fit fixed bottom-0 w-full bg-gradient-to-b from-zinc-800 to-zinc-900 text-white">
 	<div
 		class="mx-auto flex h-fit w-full max-w-[900px] flex-col items-stretch gap-0 p-4 font-signature text-lg sm:flex-row sm:gap-4 sm:p-2"
 	>
@@ -12,6 +12,7 @@
 		<div class="flex w-fit shrink-0 gap-4">
 			<FooterButton href="https://discord.gg/F9y8AqY5xE" label="discord" />
 			<FooterButton href="https://www.instagram.com/ronish2o/" label="instagram" />
+			<FooterButton href="https://x.com/ronish1o" label="x" />
 			<FooterButton href="mailto:ronish.rohan@gmail.com" label="mail" />
 			<div class="flex sm:hidden">
 				<FooterButton href="https://github.com/ronishrohan" label="github" />
