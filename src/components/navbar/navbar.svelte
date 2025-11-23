@@ -3,6 +3,7 @@
   import gsap from "gsap";
   import NavButton from "./nav-button.svelte";
 	import GithubLogo from "phosphor-svelte/lib/GithubLogo";
+	import { goto } from "$app/navigation";
 
   let highlight;
 
@@ -53,7 +54,7 @@
  <!-- <div class="absolute top-full w-full bg-gradient-to-b from-white to-transparent h-[10px]" ></div> -->
  <div  style="mask: linear-gradient(black, black, transparent);" class="absolute  size-full backdrop-blur-[2px]  h-[90px] bg-linear-to-b from-white  to-transparent left-0 w-full" ></div>
   <div class="mx-auto flex w-full z-50  items-center">
-    <div class="font-signature text-lg font-medium z-[50] tracking-tighter shrink-0 hover:text-accent">ronish</div>
+    <a href="/" class="font-signature text-lg font-medium z-[50] tracking-tighter shrink-0 hover:text-accent hover:underline">ronish</a>
     
     <div class="nav-container ml-auto shrink-0 flex h-full items-center relative gap-2 text-sm tracking-tight">
 
@@ -63,7 +64,7 @@
       ></div>
 
       <NavButton
-        label="about"
+        label="home"
         bind:ref={btnRefs[0]}
         active={activeIndex === 0}
         onClick={() => setActive(0)}
@@ -73,7 +74,10 @@
         label="blog"
         bind:ref={btnRefs[1]}
         active={activeIndex === 1}
-        onClick={() => setActive(1)}
+        onClick={() => {
+          setActive(1);
+          goto("/blog");
+        }}
       />
 
       <NavButton

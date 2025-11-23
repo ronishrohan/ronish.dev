@@ -3,7 +3,7 @@
 	import FooterButton from './footer-button.svelte';
 </script>
 
-<div class="h-fit fixed bottom-0 w-full bg-gradient-to-b from-zinc-800 to-zinc-900 text-white">
+<div class="h-fit  sm:fixed bottom-0 w-full bg-gradient-to-b from-zinc-800 to-zinc-900 text-white">
 	<div
 		class="mx-auto flex h-fit w-full max-w-[900px] flex-col items-stretch gap-0 p-4 font-signature text-lg sm:flex-row sm:gap-4 sm:p-2"
 	>
