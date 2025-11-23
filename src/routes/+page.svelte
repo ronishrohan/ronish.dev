@@ -6,22 +6,22 @@
 	const works = [
 		{
 			title: 'full-time at ghost (sf, remote) as one of the founding engineers',
-			href: '#',
+			href: 'https://tryghost.ai/',
 			content: `can't talk about it yet :)`
 		},
 		{
 			title: 'co-founded a startup and got bought+hired',
-			href: '#',
+			href: 'https://www.raeai.app/',
 			content: `built a desktop assistant called "rae" with a couple of friends`
 		},
 		{
 			title: 'helping my friend ship his dating app',
-			href: '#',
+			href: 'https://github.com/onkismet',
 			content: `work in progress :0`
 		},
 		{
 			title: 'trying to build a prettier google keep',
-			href: '#',
+			href: 'https://github.com/ronishrohan/vichaar',
 			content: `mostly part of ui exploration`
 		},
 		{
@@ -31,12 +31,12 @@
 		},
 		{
 			title: 'started learning webdev',
-			href: '#',
+			href: 'https://github.com/ronishrohan',
 			content: `built a few small projects, immediately fell in love with it`
 		},
 		{
 			title: 'almost went pro with 3d art using blender',
-			href: '#',
+			href: 'https://www.instagram.com/ronish.rohan/',
 			content: `got a fulltime job at 16, had to quit cause of school`
 		}
 	];
