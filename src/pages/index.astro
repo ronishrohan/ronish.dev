@@ -45,14 +45,70 @@ import monki from "../assets/monki.png";
     </div>
     <div class="h-fit pb-[12px] w-full bg-black text-white flex">
       <div class="max-w-4xl w-full flex flex-col items-baseline mx-auto">
-        <div class="flex text-[40px] justify-between w-full items-start">
-          <div class="">see</div>
-          <div class="">you</div>
-          <div class="">again</div>
+        <div id="see-you-again" class="flex text-[40px] max-h-[80px]  overflow-visible justify-between w-full items-start">
+          <div>see</div>
+          <div>you</div>
+          <div>again</div>
         </div>
-		<!-- <div class="h-[100px]" ></div> -->
-		<!-- <div class="text-[min(18vw,56rem)]" >visiting</div> -->
+		<div id="scroll-trap" class="h-[100px]" ></div>
       </div>
     </div>
   </div>
 </Layout>
+
+<script>
+  import gsap from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+  gsap.registerPlugin(ScrollTrigger);
+
+  // ===== CONFIGURABLE VALUES =====
+  const START_FONT_SIZE = 40;  // px - starting font size
+  const END_FONT_SIZE = 100;    // px - font size at max scroll
+  // ================================
+
+  const trap = document.getElementById('scroll-trap')!;
+  const seeYouAgain = document.getElementById('see-you-again')!;
+  let isAnimating = false;
+  let scrollTimeout: ReturnType<typeof setTimeout> | null = null;
+
+  // GSAP scroll-based font size animation
+  gsap.to(seeYouAgain, {
+    fontSize: `${END_FONT_SIZE}px`,
+    scrollTrigger: {
+      trigger: trap,
+      start: "top bottom",
+      end: "bottom bottom",
+      scrub: true,
+    }
+  });
+
+  function checkAndBounce() {
+    if (isAnimating) return;
+    
+    const trapRect = trap.getBoundingClientRect();
+    const triggerPoint = window.innerHeight;
+    
+    // If top of trap is visible (above bottom of viewport)
+    if (trapRect.top < triggerPoint) {
+      isAnimating = true;
+      const targetScroll = trap.offsetTop - window.innerHeight;
+      window.scrollTo({
+        top: targetScroll,
+        behavior: 'smooth'
+      });
+      setTimeout(() => {
+        isAnimating = false;
+      }, 800);
+    }
+  }
+
+  window.addEventListener('scroll', () => {
+    if (isAnimating) return;
+    if (scrollTimeout) clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(checkAndBounce, 150);
+  });
+
+  // Also check on scroll end for when at very bottom
+  window.addEventListener('scrollend', checkAndBounce);
+</script>

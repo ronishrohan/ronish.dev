@@ -13,3 +13,8 @@ body {
 *::selection{
     background-color: pink;
 }
+
+*{
+    overscroll-behavior: none;
+
+}
