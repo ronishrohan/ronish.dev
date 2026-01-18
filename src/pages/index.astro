@@ -1,11 +1,25 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
+import NameCycler from "../components/NameCycler.astro";
 ---
 
 <Layout>
-	<Welcome />
+  <!-- <div class="w-full h-14 flex justify-center items-stretch" >
+		<div class="max-w-4xl w-full flex items-stretch" >
+			<div class="flex items-center justify-center text-lg" >ronish</div>
+		</div>
+	</div> -->
+
+  <div class="max-w-4xl w-full mx-auto text-lg mt-[120px] flex flex-col gap-4">
+	<NameCycler />
+    <div>this is ronish, im 21 and i live with my parents in bengaluru, india <br />
+
+		i love designing and developing websites and apps <br /><br />
+		i feel like websites need to be treated as an art form and not just a tool to
+		be used for marketing or selling products, that is why every one of my projects
+		is unique and has a personal touch to it <br />
+		"to create is to live twice" - albert camus
+		<br /><br />
+		i'm currently a founding engineer at <a href="https://tryghost.ai" target="_blank" class="underline hover:text-stone-600" >ghost</a>, we create extremely powerful agents for your computer</div>
+  </div>
 </Layout>

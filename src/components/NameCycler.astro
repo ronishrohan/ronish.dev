@@ -1,0 +1,40 @@
+---
+const baseNames = [
+  "ronish",
+  "रोनीश",
+  "ರೋನಿಶ್",
+  "రోనిష్",
+  "റോണിഷ്",
+  "ரோனிஷ்",
+  "رونش",
+  
+];
+
+const names = [
+  ...baseNames,
+  ...baseNames,
+  "ronish",
+];
+---
+
+<span class="name-display">ronish</span>
+
+<script define:vars={{ names }}>
+  const el = document.querySelector(".name-display");
+  
+  let delay = 40;
+  const deceleration = 1.19;
+  let index = 1;
+
+  function showNext() {
+    if (index >= names.length) return;
+    
+    el.textContent = names[index];
+    index++;
+    delay *= deceleration;
+    
+    setTimeout(showNext, delay);
+  }
+
+  setTimeout(showNext, delay);
+</script>

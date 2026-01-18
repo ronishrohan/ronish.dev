@@ -1,0 +1,89 @@
+---
+interface Props {
+  size?: number;
+}
+
+const { size = 24 } = Astro.props;
+---
+
+<ghost-logo class="ghost-logo"  style={`width: ${size}px; height: ${size}px;`}>
+  <svg viewBox="0 0 128 128"  fill="none" xmlns="http://www.w3.org/2000/svg">
+    <g clip-path="url(#clip0_267_346)">
+      <path d="M64 128C99.3462 128 128 99.3462 128 64C128 28.6538 99.3462 0 64 0C28.6538 0 0 28.6538 0 64C0 99.3462 28.6538 128 64 128Z" fill="black"/>
+      <path d="M-2.99996 96C6.00004 99 33 102 47 102C72 102 98 89 98 59C98 32 77 26 66 26C48 26 39 38 32 56C26.95 68.98 19 90 -2.99996 94C-3.97996 94.18 -3.94996 95.68 -2.99996 96Z" fill="white"/>
+      <g class="eyes">
+        <ellipse class="left-eye" cx="58" cy="49" rx="5" ry="7" fill="black"/>
+        <ellipse class="right-eye" cx="84" cy="49" rx="5" ry="7" fill="black"/>
+      </g>
+    </g>
+    <defs>
+      <clipPath id="clip0_267_346">
+        <rect width="128" height="128" rx="64" fill="white"/>
+      </clipPath>
+    </defs>
+  </svg>
+</ghost-logo>
+
+<style>
+  .ghost-logo {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .ghost-logo svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .left-eye, .right-eye {
+    transition: transform 0.1s ease-out;
+  }
+</style>
+
+<script>
+  class GhostLogo extends HTMLElement {
+    private leftEye: SVGEllipseElement | null = null;
+    private rightEye: SVGEllipseElement | null = null;
+    private boundMouseMove: (e: MouseEvent) => void;
+
+    constructor() {
+      super();
+      this.boundMouseMove = this.handleMouseMove.bind(this);
+    }
+
+    connectedCallback() {
+      this.leftEye = this.querySelector('.left-eye');
+      this.rightEye = this.querySelector('.right-eye');
+      document.addEventListener('mousemove', this.boundMouseMove);
+    }
+
+    disconnectedCallback() {
+      document.removeEventListener('mousemove', this.boundMouseMove);
+    }
+
+    handleMouseMove(e: MouseEvent) {
+      const rect = this.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+
+      const deltaX = e.clientX - centerX;
+      const deltaY = e.clientY - centerY;
+
+      const angle = Math.atan2(deltaY, deltaX);
+      const distance = Math.min(Math.sqrt(deltaX * deltaX + deltaY * deltaY) / 50, 1);
+
+      const maxMove = 3;
+      const moveX = Math.cos(angle) * maxMove * distance;
+      const moveY = Math.sin(angle) * maxMove * distance;
+
+      if (this.leftEye) {
+        this.leftEye.style.transform = `translate(${moveX}px, ${moveY}px)`;
+      }
+      if (this.rightEye) {
+        this.rightEye.style.transform = `translate(${moveX}px, ${moveY}px)`;
+      }
+    }
+  }
+
+  customElements.define('ghost-logo', GhostLogo);
+</script>
