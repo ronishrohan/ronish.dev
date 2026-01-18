@@ -1,0 +1,6 @@
+# robots.txt for ronish.dev
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://ronish.dev/sitemap.xml
