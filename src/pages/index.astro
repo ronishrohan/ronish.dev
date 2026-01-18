@@ -1,6 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import NameCycler from "../components/NameCycler.astro";
+import Image from "astro/components/Image.astro";
+import monki from "../assets/monki.png";
 ---
 
 <Layout>
@@ -10,16 +12,47 @@ import NameCycler from "../components/NameCycler.astro";
 		</div>
 	</div> -->
 
-  <div class="max-w-4xl w-full mx-auto text-lg mt-[120px] flex flex-col gap-4">
-	<NameCycler />
-    <div>this is ronish, im 21 and i live with my parents in bengaluru, india <br />
+  <div class="flex flex-col h-fit">
+    <div
+      class="max-w-4xl w-full mx-auto text-lg mt-[140px] flex flex-col gap-4"
+    >
+      <NameCycler />
+      <div>
+        this is ronish, im 21 and i live with my parents in bengaluru, india <br
+        />
 
-		i love designing and developing websites and apps <br /><br />
-		i feel like websites need to be treated as an art form and not just a tool to
-		be used for marketing or selling products, that is why every one of my projects
-		is unique and has a personal touch to it <br />
-		"to create is to live twice" - albert camus
-		<br /><br />
-		i'm currently a founding engineer at <a href="https://tryghost.ai" target="_blank" class="underline hover:text-stone-600" >ghost</a>, we create extremely powerful agents for your computer</div>
+        i love designing and developing websites and apps <br /><br />
+        i feel like websites need to be treated as an art form and not just a tool
+        to be used for marketing or selling products, that is why every one of my
+        projects is unique and has a personal touch to it <br />
+        "to create is to live twice" - albert camus
+        <br /><br />
+        i'm currently a founding engineer at <a
+          href="https://tryghost.ai"
+          target="_blank"
+          class="underline hover:text-stone-600">ghost</a
+        >, we create extremely powerful agents for your computer
+      </div>
+    </div>
+    <div
+      class="w-full max-h-[300px] overflow-hidden flex items-end justify-center mt-24 relative"
+    >
+      <div
+        class="h-[20px] bg-linear-to-b from-transparent to-black w-full absolute bottom-0 z-[1000]"
+      >
+      </div>
+      <Image src={monki} alt="Monki" />
+    </div>
+    <div class="h-fit pb-[12px] w-full bg-black text-white flex">
+      <div class="max-w-4xl w-full flex flex-col items-baseline mx-auto">
+        <div class="flex text-[40px] justify-between w-full items-start">
+          <div class="">see</div>
+          <div class="">you</div>
+          <div class="">again</div>
+        </div>
+		<!-- <div class="h-[100px]" ></div> -->
+		<!-- <div class="text-[min(18vw,56rem)]" >visiting</div> -->
+      </div>
+    </div>
   </div>
 </Layout>
