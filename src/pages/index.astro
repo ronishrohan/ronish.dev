@@ -23,7 +23,7 @@ function formatDate(date: Date) {
   <Nav />
 
   <div class="flex flex-1 w-full flex-col">
-    <div class="max-w-4xl w-full mx-auto text-lg mt-[140px] flex flex-col gap-4 px-6">
+    <div class="max-w-4xl w-full mx-auto text-lg mt-[100px] flex flex-col gap-4 px-6">
       <Title />
       <div>
         this is ronish, im 21 and i live in bengaluru, india <br />
@@ -43,23 +43,24 @@ function formatDate(date: Date) {
 
       {recentPosts.length > 0 && (
         <div class="mt-6 flex flex-col gap-3">
-          <span class="font-pixel text-sm text-zinc-400">recent writing</span>
+          <span class="font-pixel text-zinc-400">recent writing</span>
           <div class="flex flex-col gap-1">
             {recentPosts.map((post) => (
               <a
                 href={`/blog/${post.id}`}
-                class="flex justify-between items-baseline gap-4 group py-0.5"
+                class="flex relative justify-between items-center gap-4 group py-0.5"
               >
-                <span class="group-hover:text-zinc-500 transition-colors">
+                <div class="absolute bg-orange-600 pointer-events-auto group-hover:opacity-100 opacity-0 h-[calc(100%+8px)] w-[calc(100%+16px)]   translate-x-[-8px] translate-y-[0px]" ></div>
+                <span class=" z-20 group-hover:text-white">
                   {post.data.title}
                 </span>
-                <span class="font-pixel text-sm text-zinc-300 shrink-0 group-hover:text-zinc-400 transition-colors">
+                <span class="font-pixel text-base z-20  group-hover:text-white text-zinc-400 shrink-0">
                   {formatDate(post.data.date)}
                 </span>
               </a>
             ))}
           </div>
-          <a href="/blog" class="text-zinc-400 hover:text-black transition-colors w-fit">
+          <a href="/blog" class="text-zinc-400 hover:text-black w-fit">
             all posts →
           </a>
         </div>

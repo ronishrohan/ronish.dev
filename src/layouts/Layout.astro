@@ -1,5 +1,6 @@
 ---
 import "../styles/base.css"
+import { ViewTransitions } from "astro:transitions"
 
 interface Props {
   title?: string;
@@ -54,6 +55,13 @@ const ogImage = siteUrl;
 
     <meta name="theme-color" content="#ffffff" />
     <link rel="sitemap" href="/sitemap.xml" />
+    <ViewTransitions />
+    <style>
+      ::view-transition-old(root),
+      ::view-transition-new(root) {
+        animation: none;
+      }
+    </style>
 
     <script type="application/ld+json">
     {

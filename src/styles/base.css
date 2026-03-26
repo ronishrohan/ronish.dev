@@ -17,7 +17,7 @@
 }
 
 @theme {
-  --font-sans: 'Geist', system-ui, sans-serif;
+  --font-sans: 'GeistPixel', system-ui, sans-serif;
   --font-pixel: 'GeistPixel', monospace;
 }
 
@@ -36,7 +36,8 @@ body {
 }
 
 *::selection {
-  background-color: pink;
+  background-color: #ea580c;
+  color: white;
 }
 
 * {

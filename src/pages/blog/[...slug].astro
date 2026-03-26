@@ -32,9 +32,20 @@ function formatDate(date: Date) {
 
   <div class="flex flex-1 w-full flex-col">
     <article class="max-w-4xl w-full mx-auto px-6 mt-[140px] flex flex-col gap-4">
-      <a href="/blog" class="font-pixel text-sm text-zinc-400 hover:text-black transition-colors">
+      <a id="back-link" href="/blog" class="font-pixel text-sm text-zinc-400 hover:text-black">
         ← writing
       </a>
+      <script>
+        const link = document.getElementById("back-link") as HTMLAnchorElement;
+        const ref = document.referrer;
+        if (ref) {
+          const url = new URL(ref);
+          if (url.origin === window.location.origin && url.pathname === "/") {
+            link.href = "/";
+            link.textContent = "← home";
+          }
+        }
+      </script>
       <h1 class="font-pixel text-2xl mt-2">{post.data.title}</h1>
       <span class="font-pixel text-sm text-zinc-400">
         {formatDate(post.data.date)}
