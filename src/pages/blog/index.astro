@@ -1,0 +1,66 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Nav from "../../components/Nav.astro";
+import { getCollection } from "astro:content";
+
+const allPosts = await getCollection("blog", ({ data }) => !data.draft);
+const posts = allPosts.sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+}
+---
+
+<Layout title="writing" description="notes on building things, on design, on whatever." path="/blog">
+  <Nav />
+
+  <div class="flex flex-1 w-full flex-col">
+    <div class="max-w-4xl w-full mx-auto text-lg mt-[140px] flex flex-col gap-4 px-6">
+
+      <span class="font-pixel text-2xl">writing</span>
+
+      {posts.length === 0 ? (
+        <p class="text-zinc-400">nothing here yet</p>
+      ) : (
+        <div class="flex flex-col mt-2">
+          {posts.map((post) => (
+            <a
+              href={`/blog/${post.id}`}
+              class="flex justify-between items-baseline gap-6 py-3 border-b border-zinc-100 group"
+            >
+              <div class="flex flex-col gap-0.5 min-w-0">
+                <span class="group-hover:text-zinc-500 transition-colors">
+                  {post.data.title}
+                </span>
+                {post.data.description && (
+                  <span class="text-base text-zinc-400">
+                    {post.data.description}
+                  </span>
+                )}
+              </div>
+              <span class="font-pixel text-sm text-zinc-300 group-hover:text-zinc-400 transition-colors shrink-0">
+                {formatDate(post.data.date)}
+              </span>
+            </a>
+          ))}
+        </div>
+      )}
+    </div>
+
+    <div class="w-full mt-auto pb-2 bg-black text-white flex">
+      <div class="max-w-4xl h-full w-full flex flex-col items-baseline mx-auto px-6">
+        <div class="flex font-pixel text-[40px] h-full items-end justify-between w-full">
+          <div>see</div>
+          <div>you</div>
+          <div>again</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

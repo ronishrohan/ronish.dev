@@ -1,0 +1,58 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Nav from "../../components/Nav.astro";
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+function formatDate(date: Date) {
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
+}
+---
+
+<Layout
+  title={post.data.title}
+  description={post.data.description}
+  path={`/blog/${post.id}`}
+>
+  <Nav />
+
+  <div class="flex flex-1 w-full flex-col">
+    <article class="max-w-4xl w-full mx-auto px-6 mt-[140px] flex flex-col gap-4">
+      <a href="/blog" class="font-pixel text-sm text-zinc-400 hover:text-black transition-colors">
+        ← writing
+      </a>
+      <h1 class="font-pixel text-2xl mt-2">{post.data.title}</h1>
+      <span class="font-pixel text-sm text-zinc-400">
+        {formatDate(post.data.date)}
+      </span>
+
+      <div class="prose text-lg mt-4">
+        <Content />
+      </div>
+    </article>
+
+    <div class="w-full mt-auto pb-2 bg-black text-white flex">
+      <div class="max-w-4xl h-full w-full flex flex-col items-baseline mx-auto px-6">
+        <div class="flex font-pixel text-[40px] h-full items-end justify-between w-full">
+          <div>see</div>
+          <div>you</div>
+          <div>again</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</Layout>

@@ -1,0 +1,28 @@
+---
+const currentPath = Astro.url.pathname;
+---
+
+<nav class="w-full flex justify-center">
+  <div class="max-w-4xl w-full flex justify-between items-center px-6 pt-8">
+    <a
+      href="/"
+      class:list={[
+        "text-lg transition-colors",
+        currentPath === "/" ? "text-black" : "text-zinc-400 hover:text-black"
+      ]}
+    >
+      ronish.dev
+    </a>
+    <div class="flex gap-5 text-lg">
+      <a
+        href="/blog"
+        class:list={[
+          "transition-colors",
+          currentPath.startsWith("/blog") ? "text-black" : "text-zinc-400 hover:text-black"
+        ]}
+      >
+        writing
+      </a>
+    </div>
+  </div>
+</nav>

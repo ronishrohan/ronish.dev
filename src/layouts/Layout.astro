@@ -1,87 +1,87 @@
 ---
 import "../styles/base.css"
 
-const title = "ronish rohan - developer & designer";
-const description = "hi, i'm ronish rohan, a 21 year old developer and designer from bengaluru (bangalore), india. currently a founding engineer at ghost (tryghost.ai). i also built rae (raeai.app). cmrit alumnus. i love designing and developing websites and apps.";
-const keywords = "ronish, ronish rohan, developer, designer, bengaluru, bangalore, india, cmrit, ghost, tryghost.ai, rae, raeai.app, nihal rahman, web developer, frontend developer, software engineer, founding engineer, i love men";
+interface Props {
+  title?: string;
+  description?: string;
+  path?: string;
+}
+
+const {
+  title: pageTitle,
+  description: pageDesc,
+  path = "",
+} = Astro.props;
+
+const defaultTitle = "ronish rohan - developer & designer";
+const defaultDesc = "hi, i'm ronish rohan, a 21 year old developer and designer from bengaluru (bangalore), india. currently a founding engineer at ghost (tryghost.ai). i love designing and developing websites and apps.";
+
+const title = pageTitle ? `${pageTitle} — ronish` : defaultTitle;
+const description = pageDesc ?? defaultDesc;
 const siteUrl = "https://ronish.dev";
-const ogImage = `${siteUrl}/favicon.svg`;
+const canonicalUrl = `${siteUrl}${path}`;
+const ogImage = siteUrl;
 ---
 
 <!doctype html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="canonical" href={siteUrl} />
-		
-		<!-- Primary Meta Tags -->
-		<title>{title}</title>
-		<meta name="title" content={title} />
-		<meta name="description" content={description} />
-		<meta name="keywords" content={keywords} />
-		<meta name="author" content="ronish rohan" />
-		<meta name="robots" content="index, follow" />
-		<meta name="generator" content={Astro.generator} />
-		
-		<!-- Open Graph / Facebook -->
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content={siteUrl} />
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta property="og:image" content={ogImage} />
-		<meta property="og:site_name" content="ronish.dev" />
-		<meta property="og:locale" content="en_US" />
-		
-		<!-- Twitter -->
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:url" content={siteUrl} />
-		<meta name="twitter:title" content={title} />
-		<meta name="twitter:description" content={description} />
-		<meta name="twitter:image" content={ogImage} />
-		<meta name="twitter:creator" content="@ronish1o" />
-		
-		<!-- Additional SEO -->
-		<meta name="theme-color" content="#000000" />
-		<link rel="sitemap" href="/sitemap.xml" />
-		
-		<!-- Structured Data -->
-		<script type="application/ld+json">
-		{
-			"@context": "https://schema.org",
-			"@type": "Person",
-			"name": "Ronish Rohan",
-			"alternateName": ["ronish", "ronish1o"],
-			"url": "https://ronish.dev",
-			"image": "https://ronish.dev/favicon.svg",
-			"sameAs": [
-				"https://github.com/ronishrohan",
-				"https://x.com/ronish1o",
-				"https://instagram.com/ronish1o",
-				"https://discord.com/users/769140296939470859"
-			],
-			"jobTitle": "Founding Engineer",
-			"worksFor": {
-				"@type": "Organization",
-				"name": "Ghost",
-				"url": "https://tryghost.ai"
-			},
-			"alumniOf": {
-				"@type": "EducationalOrganization",
-				"name": "CMRIT"
-			},
-			"address": {
-				"@type": "PostalAddress",
-				"addressLocality": "Bengaluru",
-				"addressRegion": "Karnataka",
-				"addressCountry": "India"
-			},
-			"description": "Developer and designer from Bengaluru, India. Founding engineer at Ghost (tryghost.ai). Creator of Rae (raeai.app)."
-		}
-		</script>
-	</head>
-	<body>
-		<slot />
-	</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <meta name="keywords" content="ronish, ronish rohan, developer, designer, bengaluru, india, ghost, tryghost.ai" />
+    <meta name="author" content="ronish rohan" />
+    <meta name="robots" content="index, follow" />
+    <meta name="generator" content={Astro.generator} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:site_name" content="ronish.dev" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={canonicalUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:creator" content="@ronish1o" />
+
+    <meta name="theme-color" content="#ffffff" />
+    <link rel="sitemap" href="/sitemap.xml" />
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Ronish Rohan",
+      "alternateName": ["ronish", "ronish1o"],
+      "url": "https://ronish.dev",
+      "sameAs": [
+        "https://github.com/ronishrohan",
+        "https://x.com/ronish1o",
+        "https://instagram.com/ronish1o"
+      ],
+      "jobTitle": "Founding Engineer",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "Ghost",
+        "url": "https://tryghost.ai"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Bengaluru",
+        "addressCountry": "India"
+      }
+    }
+    </script>
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
