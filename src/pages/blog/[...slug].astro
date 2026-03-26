@@ -31,7 +31,7 @@ function formatDate(date: Date) {
   <Nav />
 
   <div class="flex flex-1 w-full flex-col">
-    <article class="max-w-4xl w-full mx-auto px-6 mt-[140px] flex flex-col gap-4">
+    <article class="max-w-4xl w-full mx-auto px-6 mt-[100px] flex flex-col gap-4">
       <a id="back-link" href="/blog" class="font-pixel text-sm text-zinc-400 hover:text-black">
         ← writing
       </a>
@@ -51,7 +51,7 @@ function formatDate(date: Date) {
         {formatDate(post.data.date)}
       </span>
 
-      <div class="prose text-lg mt-4">
+      <div class="prose text-base mt-4">
         <Content />
       </div>
     </article>
