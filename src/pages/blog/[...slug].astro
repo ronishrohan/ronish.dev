@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import Nav from "../../components/Nav.astro";
+import Footer from "../../components/Footer.astro";
 import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
@@ -56,14 +57,6 @@ function formatDate(date: Date) {
       </div>
     </article>
 
-    <div class="w-full mt-auto pb-2 bg-black text-white flex">
-      <div class="max-w-4xl h-full w-full flex flex-col items-baseline mx-auto px-6">
-        <div class="flex font-pixel text-[40px] h-full items-end justify-between w-full">
-          <div>see</div>
-          <div>you</div>
-          <div>again</div>
-        </div>
-      </div>
-    </div>
+    <Footer />
   </div>
 </Layout>
