@@ -55,6 +55,7 @@ const ogImage = siteUrl;
 
     <meta name="theme-color" content="#ffffff" />
     <link rel="sitemap" href="/sitemap.xml" />
+    <link rel="icon" id="favicon" type="image/png" href="" />
     <ViewTransitions />
     <style>
       ::view-transition-old(root),
@@ -90,6 +91,68 @@ const ogImage = siteUrl;
     </script>
   </head>
   <body>
+    <div transition:persist class="fixed size-full z-[2000000] pointer-events-none opacity-15 mix-blend-multiply flex items-end justify-center" >
+      <video src="/leaves.mp4" autoplay muted loop class="h-fit w-full object-cover"></video>
+    </div>
     <slot />
+    <script>
+      const colors = [
+        "#ea580c", // orange (site accent)
+        "#2563eb", // blue
+        "#16a34a", // green
+        "#dc2626", // red
+        "#7c3aed", // violet
+        "#0891b2", // cyan
+        "#d97706", // amber
+        "#db2777", // pink
+        "#059669", // emerald
+        "#9333ea", // purple
+      ];
+
+      // Pick once per hard refresh; window persists across view-transition navigations
+      if (!(window as any).__accent) {
+        (window as any).__accent = colors[Math.floor(Math.random() * colors.length)];
+      }
+
+      function applyAccent() {
+        document.documentElement.style.setProperty("--accent", (window as any).__accent);
+      }
+
+      applyAccent();
+      document.addEventListener("astro:after-swap", applyAccent);
+
+      const startIndex = colors.indexOf((window as any).__accent);
+      let index = (window as any).__faviconIndex ?? (startIndex >= 0 ? startIndex : 0);
+
+      function drawCircle(color: string) {
+        const canvas = document.createElement("canvas");
+        canvas.width = 64;
+        canvas.height = 64;
+        const ctx = canvas.getContext("2d")!;
+        ctx.beginPath();
+        ctx.arc(32, 32, 32, 0, Math.PI * 2);
+        ctx.fillStyle = color;
+        ctx.fill();
+        return canvas.toDataURL("image/png");
+      }
+
+      function setColor(color: string) {
+        const link = document.getElementById("favicon") as HTMLLinkElement;
+        if (link) link.href = drawCircle(color);
+        const dot = document.getElementById("nav-dot") as HTMLElement;
+        if (dot) dot.style.background = color;
+      }
+
+      // Clear any previous cycle before starting a new one
+      clearTimeout((window as any).__faviconTimeout);
+
+      function cycle() {
+        setColor(colors[index % colors.length]);
+        (window as any).__faviconIndex = ++index;
+        (window as any).__faviconTimeout = setTimeout(cycle, 800);
+      }
+
+      cycle();
+    </script>
   </body>
 </html>

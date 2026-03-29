@@ -6,22 +6,13 @@ const isBlog = currentPath.startsWith("/blog");
 
 <nav transition:persist class="w-full flex justify-center">
   <div class="max-w-4xl w-full flex justify-between items-center px-6 pt-8">
-    <a href="/" class="text-base text-black">ronish.dev</a>
+    <a href="/" class="flex items-center gap-2 text-base text-black">
+      <span id="nav-dot" style="width:30px;height:12px;transform: translateY(1px);border-radius:50px;background:#ea580c;display:inline-block;flex-shrink:0;"></span>
+      ronish.dev
+    </a>
     <div class="flex gap-1 text-base">
-      <a
-        href="/"
-        data-nav="home"
-        class:list={["px-2 py-0.5", isHome ? "bg-orange-600 text-white" : "text-zinc-400 hover:bg-zinc-100"]}
-      >
-        home
-      </a>
-      <a
-        href="/blog"
-        data-nav="blog"
-        class:list={["px-2 py-0.5", isBlog ? "bg-orange-600 text-white" : "text-zinc-400 hover:bg-zinc-100"]}
-      >
-        writing
-      </a>
+      <a href="/" data-nav="home" class="px-2 py-0.5 text-zinc-400">home</a>
+      <a href="/blog" data-nav="blog" class="px-2 py-0.5 text-zinc-400">writing</a>
     </div>
   </div>
 </nav>
@@ -31,14 +22,25 @@ const isBlog = currentPath.startsWith("/blog");
     const path = window.location.pathname;
     const isHome = path === "/";
     const isBlog = path.startsWith("/blog");
+    const accent = (window as any).__accent || "#ea580c";
 
     const homeLink = document.querySelector<HTMLAnchorElement>('[data-nav="home"]');
     const blogLink = document.querySelector<HTMLAnchorElement>('[data-nav="blog"]');
 
     if (!homeLink || !blogLink) return;
 
-    homeLink.className = `px-2 py-0.5 ${isHome ? "bg-orange-600 text-white" : "text-zinc-400 hover:bg-zinc-100"}`;
-    blogLink.className = `px-2 py-0.5 ${isBlog ? "bg-orange-600 text-white" : "text-zinc-400 hover:bg-zinc-100"}`;
+    homeLink.removeAttribute("style");
+    blogLink.removeAttribute("style");
+    homeLink.className = "px-2 py-0.5 text-zinc-400";
+    blogLink.className = "px-2 py-0.5 text-zinc-400";
+
+    if (isHome) {
+      homeLink.style.background = accent;
+      homeLink.style.color = "white";
+    } else if (isBlog) {
+      blogLink.style.background = accent;
+      blogLink.style.color = "white";
+    }
   }
 
   document.addEventListener("astro:page-load", updateNav);

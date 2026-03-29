@@ -23,7 +23,7 @@ function formatDate(date: Date) {
 <Layout>
   <Nav />
 
-  <div class="flex flex-1 w-full flex-col bg-linear-to-b from-white via-white to-zinc-200">
+  <div class="flex flex-1 w-full flex-col bg-linear-to-b ">
     <div class="max-w-4xl w-full mx-auto text-base mt-[100px] flex flex-col gap-4 px-6">
       <Title />
       <div>
@@ -38,7 +38,7 @@ function formatDate(date: Date) {
         i'm currently a software engineer at <a
           href="https://tryghost.ai"
           target="_blank"
-          class="underline hover:text-stone-600">ghost</a
+          class="underline accent-hover">ghost</a
         >, we create extremely powerful agents for your computer
       </div>
 
@@ -51,7 +51,7 @@ function formatDate(date: Date) {
                 href={`/blog/${post.id}`}
                 class="flex relative justify-between items-center gap-4 group py-0.5"
               >
-                <div class="absolute bg-orange-600 pointer-events-auto group-hover:opacity-100 opacity-0 h-[calc(100%+8px)] w-[calc(100%+16px)]   translate-x-[-8px] translate-y-[0px]" ></div>
+                <div class="absolute accent-bg pointer-events-auto group-hover:opacity-100 opacity-0 h-[calc(100%+8px)] w-[calc(100%+16px)]   translate-x-[-8px] translate-y-[0px]" ></div>
                 <span class=" z-20 group-hover:text-white">
                   {post.data.title}
                 </span>
@@ -61,7 +61,7 @@ function formatDate(date: Date) {
               </a>
             ))}
           </div>
-          <a href="/blog" class="text-zinc-400 hover:text-black w-fit">
+          <a href="/blog" class="text-zinc-400 accent-hover w-fit">
             all posts →
           </a>
         </div>

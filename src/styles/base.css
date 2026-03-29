@@ -36,7 +36,7 @@ body {
 }
 
 *::selection {
-  background-color: #ea580c;
+  background-color: var(--accent, #ea580c);
   color: white;
 }
 
@@ -70,7 +70,21 @@ body {
 }
 
 .prose a:hover {
-  color: #71717a;
+  color: var(--accent, #ea580c);
+}
+
+/* Accent-driven hover utilities */
+.accent-bg {
+  background: var(--accent, #ea580c);
+}
+
+.accent-hover:hover {
+  color: var(--accent, #ea580c) !important;
+}
+
+[data-nav]:not([style*="background"]):hover {
+  background-color: color-mix(in srgb, var(--accent, #ea580c) 12%, white);
+  color: var(--accent, #ea580c);
 }
 
 .prose code {
