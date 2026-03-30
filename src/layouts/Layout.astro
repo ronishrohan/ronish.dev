@@ -92,7 +92,7 @@ const ogImage = siteUrl;
   </head>
   <body>
     <div id="leaves-overlay" transition:persist class="fixed size-full z-[2000000] pointer-events-none opacity-15 mix-blend-multiply flex items-end justify-center transition-opacity duration-700" >
-      <video src="/leaves.mp4" autoplay muted loop class="h-fit w-full object-cover"></video>
+      <video src="/leaves.mp4" autoplay muted loop playsinline class="h-fit w-full object-cover"></video>
     </div>
     <slot />
     <script>
