@@ -82,7 +82,8 @@ body {
   color: var(--accent, #ea580c) !important;
 }
 
-[data-nav]:not([style*="background"]):hover {
+[data-nav]:not([style*="background"]):hover,
+.reading-btn:not([style*="background"]):hover {
   background-color: color-mix(in srgb, var(--accent, #ea580c) 12%, white);
   color: var(--accent, #ea580c);
 }

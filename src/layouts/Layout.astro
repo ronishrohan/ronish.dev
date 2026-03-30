@@ -91,7 +91,7 @@ const ogImage = siteUrl;
     </script>
   </head>
   <body>
-    <div transition:persist class="fixed size-full z-[2000000] pointer-events-none opacity-15 mix-blend-multiply flex items-end justify-center" >
+    <div id="leaves-overlay" transition:persist class="fixed size-full z-[2000000] pointer-events-none opacity-15 mix-blend-multiply flex items-end justify-center transition-opacity duration-700" >
       <video src="/leaves.mp4" autoplay muted loop class="h-fit w-full object-cover"></video>
     </div>
     <slot />
@@ -118,8 +118,21 @@ const ogImage = siteUrl;
         document.documentElement.style.setProperty("--accent", (window as any).__accent);
       }
 
+      function updateLeaves() {
+        const overlay = document.getElementById("leaves-overlay");
+        if (!overlay) return;
+        const onBlog = window.location.pathname.startsWith("/blog/");
+        requestAnimationFrame(() => requestAnimationFrame(() => {
+          overlay.style.opacity = onBlog ? "0" : "";
+        }));
+      }
+
       applyAccent();
-      document.addEventListener("astro:after-swap", applyAccent);
+      updateLeaves();
+      document.addEventListener("astro:after-swap", () => {
+        applyAccent();
+        updateLeaves();
+      });
 
       const startIndex = colors.indexOf((window as any).__accent);
       let index = (window as any).__faviconIndex ?? (startIndex >= 0 ? startIndex : 0);
