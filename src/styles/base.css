@@ -1,5 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&family=Roboto+Slab:wght@100..900&display=swap');
 @import "tailwindcss";
-
 @font-face {
   font-family: 'Geist';
   src: url('/fonts/Geist.woff2') format('woff2');
@@ -17,8 +17,8 @@
 }
 
 @theme {
-  --font-sans: 'GeistPixel', system-ui, sans-serif;
-  --font-pixel: 'GeistPixel', monospace;
+  --font-sans: 'Roboto Slab', system-ui, sans-serif;
+  --font-pixel: 'Roboto Slab', monospace;
 }
 
 @utility font-pixel {
