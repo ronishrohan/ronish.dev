@@ -13,7 +13,7 @@ Hey, I'm Ronish — an engineering undergrad from [Bangalore, India](https://sha
 />
 
 
-## the rat race has a new co-pilot
+# the rat race has a new co-pilot
 
 When me and my friends joined college, AI was just starting to make noise. The first two years were… honestly kind of blissful. We played games, went out, did the things you're supposed to do at 18. The syllabus was there — dense, occasionally interesting — but between labs, submissions, and surprise internals, most of us found the path of least resistance: ChatGPT.
 
@@ -23,7 +23,7 @@ I'd confidently bet half my net worth (😳) that 90% of India's engineering stu
 
 The problem isn't the tool. The problem is what's underneath it.
 
-## productivity without purpose is just noise
+# productivity without purpose is just noise
 
 Here's the uncomfortable part. AI raises the floor dramatically — you can produce something passable without knowing much. But it doesn't give you a reason to be doing any of it.
 
@@ -39,7 +39,7 @@ And in a country where millions of families push their kids into engineering not
 That's not a dig at them — that's a structural failure. The system told them this was the path, AI made the path easier to walk, and now nobody's asking whether the destination was ever worth going to.
 
 
-## who's actually winning here
+# who's actually winning here
 
 Let's zoom out for a second.
 
@@ -59,7 +59,7 @@ I'm not worried about the robot uprising. I'm worried we'll be too thirsty and t
 
 
 
-## so what do we actually do
+# so what do we actually do
 
 I don't have a clean answer. I'm 20-something, in Bangalore, figuring it out like everyone else.
 

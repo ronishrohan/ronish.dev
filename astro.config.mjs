@@ -9,6 +9,12 @@ export default defineConfig({
       enabled: false,
   },
 
+  markdown: {
+    shikiConfig: {
+      theme: 'synthwave-84',
+    },
+  },
+
   vite: {
     plugins: [tailwindcss()]
   }
