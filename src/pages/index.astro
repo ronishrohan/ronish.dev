@@ -9,7 +9,7 @@ import type { CollectionEntry } from "astro:content";
 const allPosts = await getCollection("blog", ({ data }: CollectionEntry<"blog">) => !data.draft);
 const recentPosts = allPosts
   .sort((a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 3);
+  .slice(0, 5);
 
 function formatDate(date: Date) {
   return date.toLocaleDateString("en-US", {
