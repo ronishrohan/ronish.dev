@@ -6,42 +6,44 @@ description: cursor 2.5 finishes before you can switch tabs. that's not a flex, 
 
 Shadcn tweeted something small last week. ["sometimes composer 2.5 is done before I even tab over to my browser to preview."](https://x.com/shadcn/status/2058928744643821745)
 
-Manu Arora said basically the [same thing](https://x.com/mannupaaji/status/2058931657303105939). Composer autocompletes his thoughts before he has them.
+Manu Arora said [the same thing](https://x.com/mannupaaji/status/2058931657303105939). Composer autocompletes his thoughts before he even has them.
 
-It got a bunch of likes, people laughed, moved on. But I've been thinking about it since and I don't think it's a joke. I think it's actually describing something pretty significant.
+People laughed, liked the tweets, moved on. But I haven't been able to stop thinking about it — because I don't think it's just a funny observation. I think it's describing a real shift in how we work, and not entirely a good one.
 
-# the dev loop used to have slack in it
+# we stopped writing code
 
-The classic dev loop is: write code → save → switch to browser → refresh → see result → switch back → repeat. Every one of those steps takes time. You think while you switch tabs. You notice something while you wait for the page to load. You have a tiny moment of reflection before the next keystroke.
+When was the last time you actually wrote code? Not prompted it, not accepted it — wrote it.
 
-That time wasn't dead time. It was the space where you caught the bug before you introduced the next one. Where you asked yourself if what you just wrote actually made sense. Where the work became *yours* because you were present for each part of it.
+The last time I remember opening VS Code was sometime last September. It used to be a must-install on every fresh setup. I got my MacBook last November and never even downloaded it. You might say — well, you still have Cursor, that's basically the same thing. Sure. Except I can't remember the last time I used Cursor to actually write anything either. Mostly I open it to review changes or fix merge conflicts.
 
-# now the loop has no slack
+We've handed the whole job to clankers. And I'm not saying that's inherently wrong — the speed is real, the output is often good. But somewhere in that handoff, we got lazy about what comes out the other side.
 
-When the AI finishes before you tab over, the loop doesn't slow down — it inverts. You're no longer driving with occasional AI help. The AI is driving and you're reviewing at speed. The question is no longer "what should I build next" but "does this look right."
+Try this: go into a project you've recently vibecoded and read the code. Actually read it. You'll find useEffect hooks stacked on top of each other, components being rewritten from scratch in three different files instead of being reused, logic that makes no sense to anyone including the agent that wrote it. It's not that the AI did a bad job. It's that nobody was watching.
 
-That's a different cognitive mode entirely. It's closer to code review than to programming. And code review at that pace, without context, without having written the code yourself, is genuinely hard to do well.
+# the software shows it
 
-# this isn't a complaint about cursor
+This isn't just a developer workflow problem. It's showing up in the products themselves.
 
-Cursor 2.5 is genuinely impressive. Composer is fast and the output is good. I'm not saying slow it down.
+Ever since 2026 started, I keep having the same experience — a new app drops, it looks great in the demo, I actually use it, and within a week it stops impressing me. The surface is polished, the core is hollow.
 
-I'm saying the tooling got fast enough that the bottleneck shifted. It used to be "can AI write this code." Now it's "can you keep up with the code it's writing." And that's a much more interesting problem because it's entirely on you.
+Even Apple. macOS is the most beautiful OS I've ever used — but that's the first-impression version. Spend enough time with it and you start noticing things that genuinely shouldn't exist. Border radii on default apps that don't match each other. The DMG installer that "mounts" like a drive for no reason in 2026. Small things, but they're the kind of things that only happen when nobody's in love with what they're building anymore.
 
-The people who are going to be good at this workflow aren't the ones who can type faster prompts. They're the ones who can review fast, catch drift early, and maintain a clear picture of what the codebase is doing even when they didn't write most of it. That's a skill. It's not the one we've been optimising for.
+Windows gave up even earlier. Since Windows 7 it's just been colored squares rearranging themselves every few years and calling it a redesign.
 
-# what actually changes
+The point is — the decay was already happening before AI. Vibe coding just made it faster and easier to justify.
 
-There's a version of this that goes well and a version that doesn't.
+# we're all contributing to this
 
-The version that goes well: you use the speed to ship a rough version faster, then slow down and actually review what was built before you keep going. The AI handles the boilerplate sprint, you handle the architecture and the judgment calls.
+I'm not exempt from any of this. For most of the last six months at [Ghost](https://tryghost.ai), where I'm a founding engineer, we've been in back-to-back pivot cycles — shipping fully functional versions of different product directions every month or so. We didn't have the luxury of slowing down. So we vibecoded. Hard.
 
-The version that doesn't: you keep accepting because it mostly looks right, the velocity feels good, and you never really pause to understand the codebase you now own. Six months later you're scared to touch anything because you don't know how it works.
+The wake-up call was when our CEO went through the codebase and found enough slop that he cleaned it up himself. After that we changed how we work. Every PR gets reviewed before it's merged. Another engineer checks the branch, then the CEO tests it, and only then does it go in. I have a skills folder set up so agents start with the right context and constraints instead of free-styling from scratch.
 
-The tool is the same in both versions. The difference is whether you let it collapse your attention along with the loop.
+It's not a complicated system. But it's the difference between code you can reason about six months from now and code you're scared to touch.
 
-# tab over anyway
+# the loop collapsing isn't the problem
 
-I think the habit worth building is: even when it's done before you get there, tab over anyway. Look at it. Actually look at it. Not to review every line but to stay present in what's being built.
+Here's the thing — Cursor being fast is good. Composer finishing before you tab over is impressive engineering. None of that is the problem.
 
-The dev loop collapsing is fine. Losing track of what you're building is not.
+The problem is what happens to your attention when the loop has no slack in it. That small gap between writing and seeing — where you caught the bug, questioned the approach, made the work yours — is gone. Now you're a reviewer moving at a writer's pace, and most people aren't built for that yet.
+
+The dev loop collapsing is fine. Just don't let your judgment collapse with it.
