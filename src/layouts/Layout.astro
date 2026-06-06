@@ -6,22 +6,29 @@ interface Props {
   title?: string;
   description?: string;
   path?: string;
+  ogType?: "website" | "article";
+  publishedTime?: string;
+  keywords?: string;
 }
 
 const {
   title: pageTitle,
   description: pageDesc,
   path = "",
+  ogType = "website",
+  publishedTime,
+  keywords,
 } = Astro.props;
 
 const defaultTitle = "ronish rohan - developer & designer";
 const defaultDesc = "hi, i'm ronish rohan, a 21 year old developer and designer from bengaluru (bangalore), india. currently a founding engineer at ghost (tryghost.ai). i love designing and developing websites and apps.";
+const defaultKeywords = "ronish, ronish rohan, developer, designer, bengaluru, bangalore, india, ghost, tryghost.ai, software engineer, web developer, ui designer";
 
 const title = pageTitle ? `${pageTitle} — ronish` : defaultTitle;
 const description = pageDesc ?? defaultDesc;
 const siteUrl = "https://ronish.dev";
 const canonicalUrl = `${siteUrl}${path}`;
-const ogImage = siteUrl;
+const ogImageUrl = `${siteUrl}/og.png`;
 ---
 
 <!doctype html>
@@ -34,28 +41,53 @@ const ogImage = siteUrl;
     <title>{title}</title>
     <meta name="title" content={title} />
     <meta name="description" content={description} />
-    <meta name="keywords" content="ronish, ronish rohan, developer, designer, bengaluru, india, ghost, tryghost.ai" />
+    <meta name="keywords" content={keywords ?? defaultKeywords} />
     <meta name="author" content="ronish rohan" />
     <meta name="robots" content="index, follow" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="theme-color" content="#ea580c" />
 
-    <meta property="og:type" content="website" />
+    <!-- Open Graph -->
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content={ogType} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:image" content={ogImage} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1024" />
+    <meta property="og:image:height" content="576" />
+    <meta property="og:image:alt" content="ronish.dev — developer & designer from bengaluru" />
     <meta property="og:site_name" content="ronish.dev" />
+    {ogType === "article" && publishedTime && (
+      <meta property="article:published_time" content={publishedTime} />
+    )}
+    {ogType === "article" && (
+      <meta property="article:author" content="https://ronish.dev" />
+    )}
 
+    <!-- Twitter / X -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@ronish1o" />
+    <meta name="twitter:creator" content="@ronish1o" />
     <meta name="twitter:url" content={canonicalUrl} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
-    <meta name="twitter:image" content={ogImage} />
-    <meta name="twitter:creator" content="@ronish1o" />
+    <meta name="twitter:image" content={ogImageUrl} />
+    <meta name="twitter:image:alt" content="ronish.dev — developer & designer from bengaluru" />
 
-    <meta name="theme-color" content="#ffffff" />
+    <!-- Favicons -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+
+    <!-- Sitemap -->
     <link rel="sitemap" href="/sitemap.xml" />
+
+    <!-- Dynamic favicon (set by JS below) -->
     <link rel="icon" id="favicon" type="image/png" href="" />
+
     <ViewTransitions />
     <style>
       ::view-transition-old(root),
@@ -71,10 +103,12 @@ const ogImage = siteUrl;
       "name": "Ronish Rohan",
       "alternateName": ["ronish", "ronish1o"],
       "url": "https://ronish.dev",
+      "image": "https://ronish.dev/apple-touch-icon.png",
       "sameAs": [
         "https://github.com/ronishrohan",
         "https://x.com/ronish1o",
-        "https://instagram.com/ronish1o"
+        "https://instagram.com/ronish1o",
+        "https://linkedin.com/in/ronishrohan"
       ],
       "jobTitle": "Founding Engineer",
       "worksFor": {
@@ -146,6 +180,12 @@ const ogImage = siteUrl;
         ctx.arc(32, 32, 32, 0, Math.PI * 2);
         ctx.fillStyle = color;
         ctx.fill();
+        // Draw R
+        ctx.fillStyle = "white";
+        ctx.font = "bold 36px Helvetica, Arial, sans-serif";
+        ctx.textAlign = "center";
+        ctx.textBaseline = "middle";
+        ctx.fillText("R", 32, 33);
         return canvas.toDataURL("image/png");
       }
 

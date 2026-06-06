@@ -15,6 +15,29 @@ export async function getStaticPaths() {
 const { post } = Astro.props;
 const { Content } = await render(post);
 
+const articleSchema = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": post.data.title,
+  "description": post.data.description,
+  "datePublished": post.data.date.toISOString(),
+  "author": {
+    "@type": "Person",
+    "name": "Ronish Rohan",
+    "url": "https://ronish.dev"
+  },
+  "url": `https://ronish.dev/blog/${post.id}`,
+  "publisher": {
+    "@type": "Person",
+    "name": "Ronish Rohan",
+    "url": "https://ronish.dev"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": `https://ronish.dev/blog/${post.id}`
+  }
+};
+
 function formatDate(date: Date) {
   return date.toLocaleDateString("en-US", {
     year: "numeric",
@@ -28,6 +51,9 @@ function formatDate(date: Date) {
   title={post.data.title}
   description={post.data.description}
   path={`/blog/${post.id}`}
+  ogType="article"
+  publishedTime={post.data.date.toISOString()}
+  keywords={`${post.data.title}, ronish rohan, ronish.dev, blog, developer`}
 >
   <Nav />
 
@@ -61,6 +87,8 @@ function formatDate(date: Date) {
       <div id="prose-content" class="prose mt-2" style="font-size:1rem">
         <Content />
       </div>
+
+      <script type="application/ld+json" set:html={JSON.stringify(articleSchema)} />
 
       <script>
         function getAccent() {
