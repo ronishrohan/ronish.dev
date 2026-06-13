@@ -5,11 +5,13 @@ import { useRef, useState, useEffect, useCallback } from 'react'
 import { useSound } from '@web-kits/audio/react'
 import type { SoundDefinition } from '@web-kits/audio'
 
-const tick: SoundDefinition = {
-  source: { type: 'sine', frequency: { start: 1400, end: 800 } },
-  envelope: { decay: 0.03 },
-  gain: 0.25,
-}
+const ticks: SoundDefinition[] = [
+  { source: { type: 'sine', frequency: { start: 800, end: 500 } }, envelope: { decay: 0.03 }, gain: 0.25 },
+  { source: { type: 'sine', frequency: { start: 1000, end: 650 } }, envelope: { decay: 0.03 }, gain: 0.25 },
+  { source: { type: 'sine', frequency: { start: 1200, end: 800 } }, envelope: { decay: 0.03 }, gain: 0.25 },
+  { source: { type: 'sine', frequency: { start: 1500, end: 1000 } }, envelope: { decay: 0.03 }, gain: 0.25 },
+  { source: { type: 'sine', frequency: { start: 1800, end: 1200 } }, envelope: { decay: 0.03 }, gain: 0.25 },
+]
 
 const themes = [
   // Dawn — warm cream, soft brown text
@@ -54,7 +56,12 @@ export function ThemeSlider() {
   const startStep = useRef(0)
 
   const fillPercent = useTransform(fillWidth, [0, TRACK_WIDTH], ['0%', '100%'])
-  const playTick = useSound(tick)
+  const playTick0 = useSound(ticks[0])
+  const playTick1 = useSound(ticks[1])
+  const playTick2 = useSound(ticks[2])
+  const playTick3 = useSound(ticks[3])
+  const playTick4 = useSound(ticks[4])
+  const playTicks = [playTick0, playTick1, playTick2, playTick3, playTick4]
 
   useEffect(() => {
     const saved = localStorage.getItem('theme-step')
@@ -69,9 +76,9 @@ export function ThemeSlider() {
     setStep(clamped)
     animate(fillWidth, clamped * STEP_WIDTH, { type: 'spring', stiffness: 300, damping: 30 })
     applyTheme(clamped)
-    playTick()
+    playTicks[clamped]()
     localStorage.setItem('theme-step', String(clamped))
-  }, [fillWidth, playTick])
+  }, [fillWidth, playTicks])
 
   const handlePointerDown = useCallback((e: React.PointerEvent) => {
     dragging.current = true
