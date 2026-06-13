@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import { IBM_Plex_Mono } from 'next/font/google'
+import { SiteSound } from '@/components/sound-provider'
 import './globals.css'
 
 const openRunde = localFont({
@@ -112,7 +113,9 @@ export default function RootLayout({
         />
       </head>
       <body>
-        {children}
+        <SiteSound>
+          {children}
+        </SiteSound>
       </body>
     </html>
   )
