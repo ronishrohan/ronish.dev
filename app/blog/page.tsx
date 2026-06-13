@@ -23,7 +23,7 @@ export default async function BlogPage() {
       <div>I&apos;m new to this so please be nice</div>
 
       {posts.length === 0 ? (
-        <p className="text-zinc-400">Nothing here yet</p>
+        <p style={{ color: 'var(--theme-muted)' }}>Nothing here yet</p>
       ) : (
         <BlogList
           posts={posts.map((p) => ({

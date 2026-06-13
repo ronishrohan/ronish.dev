@@ -37,12 +37,12 @@ export default function BlogLayout({
         transition={fast}
         className="overflow-hidden"
       >
-        <Link href="/" className="text-sm text-zinc-400 hover:text-black w-fit block">
+        <Link href="/" className="text-sm w-fit block" style={{ color: 'var(--theme-muted)' }}>
           ← Home
         </Link>
       </motion.div>
 
-      <Link href={isPost ? postBackHref : '/blog'} className="flex items-center w-fit mb-4 text-sm text-zinc-400 hover:text-black">
+      <Link href={isPost ? postBackHref : '/blog'} className="flex items-center w-fit mb-4 text-sm" style={{ color: 'var(--theme-muted)' }}>
         <motion.div
           initial={false}
           animate={{

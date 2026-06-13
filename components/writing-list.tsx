@@ -56,14 +56,16 @@ export function WritingList({ posts }: { posts: Post[] }) {
                 }
               }}
             >
-              <div className="absolute bg-orange-600 pointer-events-none opacity-0 group-hover:opacity-100 h-[calc(100%+4px)] w-[calc(100%+16px)] translate-x-[-8px] rounded-lg" />
-              <span className={`z-20 ${
-                hovered === i ? 'text-white' : isRead ? 'text-zinc-400' : item.meta ? '' : 'text-zinc-400'
-              }`}>
+              <div className="absolute pointer-events-none opacity-0 group-hover:opacity-100 h-[calc(100%+4px)] w-[calc(100%+16px)] translate-x-[-8px] rounded-lg" style={{ backgroundColor: 'var(--theme-card-hover)' }} />
+              <span className="z-20" style={{
+                color: hovered === i ? '#fff' : isRead ? 'var(--theme-muted)' : item.meta ? 'var(--theme-text)' : 'var(--theme-muted)',
+              }}>
                 {item.label}
               </span>
               {item.meta && (
-                <span className={`text-base z-20 shrink-0 ${hovered === i ? 'text-white' : 'text-zinc-400'}`}>
+                <span className="text-base z-20 shrink-0" style={{
+                  color: hovered === i ? '#fff' : 'var(--theme-muted)',
+                }}>
                   {item.meta}
                 </span>
               )}
