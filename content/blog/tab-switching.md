@@ -1,5 +1,5 @@
 ---
-title: the dev loop is collapsing
+title: The Dev Loop Is Collapsing
 date: 2026-05-25
 description: cursor 2.5 finishes before you can switch tabs. that's not a flex, that's a shift.
 ---

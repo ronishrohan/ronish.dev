@@ -1,5 +1,5 @@
 ---
-title: first post, setting up blogs
+title: First Post, Setting Up Blogs
 date: 2026-03-26
 description: the first post. a note on writing and why i'm starting this.
 ---

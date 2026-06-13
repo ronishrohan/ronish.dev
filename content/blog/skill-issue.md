@@ -1,5 +1,5 @@
 ---
-title: skill issue
+title: Skill Issue
 date: 2026-04-08
 description: creating skills is genuinely fun guys
 ---

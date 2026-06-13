@@ -1,5 +1,5 @@
 ---
-title: why i genuinely think ai is going to ruin engineering
+title: Why I Genuinely Think AI Is Going to Ruin Engineering
 date: 2026-03-30
 description: not about robots taking over. about something quieter, and honestly scarier.
 ---

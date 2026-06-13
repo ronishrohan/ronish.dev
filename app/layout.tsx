@@ -1,11 +1,16 @@
 import type { Metadata } from 'next'
-import { Roboto_Slab } from 'next/font/google'
+import localFont from 'next/font/local'
 import { IBM_Plex_Mono } from 'next/font/google'
 import './globals.css'
 
-const robotoSlab = Roboto_Slab({
-  subsets: ['latin'],
-  variable: '--font-roboto-slab',
+const openRunde = localFont({
+  src: [
+    { path: '../public/fonts/OpenRunde-Regular.woff2', weight: '400' },
+    { path: '../public/fonts/OpenRunde-Medium.woff2', weight: '500' },
+    { path: '../public/fonts/OpenRunde-Semibold.woff2', weight: '600' },
+    { path: '../public/fonts/OpenRunde-Bold.woff2', weight: '700' },
+  ],
+  variable: '--font-open-runde',
   display: 'swap',
 })
 
@@ -99,14 +104,16 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${robotoSlab.variable} ${ibmPlexMono.variable}`}>
+    <html lang="en" className={`${openRunde.variable} ${ibmPlexMono.variable}`}>
       <head>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        {children}
+      </body>
     </html>
   )
 }

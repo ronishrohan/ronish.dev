@@ -1,5 +1,3 @@
-import { Nav } from '@/components/nav'
-import { Footer } from '@/components/footer'
 import { getPost, getAllSlugs } from '@/lib/blog'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
@@ -79,34 +77,30 @@ export default async function BlogPost({ params }: Props) {
   }
 
   return (
-    <>
-      <Nav />
-      <div className="flex flex-1 w-full flex-col">
-        <article className="max-w-4xl w-full mx-auto px-6 mt-[100px] flex flex-col gap-4">
-          <Link
-            href="/blog"
-            className="text-sm text-zinc-400 hover:text-black"
-          >
-            &larr; writing
-          </Link>
-          <h1 className="text-2xl mt-2">{post.title}</h1>
-          <span className="text-sm text-zinc-400">
-            {formatDate(post.date)}
-          </span>
+    <article className="flex flex-col gap-4">
+      <h1 className="text-2xl mt-2">{post.title}</h1>
+      <span className="text-sm text-zinc-400">
+        {formatDate(post.date)}
+      </span>
 
-          <div
-            className="prose mt-2"
-            style={{ fontSize: '1rem' }}
-            dangerouslySetInnerHTML={{ __html: post.content }}
-          />
+      <div
+        className="prose mt-2"
+        style={{ fontSize: '1rem' }}
+        dangerouslySetInnerHTML={{ __html: post.content }}
+      />
 
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
-          />
-        </article>
-        <Footer />
-      </div>
-    </>
+      <Link
+        href="/blog"
+        className="text-zinc-400 hover:text-black mt-6"
+      >
+        More Writing &rarr;
+      </Link>
+      <div className="h-40" />
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
+    </article>
   )
 }

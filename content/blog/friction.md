@@ -1,5 +1,5 @@
 ---
-title: you don't have to do that yourself anymore
+title: You Don't Have to Do That Yourself Anymore
 date: 2026-05-29
 description: we're living in the age of automation, and most people haven't noticed yet
 ---

@@ -1,5 +1,5 @@
 ---
-title: restless - spec to mcp
+title: Restless - Spec to MCP
 date: 2026-05-08
 description: turn any openapi spec into an mcp server with one command
 ---

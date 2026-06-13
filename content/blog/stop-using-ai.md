@@ -1,5 +1,5 @@
 ---
-title: stop using AI
+title: Stop Using AI
 date: 2026-04-29
 description: stop the slop, be better engineers
 ---
