@@ -65,18 +65,24 @@ export function ThemeSlider() {
 
   useEffect(() => {
     const saved = localStorage.getItem('theme-step')
-    const initial = saved ? parseInt(saved) : 2
+    let initial: number
+    if (saved !== null) {
+      initial = parseInt(saved)
+    } else {
+      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
+      initial = prefersDark ? 3 : 1
+    }
     setStep(initial)
     fillWidth.set(initial * STEP_WIDTH)
     applyTheme(initial)
   }, [fillWidth])
 
-  const snapTo = useCallback((index: number) => {
+  const snapTo = useCallback((index: number, sound = false) => {
     const clamped = Math.max(0, Math.min(STEPS - 1, index))
     setStep(clamped)
     animate(fillWidth, clamped * STEP_WIDTH, { type: 'spring', stiffness: 300, damping: 30 })
     applyTheme(clamped)
-    playTicks[clamped]()
+    if (sound) playTicks[clamped]()
     localStorage.setItem('theme-step', String(clamped))
   }, [fillWidth, playTicks])
 
@@ -94,7 +100,7 @@ export function ThemeSlider() {
     const newStep = startStep.current + stepDelta
     const clamped = Math.max(0, Math.min(STEPS - 1, newStep))
     if (clamped !== step) {
-      snapTo(clamped)
+      snapTo(clamped, true)
     }
   }, [step, snapTo])
 
