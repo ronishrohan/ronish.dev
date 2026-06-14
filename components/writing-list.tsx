@@ -47,7 +47,7 @@ export function WritingList({ posts }: { posts: Post[] }) {
           <Pressable key={item.key}>
             <Link
               href={item.href}
-              className="flex relative justify-between items-center gap-4 py-2 group"
+              className="flex relative justify-between items-center gap-4 py-1 group"
               onMouseEnter={() => setHovered(i)}
               onClick={() => {
                 if (item.isPost) {
