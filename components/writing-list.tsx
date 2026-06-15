@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import { Pressable } from './pressable'
 import { getReadSlugs, markRead } from '@/lib/read-tracking'
@@ -12,12 +12,7 @@ interface Post {
 }
 
 export function WritingList({ posts }: { posts: Post[] }) {
-  const [hovered, setHovered] = useState<number | null>(null)
-  const [readSlugs, setReadSlugs] = useState<Set<string>>(new Set())
-
-  useEffect(() => {
-    setReadSlugs(getReadSlugs())
-  }, [])
+  const [readSlugs] = useState(() => getReadSlugs())
 
   const items = [
     ...posts.map((post) => ({
@@ -37,18 +32,14 @@ export function WritingList({ posts }: { posts: Post[] }) {
   ]
 
   return (
-    <div
-      className="flex flex-col"
-      onMouseLeave={() => setHovered(null)}
-    >
-      {items.map((item, i) => {
+    <div className="flex flex-col">
+      {items.map((item) => {
         const isRead = item.isPost && readSlugs.has(item.key)
         return (
           <Pressable key={item.key}>
             <Link
               href={item.href}
               className="flex relative justify-between items-center gap-4 py-1 group"
-              onMouseEnter={() => setHovered(i)}
               onClick={() => {
                 if (item.isPost) {
                   markRead(item.key)
@@ -57,15 +48,17 @@ export function WritingList({ posts }: { posts: Post[] }) {
               }}
             >
               <div className="absolute pointer-events-none opacity-0 group-hover:opacity-100 h-[calc(100%+4px)] w-[calc(100%+16px)] translate-x-[-8px] rounded-lg" style={{ backgroundColor: 'var(--theme-card-hover)' }} />
-              <span className="z-20" style={{
-                color: hovered === i ? '#fff' : isRead ? 'var(--theme-muted)' : item.meta ? 'var(--theme-text)' : 'var(--theme-muted)',
-              }}>
+              <span
+                className="z-20 group-hover:!text-white"
+                style={{ color: isRead ? 'var(--theme-muted)' : item.meta ? 'var(--theme-text)' : 'var(--theme-muted)' }}
+              >
                 {item.label}
               </span>
               {item.meta && (
-                <span className="text-base z-20 shrink-0" style={{
-                  color: hovered === i ? '#fff' : 'var(--theme-muted)',
-                }}>
+                <span
+                  className="text-base z-20 shrink-0 group-hover:!text-white"
+                  style={{ color: 'var(--theme-muted)' }}
+                >
                   {item.meta}
                 </span>
               )}

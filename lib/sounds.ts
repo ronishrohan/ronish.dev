@@ -15,3 +15,19 @@ export const thock: SoundDefinition = {
     },
   ],
 }
+
+export const thockBack: SoundDefinition = {
+  layers: [
+    {
+      source: { type: 'sine', frequency: { start: 300, end: 150 } },
+      envelope: { decay: 0.05 },
+      gain: 0.4,
+    },
+    {
+      source: { type: 'noise', color: 'pink' },
+      envelope: { decay: 0.025 },
+      gain: 0.2,
+      filter: { type: 'lowpass', frequency: 1500 },
+    },
+  ],
+}

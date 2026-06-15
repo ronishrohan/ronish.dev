@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import { Pressable } from './pressable'
 import { getReadSlugs, markRead } from '@/lib/read-tracking'
@@ -13,12 +13,8 @@ interface Post {
 }
 
 export function BlogList({ posts }: { posts: Post[] }) {
-  const [readSlugs, setReadSlugs] = useState<Set<string>>(new Set())
+  const [readSlugs] = useState(() => getReadSlugs())
   const [hovered, setHovered] = useState<number | null>(null)
-
-  useEffect(() => {
-    setReadSlugs(getReadSlugs())
-  }, [])
 
   return (
     <div

@@ -105,8 +105,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${openRunde.variable} ${ibmPlexMono.variable}`}>
+    <html lang="en" className={`${openRunde.variable} ${ibmPlexMono.variable}`} suppressHydrationWarning>
       <head>
+        <script
+          dangerouslySetInnerHTML={{ __html: `(function(){try{var t=[{bg:'#faf5ee',text:'#3d2e1f',muted:'#8c7a68',border:'#e4d8ca',cardHover:'#ea580c',accent:'#ea580c',codeBg:'#f0e8dc',codeBorder:'#e4d8ca',selection:'#ea580c',prose:'#5c4a38',postcardBg:'#efe6d8'},{bg:'#f5f5f4',text:'#1c1917',muted:'#78716c',border:'#d6d3d1',cardHover:'#ea580c',accent:'#ea580c',codeBg:'#ecebe9',codeBorder:'#d6d3d1',selection:'#ea580c',prose:'#44403c',postcardBg:'#e7e5e4'},{bg:'#ffffff',text:'#18181b',muted:'#71717a',border:'#e4e4e7',cardHover:'#ea580c',accent:'#ea580c',codeBg:'#f4f4f5',codeBorder:'#e4e4e7',selection:'#ea580c',prose:'#3f3f46',postcardBg:'#f0f0f0'},{bg:'#1f1b18',text:'#e8e3dd',muted:'#9a8e82',border:'#3a342e',cardHover:'#ea580c',accent:'#ea580c',codeBg:'#2a2521',codeBorder:'#3a342e',selection:'#ea580c',prose:'#b8ada0',postcardBg:'#2a2521'},{bg:'#111111',text:'#e0e0e0',muted:'#6b6b6b',border:'#2a2a2a',cardHover:'#ea580c',accent:'#ea580c',codeBg:'#1a1a1a',codeBorder:'#2a2a2a',selection:'#ea580c',prose:'#9a9a9a',postcardBg:'#1a1a1a'}];var s=localStorage.getItem('theme-step');var i=s!==null?parseInt(s):window.matchMedia('(prefers-color-scheme:dark)').matches?3:1;var c=t[i];var d=document.documentElement;d.style.setProperty('--theme-bg',c.bg);d.style.setProperty('--theme-text',c.text);d.style.setProperty('--theme-muted',c.muted);d.style.setProperty('--theme-border',c.border);d.style.setProperty('--theme-card-hover',c.cardHover);d.style.setProperty('--theme-accent',c.accent);d.style.setProperty('--theme-code-bg',c.codeBg);d.style.setProperty('--theme-code-border',c.codeBorder);d.style.setProperty('--theme-selection',c.selection);d.style.setProperty('--theme-prose',c.prose);d.style.setProperty('--postcard-bg',c.postcardBg)}catch(e){}})()` }}
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

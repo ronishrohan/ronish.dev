@@ -4,6 +4,8 @@ import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
+import { useSound } from '@web-kits/audio/react'
+import { thockBack } from '@/lib/sounds'
 
 const fast = { duration: 0.2, ease: [0.23, 1, 0.32, 1] as const }
 
@@ -21,6 +23,7 @@ export default function BlogLayout({
     setReferrer(ref)
   }, [pathname])
 
+  const playBack = useSound(thockBack)
   const cameFromHome = isPost && referrer === '/'
   const postBackHref = cameFromHome ? '/' : '/blog'
   const postBackLabel = cameFromHome ? 'Home' : 'Writing'
@@ -37,12 +40,12 @@ export default function BlogLayout({
         transition={fast}
         className="overflow-hidden"
       >
-        <Link href="/" className="text-sm w-fit block" style={{ color: 'var(--theme-muted)' }}>
+        <Link href="/" className="text-sm w-fit block" style={{ color: 'var(--theme-muted)' }} onMouseDown={() => playBack()}>
           ← Home
         </Link>
       </motion.div>
 
-      <Link href={isPost ? postBackHref : '/blog'} className="flex items-center w-fit mb-4 text-sm" style={{ color: 'var(--theme-muted)' }}>
+      <Link href={isPost ? postBackHref : '/blog'} className="flex items-center w-fit mb-4 text-sm" style={{ color: 'var(--theme-muted)' }} onMouseDown={() => playBack()}>
         <motion.div
           initial={false}
           animate={{

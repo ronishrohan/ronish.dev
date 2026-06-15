@@ -15,15 +15,15 @@ const ticks: SoundDefinition[] = [
 
 const themes = [
   // Dawn — warm cream, soft brown text
-  { name: 'dawn', bg: '#faf5ee', text: '#3d2e1f', muted: '#8c7a68', border: '#e4d8ca', cardHover: '#ea580c', accent: '#ea580c', codeBg: '#f0e8dc', codeBorder: '#e4d8ca', selection: '#ea580c', prose: '#5c4a38' },
+  { name: 'dawn', bg: '#faf5ee', text: '#3d2e1f', muted: '#8c7a68', border: '#e4d8ca', cardHover: '#ea580c', accent: '#ea580c', codeBg: '#f0e8dc', codeBorder: '#e4d8ca', selection: '#ea580c', prose: '#5c4a38', postcardBg: '#efe6d8' },
   // Morning — neutral stone, crisp
-  { name: 'morning', bg: '#f5f5f4', text: '#1c1917', muted: '#78716c', border: '#d6d3d1', cardHover: '#ea580c', accent: '#ea580c', codeBg: '#ecebe9', codeBorder: '#d6d3d1', selection: '#ea580c', prose: '#44403c' },
+  { name: 'morning', bg: '#f5f5f4', text: '#1c1917', muted: '#78716c', border: '#d6d3d1', cardHover: '#ea580c', accent: '#ea580c', codeBg: '#ecebe9', codeBorder: '#d6d3d1', selection: '#ea580c', prose: '#44403c', postcardBg: '#e7e5e4' },
   // Noon — clean white
-  { name: 'noon', bg: '#ffffff', text: '#18181b', muted: '#71717a', border: '#e4e4e7', cardHover: '#ea580c', accent: '#ea580c', codeBg: '#f4f4f5', codeBorder: '#e4e4e7', selection: '#ea580c', prose: '#3f3f46' },
+  { name: 'noon', bg: '#ffffff', text: '#18181b', muted: '#71717a', border: '#e4e4e7', cardHover: '#ea580c', accent: '#ea580c', codeBg: '#f4f4f5', codeBorder: '#e4e4e7', selection: '#ea580c', prose: '#3f3f46', postcardBg: '#f0f0f0' },
   // Evening — deep warm gray
-  { name: 'evening', bg: '#1f1b18', text: '#e8e3dd', muted: '#9a8e82', border: '#3a342e', cardHover: '#ea580c', accent: '#ea580c', codeBg: '#2a2521', codeBorder: '#3a342e', selection: '#ea580c', prose: '#b8ada0' },
+  { name: 'evening', bg: '#1f1b18', text: '#e8e3dd', muted: '#9a8e82', border: '#3a342e', cardHover: '#ea580c', accent: '#ea580c', codeBg: '#2a2521', codeBorder: '#3a342e', selection: '#ea580c', prose: '#b8ada0', postcardBg: '#2a2521' },
   // Night — true dark
-  { name: 'night', bg: '#111111', text: '#e0e0e0', muted: '#6b6b6b', border: '#2a2a2a', cardHover: '#ea580c', accent: '#ea580c', codeBg: '#1a1a1a', codeBorder: '#2a2a2a', selection: '#ea580c', prose: '#9a9a9a' },
+  { name: 'night', bg: '#111111', text: '#e0e0e0', muted: '#6b6b6b', border: '#2a2a2a', cardHover: '#ea580c', accent: '#ea580c', codeBg: '#1a1a1a', codeBorder: '#2a2a2a', selection: '#ea580c', prose: '#9a9a9a', postcardBg: '#1a1a1a' },
 ]
 
 const TRACK_WIDTH = 80
@@ -44,12 +44,21 @@ function applyTheme(index: number) {
   root.style.setProperty('--theme-code-border', t.codeBorder)
   root.style.setProperty('--theme-selection', t.selection)
   root.style.setProperty('--theme-prose', t.prose)
+  root.style.setProperty('--postcard-bg', t.postcardBg)
+}
+
+function getInitialStep(): number {
+  if (typeof window === 'undefined') return 1
+  const saved = localStorage.getItem('theme-step')
+  if (saved !== null) return parseInt(saved)
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 3 : 1
 }
 
 export function ThemeSlider() {
   const trackRef = useRef<HTMLDivElement>(null)
-  const fillWidth = useMotionValue(STEP_WIDTH * 2)
-  const [step, setStep] = useState(2)
+  const initial = getInitialStep()
+  const fillWidth = useMotionValue(initial * STEP_WIDTH)
+  const [step, setStep] = useState(initial)
   const [hovered, setHovered] = useState(false)
   const dragging = useRef(false)
   const startX = useRef(0)
@@ -62,20 +71,6 @@ export function ThemeSlider() {
   const playTick3 = useSound(ticks[3])
   const playTick4 = useSound(ticks[4])
   const playTicks = [playTick0, playTick1, playTick2, playTick3, playTick4]
-
-  useEffect(() => {
-    const saved = localStorage.getItem('theme-step')
-    let initial: number
-    if (saved !== null) {
-      initial = parseInt(saved)
-    } else {
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches
-      initial = prefersDark ? 3 : 1
-    }
-    setStep(initial)
-    fillWidth.set(initial * STEP_WIDTH)
-    applyTheme(initial)
-  }, [fillWidth])
 
   const snapTo = useCallback((index: number, sound = false) => {
     const clamped = Math.max(0, Math.min(STEPS - 1, index))
@@ -104,11 +99,20 @@ export function ThemeSlider() {
     }
   }, [step, snapTo])
 
+  const didDrag = useRef(false)
+
   const handlePointerUp = useCallback(() => {
+    if (dragging.current && startStep.current !== step) {
+      didDrag.current = true
+    }
     dragging.current = false
-  }, [])
+  }, [step])
 
   const handleTrackClick = useCallback((e: React.MouseEvent) => {
+    if (didDrag.current) {
+      didDrag.current = false
+      return
+    }
     if (!trackRef.current) return
     const rect = trackRef.current.getBoundingClientRect()
     const clickX = e.clientX - rect.left

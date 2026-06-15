@@ -1,6 +1,7 @@
 import { getPost, getAllSlugs } from '@/lib/blog'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import { Pressable } from '@/components/pressable'
 import type { Metadata } from 'next'
 
 interface Props {
@@ -89,13 +90,14 @@ export default async function BlogPost({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: post.content }}
       />
 
-      <Link
-        href="/blog"
-        className="mt-6"
-        style={{ color: 'var(--theme-muted)' }}
-      >
-        More Writing &rarr;
-      </Link>
+      <Pressable className="mt-6">
+        <Link
+          href="/blog"
+          style={{ color: 'var(--theme-muted)' }}
+        >
+          More Writing &rarr;
+        </Link>
+      </Pressable>
       <div className="h-40" />
 
       <script

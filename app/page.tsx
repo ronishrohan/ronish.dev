@@ -1,6 +1,6 @@
 import { AnimatedName } from '@/components/animated-name'
-import { ThemeSlider } from '@/components/theme-slider'
-import { WritingList } from '@/components/writing-list'
+import { Postcard } from '@/components/postcard'
+import { ThemeSliderClient as ThemeSlider, WritingListClient as WritingList } from '@/components/client-only'
 import { getAllPosts } from '@/lib/blog'
 
 function formatDate(iso: string) {
@@ -50,6 +50,18 @@ export default async function Home() {
           {' '}or{' '}
           <a href="https://discord.com/users/769140296939470859" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: 'var(--theme-text)' }}>Discord</a>.
         </p>
+      </div>
+
+      <div className="mt-6 grid grid-cols-3 gap-4 -mx-2">
+        <Postcard src="/images/shader-lab.webp" index={0}>
+          <span className="text-sm font-semibold" style={{ color: 'var(--theme-text)' }}>Me and My Dog, Max</span>
+        </Postcard>
+        <Postcard src="/images/ragi.webp" index={1}>
+          <span className="text-sm font-semibold" style={{ color: 'var(--theme-text)' }}>My Mom&apos;s Spicy Cat, Ragi</span>
+        </Postcard>
+        <Postcard src="/images/headphones.webp" index={2}>
+          <span className="text-sm font-semibold" style={{ color: 'var(--theme-text)' }}>Me and My Pink Headphones</span>
+        </Postcard>
       </div>
 
       {recentPosts.length > 0 && (
