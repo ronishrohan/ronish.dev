@@ -1,5 +1,5 @@
 import { AnimatedName } from '@/components/animated-name'
-import { Postcard } from '@/components/postcard'
+import { PostcardGrid } from '@/components/postcard-grid'
 import { ThemeSliderClient as ThemeSlider, WritingListClient as WritingList } from '@/components/client-only'
 import { getAllPosts } from '@/lib/blog'
 
@@ -52,17 +52,7 @@ export default async function Home() {
         </p>
       </div>
 
-      <div className="mt-6 grid grid-cols-3 gap-4 -mx-2">
-        <Postcard src="/images/shader-lab.webp" index={0}>
-          <span className="text-sm font-semibold" style={{ color: 'var(--theme-text)' }}>Me and My Dog, Max</span>
-        </Postcard>
-        <Postcard src="/images/ragi.webp" index={1}>
-          <span className="text-sm font-semibold" style={{ color: 'var(--theme-text)' }}>My Mom&apos;s Spicy Cat, Ragi</span>
-        </Postcard>
-        <Postcard src="/images/headphones.webp" index={2}>
-          <span className="text-sm font-semibold" style={{ color: 'var(--theme-text)' }}>Me and My Pink Headphones</span>
-        </Postcard>
-      </div>
+      <PostcardGrid />
 
       {recentPosts.length > 0 && (
         <div className="mt-6 flex flex-col gap-3">
