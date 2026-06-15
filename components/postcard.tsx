@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useState, useLayoutEffect } from 'react'
-import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion'
+import { motion } from 'framer-motion'
 
 function generateStampPath(w: number, h: number): string {
   const R = 7
@@ -73,9 +73,6 @@ export function Postcard({
   const [size, setSize] = useState({ w: 0, h: 0 })
   const rotations = [-2.5, 1.5, -1.8, 3, -1.2]
   const rotation = rotations[index % rotations.length]
-  const shineTarget = useMotionValue(0)
-  const shinePos = useSpring(shineTarget, { stiffness: 50, damping: 20 })
-
   useLayoutEffect(() => {
     if (!ref.current) return
     const el = ref.current
@@ -93,11 +90,9 @@ export function Postcard({
       ref={ref}
       className={`relative cursor-crosshair select-none overflow-hidden ${className || ''}`}
       initial={false}
-      animate={{ rotate: rotation, scale: 1 }}
-      whileHover={{ rotate: 0, scale: 1.03 }}
+      animate={{ rotate: rotation }}
+      whileHover={{ rotate: 0 }}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-      onHoverStart={() => shineTarget.set(1)}
-      onHoverEnd={() => shineTarget.set(0)}
     >
       {size.w > 0 && (<>
         <svg
@@ -117,25 +112,13 @@ export function Postcard({
       </>)}
       <div className="relative z-10 p-5 flex flex-col gap-2">
         {src && (
-          <div className="relative overflow-hidden">
-            <img
-              src={src}
-              alt=""
-              className="w-full object-cover aspect-[4/3]"
-              draggable={false}
-              style={{ imageRendering: 'pixelated' }}
-            />
-            <motion.div
-              className="absolute inset-0 pointer-events-none"
-              style={{
-                background: 'linear-gradient(135deg, transparent 46%, rgba(255,255,255,0.12) 50%, transparent 54%)',
-                backgroundSize: '300% 300%',
-                backgroundPositionX: useTransform(shinePos, [0, 1], ['0%', '100%']),
-                backgroundPositionY: useTransform(shinePos, [0, 1], ['0%', '100%']),
-                opacity: useTransform(shinePos, [0, 0.3, 0.5, 0.7, 1], [0, 1, 1, 1, 0]),
-              }}
-            />
-          </div>
+          <img
+            src={src}
+            alt=""
+            className="w-full object-cover aspect-[4/3]"
+            draggable={false}
+            style={{ imageRendering: 'pixelated' }}
+          />
         )}
         {children}
       </div>
