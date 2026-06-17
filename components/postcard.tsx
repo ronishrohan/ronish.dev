@@ -88,7 +88,7 @@ export function Postcard({
   return (
     <motion.div
       ref={ref}
-      className={`relative cursor-crosshair select-none overflow-hidden ${className || ''}`}
+      className={`relative cursor-crosshair select-none ${className || ''}`}
       initial={false}
       animate={{ rotate: rotation }}
       whileHover={{ rotate: 0 }}

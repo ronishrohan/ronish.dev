@@ -52,6 +52,21 @@ export default async function Home() {
         </p>
       </div>
 
+      <div className="mt-6 flex flex-col gap-3">
+        <div className="pb-2" style={{ borderBottom: '1px solid var(--theme-border)' }}>
+          <span style={{ color: 'var(--theme-muted)' }}>Working On</span>
+        </div>
+        <div className="flex gap-2 flex-wrap" style={{ color: 'var(--theme-muted)' }}>
+          <a href="https://tryghost.ai" target="_blank" rel="noopener noreferrer" className="hover:underline working-link">Building Ghost</a>
+          <span>·</span>
+          <a href="https://github.com/amoreX/perch" target="_blank" rel="noopener noreferrer" className="hover:underline working-link">Finishing Perch</a>
+          <span>·</span>
+          <a href="https://github.com/ronishrohan/flash" target="_blank" rel="noopener noreferrer" className="hover:underline working-link">Flash (halted)</a>
+          <span>·</span>
+          <a href="https://github.com/stupidengineers/rings" target="_blank" rel="noopener noreferrer" className="hover:underline working-link">Starting Rings</a>
+        </div>
+      </div>
+
       <PostcardGrid />
 
       {recentPosts.length > 0 && (

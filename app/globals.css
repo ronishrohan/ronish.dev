@@ -34,6 +34,10 @@ a, button {
   user-select: none;
 }
 
+.working-link:hover {
+  color: var(--theme-text) !important;
+}
+
 .postcard-svg {
   transition: filter 0.5s ease;
 }
