@@ -151,9 +151,12 @@ export default async function Home() {
                   {item.label}
                 </span>
                 {item.desc && (
-                  <span className="z-20 group-hover:!text-white/70 truncate" style={{ color: 'var(--theme-muted)' }}>
-                    {item.desc}
-                  </span>
+                  <>
+                    <span className="z-20 group-hover:!text-white/70" style={{ color: 'var(--theme-muted)' }}>·</span>
+                    <span className="z-20 group-hover:!text-white/70 truncate" style={{ color: 'var(--theme-muted)' }}>
+                      {item.desc}
+                    </span>
+                  </>
                 )}
               </a>
             </Pressable>
