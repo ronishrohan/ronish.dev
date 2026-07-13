@@ -139,7 +139,7 @@ export default async function Home() {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex relative items-center gap-2 py-1 group"
+                className="flex relative items-center gap-3 py-1 group"
               >
                 <div className="absolute pointer-events-none opacity-0 group-hover:opacity-100 h-[calc(100%+4px)] w-[calc(100%+16px)] translate-x-[-8px] rounded-lg" style={{ backgroundColor: 'var(--theme-card-hover)' }} />
                 {item.icon && (
