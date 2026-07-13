@@ -63,6 +63,7 @@ export default async function Home() {
               href: 'https://tryghost.ai',
               label: 'Ghost',
               desc: 'Personal AI (SF, backed by a16z, SV Angel, more)',
+              badge: 'currently working as founding engineer',
               icon: (
                 <svg viewBox="0 0 106 82" width="18" height="14" aria-hidden="true" style={{ flexShrink: 0 }}>
                   <path d="M6.66665 70.4737C14.9561 73.2368 39.8245 76 52.7193 76C75.7456 76 99.693 64.0263 99.693 36.3947C99.693 11.5263 80.3509 6 70.2193 6C53.6403 6 45.3509 17.0526 38.9035 33.6316C34.2522 45.5868 26.9298 64.9474 6.66665 68.6316C5.76402 68.7974 5.79165 70.1789 6.66665 70.4737Z" fill="currentColor" />
@@ -157,6 +158,11 @@ export default async function Home() {
                       {item.desc}
                     </span>
                   </>
+                )}
+                {item.badge && (
+                  <span className="z-20 ml-auto shrink-0 group-hover:!text-white/70 text-sm" style={{ color: 'var(--theme-muted)' }}>
+                    ({item.badge})
+                  </span>
                 )}
               </a>
             </Pressable>
