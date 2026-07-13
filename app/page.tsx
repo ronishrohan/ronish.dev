@@ -57,7 +57,7 @@ export default async function Home() {
         <div className="pb-2" style={{ borderBottom: '1px solid var(--theme-border)' }}>
           <span style={{ color: 'var(--theme-muted)' }}>Work</span>
         </div>
-        <div className="grid grid-cols-2">
+        <div className="grid grid-cols-2 -mx-2">
           {[
             {
               href: 'https://tryghost.ai',
@@ -128,7 +128,7 @@ export default async function Home() {
               ),
             },
           ].map((item) => (
-            <Pressable key={item.href}>
+            <Pressable key={item.href} className="mx-2">
               <a
                 href={item.href}
                 target="_blank"
