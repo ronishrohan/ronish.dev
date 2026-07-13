@@ -64,7 +64,7 @@ export default async function Home() {
               label: 'Ghost',
               desc: 'Personal AI (SF, backed by a16z, SV Angel, more)',
               icon: (
-                <svg viewBox="0 0 106 82" width="23" height="18" aria-hidden="true" style={{ flexShrink: 0 }}>
+                <svg viewBox="0 0 106 82" width="18" height="14" aria-hidden="true" style={{ flexShrink: 0 }}>
                   <path d="M6.66665 70.4737C14.9561 73.2368 39.8245 76 52.7193 76C75.7456 76 99.693 64.0263 99.693 36.3947C99.693 11.5263 80.3509 6 70.2193 6C53.6403 6 45.3509 17.0526 38.9035 33.6316C34.2522 45.5868 26.9298 64.9474 6.66665 68.6316C5.76402 68.7974 5.79165 70.1789 6.66665 70.4737Z" fill="currentColor" />
                   <path className="fill-[var(--theme-bg)] group-hover:fill-[var(--theme-accent)]" d="M62.8508 20.7368C65.3929 20.7368 67.4561 23.6289 67.4561 27.1842C67.4561 30.7395 65.3929 33.6316 62.8508 33.6316C60.3087 33.6316 58.2456 30.7487 58.2456 27.1842C58.2456 23.6197 60.3087 20.7368 62.8508 20.7368ZM86.7982 20.7368C84.2561 20.7368 82.1929 23.6289 82.1929 27.1842C82.1929 30.7395 84.2561 33.6316 86.7982 33.6316C89.3403 33.6316 91.4035 30.7487 91.4035 27.1842C91.4035 23.6197 89.3403 20.7368 86.7982 20.7368Z" />
                 </svg>
@@ -143,7 +143,7 @@ export default async function Home() {
               >
                 <div className="absolute pointer-events-none opacity-0 group-hover:opacity-100 h-[calc(100%+4px)] w-[calc(100%+16px)] translate-x-[-8px] rounded-lg" style={{ backgroundColor: 'var(--theme-card-hover)' }} />
                 {item.icon && (
-                  <span className="z-20 group-hover:!text-white" style={{ color: 'var(--theme-text)', display: 'inline-flex' }}>
+                  <span className="z-20 group-hover:!text-white" style={{ color: 'var(--theme-text)', display: 'inline-flex', width: 18, flexShrink: 0, justifyContent: 'center' }}>
                     {item.icon}
                   </span>
                 )}
