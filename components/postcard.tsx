@@ -1,7 +1,6 @@
 'use client'
 
 import { useRef, useState, useLayoutEffect } from 'react'
-import { motion } from 'framer-motion'
 
 function generateStampPath(w: number, h: number): string {
   const R = 7
@@ -62,17 +61,13 @@ export function Postcard({
   children,
   className,
   src,
-  index = 0,
 }: {
   children?: React.ReactNode
   className?: string
   src?: string
-  index?: number
 }) {
   const ref = useRef<HTMLDivElement>(null)
   const [size, setSize] = useState({ w: 0, h: 0 })
-  const rotations = [-2.5, 1.5, -1.8, 3, -1.2]
-  const rotation = rotations[index % rotations.length]
   useLayoutEffect(() => {
     if (!ref.current) return
     const el = ref.current
@@ -86,13 +81,9 @@ export function Postcard({
   const path = size.w > 0 ? generateStampPath(size.w, size.h) : ''
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      className={`relative cursor-crosshair select-none ${className || ''}`}
-      initial={false}
-      animate={{ rotate: rotation }}
-      whileHover={{ rotate: 0 }}
-      transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+      className={`relative select-none ${className || ''}`}
     >
       {size.w > 0 && (<>
         <svg
@@ -122,6 +113,6 @@ export function Postcard({
         )}
         {children}
       </div>
-    </motion.div>
+    </div>
   )
 }

@@ -36,8 +36,8 @@ export function PostcardGrid() {
         gridTemplateColumns: `repeat(${cols}, 1fr)`,
       }}
     >
-      {visible.map((card, i) => (
-        <Postcard key={card.src} src={card.src} index={i}>
+      {visible.map((card) => (
+        <Postcard key={card.src} src={card.src}>
           <span className="text-sm font-semibold" style={{ color: 'var(--theme-text)' }}>
             {card.label}
           </span>
