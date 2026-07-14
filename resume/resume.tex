@@ -1,0 +1,122 @@
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\addtolength{\oddsidemargin}{-0.55in}
+\addtolength{\evensidemargin}{-0.55in}
+\addtolength{\textwidth}{1.1in}
+\addtolength{\topmargin}{-0.6in}
+\addtolength{\textheight}{1.2in}
+
+\raggedright
+\raggedbottom
+\urlstyle{same}
+\setlength{\tabcolsep}{0pt}
+
+\titleformat{\section}
+  {\vspace{-2pt}\bfseries\large}
+  {}{0pt}{}
+  [\vspace{2pt}\hrule\vspace{-2pt}]
+
+\newcommand{\entry}[4]{
+  \item
+  \begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+    \textbf{#1} & #2 \\
+    \textit{#3} & \textit{#4}
+  \end{tabular*}\vspace{-5pt}
+}
+
+\newcommand{\project}[2]{
+  \item
+  \textbf{#1} \hfill \textit{#2}\vspace{-4pt}
+}
+
+\newcommand{\bulletsStart}{\begin{itemize}[leftmargin=0.18in, label=\textbullet, itemsep=1pt, topsep=2pt]}
+\newcommand{\bulletsEnd}{\end{itemize}\vspace{-4pt}}
+\newcommand{\sectionListStart}{\begin{itemize}[leftmargin=0pt, label={}, itemsep=4pt, topsep=3pt]}
+\newcommand{\sectionListEnd}{\end{itemize}}
+
+\begin{document}
+
+\begin{center}
+  {\LARGE\textbf{Ronish Rohan}}\\[-1pt]
+  \href{https://ronish.dev}{ronish.dev} $|$
+  \href{mailto:ronish.rohan@gmail.com}{ronish.rohan@gmail.com} $|$
+  \href{https://github.com/ronishrohan}{github.com/ronishrohan} $|$
+  \href{https://linkedin.com/in/ronishrohan}{linkedin.com/in/ronishrohan}
+\end{center}
+
+\section{Experience}
+\sectionListStart
+  \entry{Ghost}{San Francisco (Remote)}{Founding Engineer}{Nov 2025 - Present}
+  \bulletsStart
+    \item Design and build Ghost's Electron and React desktop app, including chat, agent runs, and native macOS integrations.
+    \item Build interaction patterns for streamed output, tool calls, failures, and user approvals across multi-step agent workflows.
+    \item Contribute across the product UI and local agent runtime, shaping how backend state is represented and controlled in the app.
+  \bulletsEnd
+
+  \entry{Rae}{Bengaluru, India}{Co-Founder \& Software Engineer}{Jul 2025 - Nov 2025}
+  \bulletsStart
+    \item Led product design and frontend engineering for an AI desktop assistant built with Tauri and React.
+    \item Connected the interface to the team's backend agent harness for streaming responses and local system actions.
+    \item Reached roughly 1,000 waitlist signups before the three-person team joined Ghost prior to launch.
+  \bulletsEnd
+
+  \entry{Optacloud}{Singapore (Remote)}{Full Stack Developer Intern}{Dec 2024 - Jun 2025}
+  \bulletsStart
+    \item Built three web products with React, Firebase, Material UI, and Google Cloud.
+    \item Automated research and team operations using Gemini, n8n, search APIs, Cloud Functions, and chat integrations.
+  \bulletsEnd
+\sectionListEnd
+
+\section{Projects}
+\sectionListStart
+  \project{\href{https://github.com/ronishrohan/flash}{Flash}: AI Email and Calendar Agent}{TypeScript, Next.js, Gmail API, Supabase}
+  \bulletsStart
+    \item Built a 14-tool agent harness that can search and organize Gmail, draft replies, and create, update, or delete Calendar events.
+    \item Designed the streaming chat interface with typed email and event cards plus approval gates for every send or calendar change.
+    \item Created a UI system inspired by Apple's Liquid Glass, with layered translucent surfaces and responsive, interactive controls.
+  \bulletsEnd
+
+  \project{\href{https://github.com/amoreX/furnace}{Furnace}: Agentic Coding Harness}{TypeScript, React, Vite, Pi}
+  \bulletsStart
+    \item Designed and built the React product site and Pi-based terminal UI, including four layouts, themes, status configuration, and streaming states.
+    \item Built \texttt{/evolve}, an iterative coding workflow with orchestration, failure recovery, and a final verification pass.
+    \item Used WebGL shaders on the site to recreate metal and concrete surfaces with depth-aware lighting.
+  \bulletsEnd
+
+  \project{\href{https://github.com/kushagra2503/team-channel}{TeamChannel}: Shared Workspace for Teams and AI Agents}{TypeScript, Node.js, MCP}
+  \bulletsStart
+    \item Built a local-first workspace where people and coding agents share projects, tracks, and persistent vault context through a dashboard, CLI, daemon API, and MCP server.
+    \item Designed the dashboard for teams to visualize shared projects, active work, and vault context in one place.
+  \bulletsEnd
+
+  \project{\href{https://github.com/amoreX/perch}{Perch}: macOS Notch Assistant}{Swift, SwiftUI}
+  \bulletsStart
+    \item Built a native SwiftUI app that expands from the MacBook notch to show chat, media controls, system metrics, and live AI coding sessions.
+    \item Designed and implemented the product website with React, Vite, and Tailwind CSS.
+  \bulletsEnd
+\sectionListEnd
+
+\section{Skills}
+\begin{itemize}[leftmargin=0pt, label={}, itemsep=1pt, topsep=3pt]
+  \item \textbf{Product Engineering:} TypeScript, Swift, Python, React, Next.js, Electron, Tauri, SwiftUI, Node.js, Supabase
+  \item \textbf{Design Engineering:} Figma, Tailwind CSS, Framer Motion, GSAP, Three.js
+  \item \textbf{Agent Systems:} Harness Architecture, Tool Loops, Context Management, Approval Workflows, Skills, and MCP Servers; Pi, Factory Droid, Cursor, Compound Engineering, and G-Stack
+\end{itemize}
+
+\section{Education}
+\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
+  \textbf{CMR Institute of Technology}, B.Tech in Computer Science; GPA: 8.75 & Expected 2027
+\end{tabular*}
+
+\end{document}
