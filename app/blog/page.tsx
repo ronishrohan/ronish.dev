@@ -1,4 +1,4 @@
-import { BlogListClient as BlogList } from '@/components/client-only'
+import { BlogList } from '@/components/blog-list'
 import { getAllPosts } from '@/lib/blog'
 import type { Metadata } from 'next'
 

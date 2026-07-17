@@ -1,7 +1,8 @@
 import { AnimatedName } from '@/components/animated-name'
 import { PostcardGrid } from '@/components/postcard-grid'
 import { Pressable } from '@/components/pressable'
-import { ThemeSliderClient as ThemeSlider, WritingListClient as WritingList } from '@/components/client-only'
+import { ThemeSlider } from '@/components/theme-slider'
+import { WritingList } from '@/components/writing-list'
 import { getAllPosts } from '@/lib/blog'
 
 function formatDate(iso: string) {

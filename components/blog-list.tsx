@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { Pressable } from './pressable'
-import { getReadSlugs, markRead } from '@/lib/read-tracking'
+import { markRead } from '@/lib/read-tracking'
 
 interface Post {
   slug: string
@@ -13,7 +13,6 @@ interface Post {
 }
 
 export function BlogList({ posts }: { posts: Post[] }) {
-  const [readSlugs] = useState(() => getReadSlugs())
   const [hovered, setHovered] = useState<number | null>(null)
 
   return (
@@ -22,7 +21,6 @@ export function BlogList({ posts }: { posts: Post[] }) {
       onMouseLeave={() => setHovered(null)}
     >
       {posts.map((post, i) => {
-        const isRead = readSlugs.has(post.slug)
         return (
           <Pressable key={post.slug}>
             <Link
@@ -37,7 +35,9 @@ export function BlogList({ posts }: { posts: Post[] }) {
               <div className="absolute pointer-events-none group-hover:opacity-100 opacity-0 h-[calc(100%+0px)] w-[calc(100%+16px)] translate-x-[-8px] rounded-lg" style={{ backgroundColor: 'var(--theme-card-hover)' }} />
               <div className="flex flex-col gap-0.5 min-w-0 z-20">
                 <span className="group-hover:text-white" style={{
-                  color: hovered !== i ? (isRead ? 'var(--theme-muted)' : 'var(--theme-text)') : undefined,
+                  color: hovered !== i
+                    ? `var(--read-${post.slug}, var(--theme-text))`
+                    : undefined,
                 }}>
                   {post.title}
                 </span>

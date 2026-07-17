@@ -1,7 +1,3 @@
-'use client'
-
-import { useRef, useState, useLayoutEffect } from 'react'
-
 function generateStampPath(w: number, h: number): string {
   const R = 7
   const margin = R
@@ -57,6 +53,10 @@ function generateStampPath(w: number, h: number): string {
   return d
 }
 
+const STAMP_WIDTH = 300
+const STAMP_HEIGHT = 260
+const stampPath = generateStampPath(STAMP_WIDTH, STAMP_HEIGHT)
+
 export function Postcard({
   children,
   className,
@@ -66,46 +66,34 @@ export function Postcard({
   className?: string
   src?: string
 }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const [size, setSize] = useState({ w: 0, h: 0 })
-  useLayoutEffect(() => {
-    if (!ref.current) return
-    const el = ref.current
-    const update = () => setSize({ w: el.offsetWidth, h: el.offsetHeight })
-    update()
-    const observer = new ResizeObserver(update)
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
-
-  const path = size.w > 0 ? generateStampPath(size.w, size.h) : ''
-
   return (
     <div
-      ref={ref}
       className={`relative select-none ${className || ''}`}
     >
-      {size.w > 0 && (<>
-        <svg
-          className="absolute inset-0 pointer-events-none postcard-svg"
-          width={size.w}
-          height={size.h}
-          viewBox={`0 0 ${size.w} ${size.h}`}
-        >
-          <path
-            d={path}
-            fill="var(--postcard-bg, var(--theme-border))"
-            stroke="var(--theme-text, #0a0a0a)"
-            strokeOpacity="0.04"
-            strokeWidth="2"
-          />
-        </svg>
-      </>)}
+      <svg
+        className="absolute inset-0 size-full pointer-events-none postcard-svg"
+        viewBox={`0 0 ${STAMP_WIDTH} ${STAMP_HEIGHT}`}
+        preserveAspectRatio="none"
+        aria-hidden="true"
+      >
+        <path
+          d={stampPath}
+          fill="var(--postcard-bg, var(--theme-border))"
+          stroke="var(--theme-text, #0a0a0a)"
+          strokeOpacity="0.04"
+          strokeWidth="2"
+        />
+      </svg>
       <div className="relative z-10 p-5 flex flex-col gap-2">
         {src && (
           <img
             src={src}
             alt=""
+            width={600}
+            height={450}
+            loading="eager"
+            fetchPriority="high"
+            decoding="sync"
             className="w-full object-cover aspect-[4/3]"
             draggable={false}
             style={{ imageRendering: 'pixelated' }}

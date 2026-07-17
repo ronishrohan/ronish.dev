@@ -1,7 +1,7 @@
 'use client'
 
-import { motion, useMotionValue, animate, useTransform } from 'framer-motion'
-import { useRef, useState, useEffect, useCallback } from 'react'
+import { motion } from 'framer-motion'
+import { useRef, useState, useCallback } from 'react'
 import { useSound } from '@web-kits/audio/react'
 import type { SoundDefinition } from '@web-kits/audio'
 
@@ -34,6 +34,8 @@ function applyTheme(index: number) {
   const t = themes[index]
   const root = document.documentElement
   root.setAttribute('data-theme', t.name)
+  root.setAttribute('data-theme-step', String(index))
+  root.style.setProperty('--theme-slider-fill', `${index * 25}%`)
   root.style.setProperty('--theme-bg', t.bg)
   root.style.setProperty('--theme-text', t.text)
   root.style.setProperty('--theme-muted', t.muted)
@@ -47,24 +49,14 @@ function applyTheme(index: number) {
   root.style.setProperty('--postcard-bg', t.postcardBg)
 }
 
-function getInitialStep(): number {
-  if (typeof window === 'undefined') return 1
-  const saved = localStorage.getItem('theme-step')
-  if (saved !== null) return parseInt(saved)
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 3 : 1
-}
-
 export function ThemeSlider() {
   const trackRef = useRef<HTMLDivElement>(null)
-  const initial = getInitialStep()
-  const fillWidth = useMotionValue(initial * STEP_WIDTH)
-  const [step, setStep] = useState(initial)
+  const [step, setStep] = useState(1)
   const [hovered, setHovered] = useState(false)
   const dragging = useRef(false)
   const startX = useRef(0)
   const startStep = useRef(0)
 
-  const fillPercent = useTransform(fillWidth, [0, TRACK_WIDTH], ['0%', '100%'])
   const playTick0 = useSound(ticks[0])
   const playTick1 = useSound(ticks[1])
   const playTick2 = useSound(ticks[2])
@@ -75,16 +67,18 @@ export function ThemeSlider() {
   const snapTo = useCallback((index: number, sound = false) => {
     const clamped = Math.max(0, Math.min(STEPS - 1, index))
     setStep(clamped)
-    animate(fillWidth, clamped * STEP_WIDTH, { type: 'spring', stiffness: 300, damping: 30 })
     applyTheme(clamped)
     if (sound) playTicks[clamped]()
     localStorage.setItem('theme-step', String(clamped))
-  }, [fillWidth, playTicks])
+  }, [playTicks])
 
   const handlePointerDown = useCallback((e: React.PointerEvent) => {
+    const savedStep = Number(document.documentElement.getAttribute('data-theme-step'))
+    const currentStep = Number.isInteger(savedStep) ? savedStep : step
     dragging.current = true
     startX.current = e.clientX
-    startStep.current = step
+    startStep.current = currentStep
+    setStep(currentStep)
     ;(e.target as HTMLElement).setPointerCapture(e.pointerId)
   }, [step])
 
@@ -131,7 +125,11 @@ export function ThemeSlider() {
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
-      onMouseEnter={() => setHovered(true)}
+      onMouseEnter={() => {
+        const savedStep = Number(document.documentElement.getAttribute('data-theme-step'))
+        if (Number.isInteger(savedStep)) setStep(savedStep)
+        setHovered(true)
+      }}
       onMouseLeave={() => setHovered(false)}
     >
       {/* Track bg */}
@@ -149,7 +147,8 @@ export function ThemeSlider() {
         <motion.div
           className="absolute left-0 top-0 h-full rounded-full"
           style={{
-            width: fillPercent,
+            width: 'var(--theme-slider-fill, 25%)',
+            transition: 'width 300ms cubic-bezier(0.23, 1, 0.32, 1)',
           }}
           initial={false}
           animate={{

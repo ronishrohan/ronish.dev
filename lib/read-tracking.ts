@@ -12,4 +12,8 @@ export function markRead(slug: string) {
   const read = getReadSlugs()
   read.add(slug)
   localStorage.setItem('read-posts', JSON.stringify([...read]))
+  document.documentElement.style.setProperty(
+    `--read-${slug}`,
+    'var(--theme-muted)',
+  )
 }
