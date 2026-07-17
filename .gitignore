@@ -15,6 +15,7 @@ pnpm-debug.log*
 .env
 .env.production
 .env.local
+.compound-engineering/*.local.yaml
 
 # macOS-specific files
 .DS_Store
