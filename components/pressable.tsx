@@ -18,8 +18,11 @@ export function Pressable({
     <motion.div
       whileTap={{ scale: 0.995 }}
       transition={{ duration: 0.1, ease: 'easeOut' }}
-      onMouseDown={() => playThock()}
+      onPointerDown={(e) => {
+        if (e.pointerType === 'mouse' && e.button === 0) playThock()
+      }}
       className={className}
+      style={{ touchAction: 'pan-y' }}
     >
       {children}
     </motion.div>
