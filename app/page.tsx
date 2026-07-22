@@ -181,9 +181,9 @@ export default async function Home() {
               ),
             },
             {
-              href: 'https://github.com/kushagra2503/team-channel',
-              label: 'TeamChannel',
-              desc: 'Shared workspaces for your team and their agents to collaborate',
+              href: 'https://coord.unordinary.software/',
+              label: 'Coord',
+              desc: 'Shared memory for coding agents',
               icon: (
                 <svg viewBox="0 0 33 33" width="18" height="18" fill="none" aria-hidden="true" style={{ flexShrink: 0 }}>
                   <path d="M24.5 30C24.5 28.6044 24.5 27.9067 24.3278 27.3389C23.94 26.0605 22.9395 25.06 21.6611 24.6722C21.0933 24.5 20.3956 24.5 19 24.5H14C12.6044 24.5 11.9067 24.5 11.3389 24.6722C10.0605 25.06 9.06004 26.0605 8.67224 27.3389C8.5 27.9067 8.5 28.6044 8.5 30M21 16.5C21 18.9853 18.9853 21 16.5 21C14.0147 21 12 18.9853 12 16.5C12 14.0147 14.0147 12 16.5 12C18.9853 12 21 14.0147 21 16.5Z" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>
