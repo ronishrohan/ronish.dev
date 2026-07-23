@@ -29,8 +29,8 @@ const defaultDesc =
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'ronish rohan — developer & designer',
-    template: '%s — ronish',
+    default: 'ronish rohan developer & designer',
+    template: '%s | ronish',
   },
   description: defaultDesc,
   keywords: [
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: siteUrl,
-    title: 'ronish rohan — developer & designer',
+    title: 'ronish rohan developer & designer',
     description: defaultDesc,
     siteName: 'ronish.dev',
     images: [{ url: '/og.png', width: 1024, height: 576, alt: 'ronish.dev' }],
