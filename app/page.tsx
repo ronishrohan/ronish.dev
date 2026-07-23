@@ -151,7 +151,7 @@ export default async function Home() {
         <div className="flex flex-col">
           {[
             {
-              href: 'https://getfurnace.vercel.app/',
+              href: 'https://furnace.unordinary.software/',
               label: 'Furnace',
               desc: 'A harness tending designed perfection',
               icon: (
@@ -161,7 +161,7 @@ export default async function Home() {
               ),
             },
             {
-              href: 'https://github.com/amoreX/perch',
+              href: 'https://perch.unordinary.software',
               label: 'Perch',
               desc: 'Put an agent in your macOS notch',
               icon: (
