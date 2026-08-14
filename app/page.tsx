@@ -40,9 +40,6 @@ export default async function Home() {
           leave my head until I&apos;ve built it.
         </p>
         <p>
-          Currently a software engineer at{' '}
-          <a href="https://tryghost.ai" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: 'var(--theme-text)' }}>Ghost</a>,
-          where we create extremely powerful agents for your computer.
           You can find my projects on{' '}
           <a href="https://github.com/ronishrohan" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: 'var(--theme-text)' }}>GitHub</a>.
         </p>
@@ -60,6 +57,33 @@ export default async function Home() {
         </div>
         <div className="flex flex-col">
           {[
+            {
+              href: 'https://aoagents.dev/',
+              label: 'Contributor at AO',
+              desc: '',
+              subdesc: 'Open-source framework for composing and orchestrating AI agents',
+              date: 'Aug 2026 — Present',
+              icon: (
+                <span
+                  aria-hidden="true"
+                  style={{
+                    display: 'inline-block',
+                    width: 18,
+                    height: 18,
+                    flexShrink: 0,
+                    backgroundColor: 'currentColor',
+                    WebkitMaskImage: 'url(/ao-logo.svg)',
+                    WebkitMaskSize: 'contain',
+                    WebkitMaskRepeat: 'no-repeat',
+                    WebkitMaskPosition: 'center',
+                    maskImage: 'url(/ao-logo.svg)',
+                    maskSize: 'contain',
+                    maskRepeat: 'no-repeat',
+                    maskPosition: 'center',
+                  }}
+                />
+              ),
+            },
             {
               href: 'https://tryghost.ai',
               label: 'Founding Engineer at Ghost',
