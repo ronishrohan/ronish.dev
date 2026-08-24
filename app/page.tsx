@@ -129,23 +129,23 @@ export default async function Home() {
               >
                 <div className="absolute pointer-events-none opacity-0 group-hover:opacity-100 h-[calc(100%+4px)] w-[calc(100%+16px)] translate-x-[-8px] rounded-lg" style={{ backgroundColor: 'var(--theme-card-hover)' }} />
                 {item.icon && (
-                  <span className="z-20 row-span-3 group-hover:!text-white sm:row-span-1" style={{ color: 'var(--theme-text)', display: 'inline-flex', width: 18, flexShrink: 0, justifyContent: 'center' }}>
+                  <span className="z-20 row-span-3 group-hover:!text-[var(--theme-on-accent)] sm:row-span-1" style={{ color: 'var(--theme-text)', display: 'inline-flex', width: 18, flexShrink: 0, justifyContent: 'center' }}>
                     {item.icon}
                   </span>
                 )}
-                <span className="z-20 min-w-0 group-hover:!text-white sm:shrink-0" style={{ color: 'var(--theme-text)' }}>
+                <span className="z-20 min-w-0 group-hover:!text-[var(--theme-on-accent)] sm:shrink-0" style={{ color: 'var(--theme-text)' }}>
                   {item.label}
                 </span>
                 {item.desc && (
                   <>
-                    <span className="z-20 hidden group-hover:!text-white/70 sm:inline" style={{ color: 'var(--theme-muted)' }}>·</span>
-                    <span className="z-20 col-start-2 min-w-0 group-hover:!text-white/70 sm:shrink-0" style={{ color: 'var(--theme-muted)' }}>
+                    <span className="z-20 hidden group-hover:!text-[var(--theme-on-accent-muted)] sm:inline" style={{ color: 'var(--theme-muted)' }}>·</span>
+                    <span className="z-20 col-start-2 min-w-0 group-hover:!text-[var(--theme-on-accent-muted)] sm:shrink-0" style={{ color: 'var(--theme-muted)' }}>
                       {item.desc}
                     </span>
                   </>
                 )}
                 {item.date && (
-                  <span className="z-20 col-start-2 row-start-3 mt-0.5 group-hover:!text-white/70 text-sm sm:col-start-auto sm:row-start-auto sm:ml-auto sm:mt-0 sm:shrink-0" style={{ color: 'var(--theme-muted)' }}>
+                  <span className="z-20 col-start-2 row-start-3 mt-0.5 group-hover:!text-[var(--theme-on-accent-muted)] text-sm sm:col-start-auto sm:row-start-auto sm:ml-auto sm:mt-0 sm:shrink-0" style={{ color: 'var(--theme-muted)' }}>
                     {item.date}
                   </span>
                 )}
@@ -234,17 +234,17 @@ export default async function Home() {
               >
                 <div className="absolute pointer-events-none opacity-0 group-hover:opacity-100 h-[calc(100%+4px)] w-[calc(100%+16px)] translate-x-[-8px] rounded-lg" style={{ backgroundColor: 'var(--theme-card-hover)' }} />
                 {item.icon && (
-                  <span className="z-20 row-span-2 group-hover:!text-white sm:row-span-1" style={{ color: 'var(--theme-text)', display: 'inline-flex', width: 18, flexShrink: 0, justifyContent: 'center' }}>
+                  <span className="z-20 row-span-2 group-hover:!text-[var(--theme-on-accent)] sm:row-span-1" style={{ color: 'var(--theme-text)', display: 'inline-flex', width: 18, flexShrink: 0, justifyContent: 'center' }}>
                     {item.icon}
                   </span>
                 )}
-                <span className="z-20 min-w-0 group-hover:!text-white sm:shrink-0" style={{ color: 'var(--theme-text)' }}>
+                <span className="z-20 min-w-0 group-hover:!text-[var(--theme-on-accent)] sm:shrink-0" style={{ color: 'var(--theme-text)' }}>
                   {item.label}
                 </span>
                 {item.desc && (
                   <>
-                    <span className="z-20 hidden group-hover:!text-white/70 sm:inline" style={{ color: 'var(--theme-muted)' }}>·</span>
-                    <span className="z-20 col-start-2 min-w-0 group-hover:!text-white/70 sm:truncate" style={{ color: 'var(--theme-muted)' }}>
+                    <span className="z-20 hidden group-hover:!text-[var(--theme-on-accent-muted)] sm:inline" style={{ color: 'var(--theme-muted)' }}>·</span>
+                    <span className="z-20 col-start-2 min-w-0 group-hover:!text-[var(--theme-on-accent-muted)] sm:truncate" style={{ color: 'var(--theme-muted)' }}>
                       {item.desc}
                     </span>
                   </>

@@ -1,9 +1,10 @@
 'use client'
 
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
-import { useRef, useState, useCallback } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import { useSound } from '@web-kits/audio/react'
 import type { SoundDefinition } from '@web-kits/audio'
+import { clampRgb, formatHex, wcagContrast } from 'culori'
 
 const ticks: SoundDefinition[] = [
   { source: { type: 'sine', frequency: { start: 800, end: 500 } }, envelope: { decay: 0.03 }, gain: 0.25 },
@@ -13,18 +14,97 @@ const ticks: SoundDefinition[] = [
   { source: { type: 'sine', frequency: { start: 1800, end: 1200 } }, envelope: { decay: 0.03 }, gain: 0.25 },
 ]
 
-const themes = [
-  // Dawn — warm cream, soft brown text
-  { name: 'dawn', bg: '#faf5ee', text: '#3d2e1f', muted: '#8c7a68', border: '#e4d8ca', cardHover: '#ea580c', accent: '#ea580c', codeBg: '#f0e8dc', codeBorder: '#e4d8ca', selection: '#ea580c', prose: '#5c4a38', postcardBg: '#efe6d8' },
-  // Morning — neutral stone, crisp
-  { name: 'morning', bg: '#f5f5f4', text: '#1c1917', muted: '#78716c', border: '#d6d3d1', cardHover: '#ea580c', accent: '#ea580c', codeBg: '#ecebe9', codeBorder: '#d6d3d1', selection: '#ea580c', prose: '#44403c', postcardBg: '#e7e5e4' },
-  // Noon — clean white
-  { name: 'noon', bg: '#ffffff', text: '#18181b', muted: '#71717a', border: '#e4e4e7', cardHover: '#ea580c', accent: '#ea580c', codeBg: '#f4f4f5', codeBorder: '#e4e4e7', selection: '#ea580c', prose: '#3f3f46', postcardBg: '#f0f0f0' },
-  // Evening — deep warm gray
-  { name: 'evening', bg: '#1f1b18', text: '#e8e3dd', muted: '#9a8e82', border: '#3a342e', cardHover: '#ea580c', accent: '#ea580c', codeBg: '#2a2521', codeBorder: '#3a342e', selection: '#ea580c', prose: '#b8ada0', postcardBg: '#2a2521' },
-  // Night — true dark
-  { name: 'night', bg: '#111111', text: '#e0e0e0', muted: '#6b6b6b', border: '#2a2a2a', cardHover: '#ea580c', accent: '#ea580c', codeBg: '#1a1a1a', codeBorder: '#2a2a2a', selection: '#ea580c', prose: '#9a9a9a', postcardBg: '#1a1a1a' },
-]
+type Theme = {
+  name: string
+  bg: string
+  text: string
+  muted: string
+  border: string
+  cardHover: string
+  accent: string
+  onAccent: string
+  onAccentMuted: string
+  codeBg: string
+  codeBorder: string
+  selection: string
+  prose: string
+  postcardBg: string
+}
+
+function createRandom(seed: number) {
+  return () => {
+    seed |= 0
+    seed = seed + 0x6d2b79f5 | 0
+    let t = Math.imul(seed ^ seed >>> 15, 1 | seed)
+    t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t
+    return ((t ^ t >>> 14) >>> 0) / 4294967296
+  }
+}
+
+function oklchHex(lightness: number, chroma: number, hue: number) {
+  return formatHex(clampRgb({ mode: 'oklch', l: lightness, c: chroma, h: hue }))
+}
+
+function createRandomThemes(): Theme[] {
+  const random = createRandom(Math.floor(Math.random() * 0xffffffff))
+  const accentHue = random() * 360
+  const backgroundHue = accentHue
+  const accent = oklchHex(0.62, 0.19, accentHue)
+  const darkAccent = oklchHex(0.7, 0.16, accentHue)
+  const onAccent = wcagContrast(accent, '#ffffff') >= 3 ? '#ffffff' : '#111111'
+
+  const lightThemes = [
+    { name: 'dawn', l: 0.96, c: 0.025 },
+    { name: 'morning', l: 0.975, c: 0.014 },
+    { name: 'noon', l: 0.995, c: 0.006 },
+  ]
+  const darkThemes = [
+    { name: 'evening', l: 0.19, c: 0.018 },
+    { name: 'night', l: 0.11, c: 0.012 },
+  ]
+
+  return [
+    ...lightThemes.map(({ name, l, c }): Theme => ({
+      name,
+      bg: oklchHex(l, c, backgroundHue),
+      text: oklchHex(0.2, 0.015, backgroundHue),
+      muted: oklchHex(0.5, 0.02, backgroundHue),
+      border: oklchHex(Math.max(0.82, l - 0.1), 0.018, backgroundHue),
+      cardHover: accent,
+      accent,
+      onAccent,
+      onAccentMuted: onAccent === '#ffffff' ? 'rgba(255,255,255,0.7)' : 'rgba(17,17,17,0.65)',
+      codeBg: oklchHex(Math.max(0.91, l - 0.045), 0.018, backgroundHue),
+      codeBorder: oklchHex(Math.max(0.82, l - 0.1), 0.018, backgroundHue),
+      selection: accent,
+      prose: oklchHex(0.3, 0.018, backgroundHue),
+      postcardBg: oklchHex(Math.max(0.88, l - 0.08), 0.02, backgroundHue),
+    })),
+    ...darkThemes.map(({ name, l, c }): Theme => ({
+      name,
+      bg: oklchHex(l, c, backgroundHue),
+      text: oklchHex(0.91, 0.012, backgroundHue),
+      muted: oklchHex(0.66, 0.018, backgroundHue),
+      border: oklchHex(0.28, 0.018, backgroundHue),
+      cardHover: darkAccent,
+      accent: darkAccent,
+      onAccent: '#ffffff',
+      onAccentMuted: 'rgba(255,255,255,0.7)',
+      codeBg: oklchHex(Math.min(0.24, l + 0.06), 0.018, backgroundHue),
+      codeBorder: oklchHex(0.28, 0.018, backgroundHue),
+      selection: darkAccent,
+      prose: oklchHex(0.76, 0.012, backgroundHue),
+      postcardBg: oklchHex(Math.min(0.24, l + 0.08), 0.018, backgroundHue),
+    })),
+  ].map((theme, index) => ({
+    ...theme,
+    cardHover: index < 3 ? accent : darkAccent,
+    accent: index < 3 ? accent : darkAccent,
+    selection: index < 3 ? accent : darkAccent,
+  }))
+}
+
+const themes = createRandomThemes()
 
 const TRACK_WIDTH = 80
 const STEPS = 5
@@ -42,6 +122,8 @@ function applyTheme(index: number) {
   root.style.setProperty('--theme-border', t.border)
   root.style.setProperty('--theme-card-hover', t.cardHover)
   root.style.setProperty('--theme-accent', t.accent)
+  root.style.setProperty('--theme-on-accent', t.onAccent)
+  root.style.setProperty('--theme-on-accent-muted', t.onAccentMuted)
   root.style.setProperty('--theme-code-bg', t.codeBg)
   root.style.setProperty('--theme-code-border', t.codeBorder)
   root.style.setProperty('--theme-selection', t.selection)
@@ -67,6 +149,13 @@ export function ThemeSlider() {
     Number(height) - Math.min(Math.max(0, Number(distance)) * 0.1, 8)
   ))
   const [pullSide, setPullSide] = useState<'left' | 'right'>('right')
+
+  useEffect(() => {
+    const savedStep = Number(document.documentElement.getAttribute('data-theme-step'))
+    const initialStep = Number.isInteger(savedStep) && savedStep >= 0 && savedStep < STEPS ? savedStep : 1
+    setStep(initialStep)
+    applyTheme(initialStep)
+  }, [])
 
   const playTick0 = useSound(ticks[0])
   const playTick1 = useSound(ticks[1])

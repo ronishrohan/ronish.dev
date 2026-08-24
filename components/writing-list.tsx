@@ -45,7 +45,7 @@ export function WritingList({ posts }: { posts: Post[] }) {
             >
               <div className="absolute pointer-events-none opacity-0 group-hover:opacity-100 h-[calc(100%+4px)] w-[calc(100%+16px)] translate-x-[-8px] rounded-lg" style={{ backgroundColor: 'var(--theme-card-hover)' }} />
               <span
-                className="z-20 min-w-0 group-hover:!text-white"
+                className="z-20 min-w-0 group-hover:!text-[var(--theme-on-accent)]"
                 style={{
                   color: item.isPost
                     ? `var(--read-${item.key}, var(--theme-text))`
@@ -56,7 +56,7 @@ export function WritingList({ posts }: { posts: Post[] }) {
               </span>
               {item.meta && (
                 <span
-                  className="text-base z-20 col-start-2 row-start-1 shrink-0 group-hover:!text-white"
+                  className="text-base z-20 col-start-2 row-start-1 shrink-0 group-hover:!text-[var(--theme-on-accent-muted)]"
                   style={{ color: 'var(--theme-muted)' }}
                 >
                   {item.meta}
