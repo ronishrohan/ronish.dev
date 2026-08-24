@@ -152,7 +152,7 @@ export function ThemeSlider() {
 
   useEffect(() => {
     const savedStep = Number(document.documentElement.getAttribute('data-theme-step'))
-    const initialStep = Number.isInteger(savedStep) && savedStep >= 0 && savedStep < STEPS ? savedStep : 1
+    const initialStep = Number.isInteger(savedStep) && savedStep >= 0 && savedStep < STEPS ? savedStep : 2
     setStep(initialStep)
     applyTheme(initialStep)
   }, [])
@@ -273,7 +273,7 @@ export function ThemeSlider() {
           }}
           initial={false}
           animate={{
-            backgroundColor: hovered ? '#ea580c' : 'var(--theme-text, #0a0a0a)',
+            backgroundColor: hovered ? 'var(--theme-accent)' : 'var(--theme-text)',
           }}
           transition={{ duration: 0.15 }}
         />
@@ -289,7 +289,7 @@ export function ThemeSlider() {
               y: '-50%',
               width: 4,
               height: 4,
-              backgroundColor: i < step ? 'rgba(255,255,255,0.6)' : 'var(--theme-muted, #a1a1aa)',
+              backgroundColor: i < step ? 'var(--theme-on-accent-muted)' : 'var(--theme-muted)',
             }}
             initial={false}
             animate={{
