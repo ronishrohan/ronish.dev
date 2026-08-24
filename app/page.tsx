@@ -15,7 +15,7 @@ function formatDate(iso: string) {
 
 export default async function Home() {
   const posts = await getAllPosts()
-  const recentPosts = posts.slice(0, 5).map((p) => ({
+  const recentPosts = posts.slice(0, 3).map((p) => ({
     slug: p.slug,
     title: p.title,
     date: formatDate(p.date),
@@ -32,25 +32,18 @@ export default async function Home() {
 
       <div style={{ color: 'var(--theme-muted)' }} className="flex flex-col gap-3">
         <p>
-          I&apos;m 21 and I live in Bengaluru, India.
+          I&apos;m a design engineer and AI engineer in Bengaluru, India. I build
+          agent-native products where interaction design, product systems, and
+          model behavior meet.
         </p>
         <p>
-          I&apos;m a design engineer and AI engineer. I build agent-native
-          products where interaction design, product systems, and model
-          behavior meet.
+          I work from interface detail to the harness underneath: streamed UX,
+          tool use, approval flows, context, and orchestration.
         </p>
         <p>
-          I work from interface detail to the harness underneath: streamed
-          UX, tool use, approval flows, context, and orchestration. Most of
-          what I make starts from a feeling, a texture, a rhythm, or a system
-          that won&apos;t leave my head until I&apos;ve built it.
-        </p>
-        <p>
-          You can find my projects on{' '}
-          <a href="https://github.com/ronishrohan" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: 'var(--theme-text)' }}>GitHub</a>.
-        </p>
-        <p>
-          Reach out to me on{' '}
+          Find my projects on{' '}
+          <a href="https://github.com/ronishrohan" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: 'var(--theme-text)' }}>GitHub</a>
+          {' '}or reach out on{' '}
           <a href="https://x.com/ronish1o" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: 'var(--theme-text)' }}>X</a>
           {' '}or{' '}
           <a href="https://discord.com/users/769140296939470859" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: 'var(--theme-text)' }}>Discord</a>.
@@ -67,7 +60,6 @@ export default async function Home() {
               href: 'https://aoagents.dev/',
               label: 'Design Engineer at Agent Orchestrator',
               desc: '',
-              subdesc: 'Workspace for planning, running, and supervising coding agents',
               date: 'Jul 2026 — Present',
               icon: (
                 <span
@@ -94,7 +86,6 @@ export default async function Home() {
               href: 'https://tryghost.ai',
               label: 'Founding Engineer at Ghost',
               desc: '',
-              subdesc: 'Personal AI hardware and software (SF, backed by a16z & SV Angel)',
               date: 'Oct 2025 — Aug 2026',
               icon: (
                 <svg viewBox="0 0 106 82" width="18" height="14" aria-hidden="true" style={{ flexShrink: 0 }}>
@@ -107,7 +98,6 @@ export default async function Home() {
               href: 'https://github.com/rae-app/rae',
               label: 'Co-Founder & Design Engineer at Rae',
               desc: '',
-              subdesc: 'AI desktop assistant for developers (Bengaluru)',
               date: 'Jul — Nov 2025',
               icon: (
                 <svg viewBox="0 0 18 18" width="18" height="18" fill="none" aria-hidden="true" style={{ flexShrink: 0 }}>
@@ -119,7 +109,6 @@ export default async function Home() {
               href: 'https://optacloud.ai',
               label: 'AI Intern at Optacloud',
               desc: '',
-              subdesc: 'ML-powered cloud optimization (SG, backed by Antler)',
               date: 'Dec 2024 — Jun 2025',
               icon: (
                 <svg viewBox="4 20 186 145" width="20" height="15" aria-hidden="true" style={{ flexShrink: 0 }}>
@@ -152,14 +141,6 @@ export default async function Home() {
                     <span className="z-20 hidden group-hover:!text-white/70 sm:inline" style={{ color: 'var(--theme-muted)' }}>·</span>
                     <span className="z-20 col-start-2 min-w-0 group-hover:!text-white/70 sm:shrink-0" style={{ color: 'var(--theme-muted)' }}>
                       {item.desc}
-                    </span>
-                  </>
-                )}
-                {item.subdesc && (
-                  <>
-                    <span className="z-20 hidden group-hover:!text-white/70 sm:inline" style={{ color: 'var(--theme-muted)' }}>·</span>
-                    <span className="z-20 col-start-2 min-w-0 group-hover:!text-white/70 sm:truncate" style={{ color: 'var(--theme-muted)' }}>
-                      {item.subdesc}
                     </span>
                   </>
                 )}

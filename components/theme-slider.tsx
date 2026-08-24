@@ -1,6 +1,6 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { useRef, useState, useCallback } from 'react'
 import { useSound } from '@web-kits/audio/react'
 import type { SoundDefinition } from '@web-kits/audio'
@@ -56,6 +56,17 @@ export function ThemeSlider() {
   const dragging = useRef(false)
   const startX = useRef(0)
   const startStep = useRef(0)
+  const baseHeight = useMotionValue(8)
+  const hoverHeight = useSpring(baseHeight, { stiffness: 400, damping: 25 })
+  const pullDistance = useMotionValue(0)
+  const elasticPull = useSpring(pullDistance, { stiffness: 380, damping: 10, mass: 0.45 })
+  const elasticWidth = useTransform(elasticPull, (distance) => (
+    TRACK_WIDTH + Math.min(Math.max(0, distance) * 0.2, 16)
+  ))
+  const elasticHeight = useTransform([hoverHeight, elasticPull], ([height, distance]) => (
+    Number(height) - Math.min(Math.max(0, Number(distance)) * 0.1, 8)
+  ))
+  const [pullSide, setPullSide] = useState<'left' | 'right'>('right')
 
   const playTick0 = useSound(ticks[0])
   const playTick1 = useSound(ticks[1])
@@ -80,19 +91,29 @@ export function ThemeSlider() {
     startStep.current = currentStep
     setStep(currentStep)
     setHovered(true)
+    baseHeight.set(20)
+    pullDistance.set(0)
+    setPullSide('right')
     ;(e.target as HTMLElement).setPointerCapture(e.pointerId)
-  }, [step])
+  }, [step, baseHeight, pullDistance])
 
   const handlePointerMove = useCallback((e: React.PointerEvent) => {
     if (!dragging.current) return
     const delta = e.clientX - startX.current
+    const position = startStep.current * STEP_WIDTH + delta
+    const leftOverflow = Math.max(0, -position)
+    const rightOverflow = Math.max(0, position - TRACK_WIDTH)
+    const overflow = Math.max(leftOverflow, rightOverflow)
+    pullDistance.set(overflow)
+    if (leftOverflow > 0) setPullSide('left')
+    else if (rightOverflow > 0) setPullSide('right')
     const stepDelta = Math.round(delta / STEP_WIDTH)
     const newStep = startStep.current + stepDelta
     const clamped = Math.max(0, Math.min(STEPS - 1, newStep))
     if (clamped !== step) {
       snapTo(clamped, true)
     }
-  }, [step, snapTo])
+  }, [step, snapTo, pullDistance])
 
   const didDrag = useRef(false)
 
@@ -101,8 +122,10 @@ export function ThemeSlider() {
       didDrag.current = true
     }
     dragging.current = false
+    baseHeight.set(8)
+    pullDistance.set(0)
     setHovered(false)
-  }, [step])
+  }, [step, baseHeight, pullDistance])
 
   const handleTrackClick = useCallback((e: React.MouseEvent) => {
     if (didDrag.current) {
@@ -131,19 +154,25 @@ export function ThemeSlider() {
       onMouseEnter={() => {
         const savedStep = Number(document.documentElement.getAttribute('data-theme-step'))
         if (Number.isInteger(savedStep)) setStep(savedStep)
+        baseHeight.set(20)
         setHovered(true)
       }}
-      onMouseLeave={() => setHovered(false)}
+      onMouseLeave={() => {
+        baseHeight.set(8)
+        setHovered(false)
+      }}
     >
       {/* Track bg */}
       <motion.div
-        className="absolute rounded-full overflow-hidden"
+        className="absolute left-0 rounded-full overflow-hidden"
         style={{
-          width: TRACK_WIDTH,
+          width: elasticWidth,
+          height: elasticHeight,
+          left: pullSide === 'left' ? '100%' : 0,
+          x: pullSide === 'left' ? '-100%' : 0,
           backgroundColor: 'var(--theme-border, #d4d4d8)',
         }}
         initial={false}
-        animate={{ height: hovered ? 20 : 8 }}
         transition={spring}
       >
         {/* Fill */}
@@ -159,27 +188,29 @@ export function ThemeSlider() {
           }}
           transition={{ duration: 0.15 }}
         />
-      </motion.div>
 
-      {/* Step dots — only on hover, hide current */}
-      {[1, 2, 3].map((i) => (
-        <motion.div
-          key={i}
-          className="absolute rounded-full"
-          style={{
-            left: i * STEP_WIDTH - 2,
-            width: 4,
-            height: 4,
-            backgroundColor: i < step ? 'rgba(255,255,255,0.6)' : 'var(--theme-muted, #a1a1aa)',
-          }}
-          initial={false}
-          animate={{
-            opacity: hovered && step !== i ? 0.5 : 0,
-            scale: hovered && step !== i ? 1 : 0,
-          }}
-          transition={spring}
-        />
-      ))}
+        {/* Step dots follow the track's live width without scaling. */}
+        {[1, 2, 3].map((i) => (
+          <motion.div
+            key={i}
+            className="absolute top-1/2 rounded-full"
+            style={{
+              left: `${i * 25}%`,
+              x: '-50%',
+              y: '-50%',
+              width: 4,
+              height: 4,
+              backgroundColor: i < step ? 'rgba(255,255,255,0.6)' : 'var(--theme-muted, #a1a1aa)',
+            }}
+            initial={false}
+            animate={{
+              opacity: hovered && step !== i ? 0.5 : 0,
+              scale: hovered && step !== i ? 1 : 0,
+            }}
+            transition={spring}
+          />
+        ))}
+      </motion.div>
     </div>
   )
 }
