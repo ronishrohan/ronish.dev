@@ -79,6 +79,7 @@ export function ThemeSlider() {
     startX.current = e.clientX
     startStep.current = currentStep
     setStep(currentStep)
+    setHovered(true)
     ;(e.target as HTMLElement).setPointerCapture(e.pointerId)
   }, [step])
 
@@ -100,6 +101,7 @@ export function ThemeSlider() {
       didDrag.current = true
     }
     dragging.current = false
+    setHovered(false)
   }, [step])
 
   const handleTrackClick = useCallback((e: React.MouseEvent) => {
@@ -119,12 +121,13 @@ export function ThemeSlider() {
   return (
     <div
       ref={trackRef}
-      className="relative flex items-center justify-center cursor-grab active:cursor-grabbing"
-      style={{ width: TRACK_WIDTH, height: 28, padding: '4px 0' }}
+      className="relative flex touch-none select-none items-center justify-center cursor-grab active:cursor-grabbing"
+      style={{ width: TRACK_WIDTH, height: 28, padding: '4px 0', touchAction: 'none' }}
       onClick={handleTrackClick}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
+      onPointerCancel={handlePointerUp}
       onMouseEnter={() => {
         const savedStep = Number(document.documentElement.getAttribute('data-theme-step'))
         if (Number.isInteger(savedStep)) setStep(savedStep)

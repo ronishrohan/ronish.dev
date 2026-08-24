@@ -35,7 +35,7 @@ export function WritingList({ posts }: { posts: Post[] }) {
           <Pressable key={item.key}>
             <Link
               href={item.href}
-              className="flex relative justify-between items-center gap-4 py-1 group"
+              className="relative grid grid-cols-[minmax(0,1fr)_auto] items-start gap-x-4 gap-y-0.5 py-2 group sm:flex sm:items-center sm:justify-between sm:gap-4 sm:py-1"
               onClick={() => {
                 if (item.isPost) {
                   markRead(item.key)
@@ -45,7 +45,7 @@ export function WritingList({ posts }: { posts: Post[] }) {
             >
               <div className="absolute pointer-events-none opacity-0 group-hover:opacity-100 h-[calc(100%+4px)] w-[calc(100%+16px)] translate-x-[-8px] rounded-lg" style={{ backgroundColor: 'var(--theme-card-hover)' }} />
               <span
-                className="z-20 group-hover:!text-white"
+                className="z-20 min-w-0 group-hover:!text-white"
                 style={{
                   color: item.isPost
                     ? `var(--read-${item.key}, var(--theme-text))`
@@ -56,7 +56,7 @@ export function WritingList({ posts }: { posts: Post[] }) {
               </span>
               {item.meta && (
                 <span
-                  className="text-base z-20 shrink-0 group-hover:!text-white"
+                  className="text-base z-20 col-start-2 row-start-1 shrink-0 group-hover:!text-white"
                   style={{ color: 'var(--theme-muted)' }}
                 >
                   {item.meta}
