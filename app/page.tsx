@@ -58,7 +58,7 @@ export default async function Home() {
           {[
             {
               href: 'https://aoagents.dev/',
-              label: 'Design Engineer at Agent Orchestrator',
+              label: 'Engineer at Agent Orchestrator',
               desc: '',
               date: 'Jul 2026 — Present',
               icon: (

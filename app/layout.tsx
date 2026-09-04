@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import { IBM_Plex_Mono } from 'next/font/google'
 import { SiteSound } from '@/components/sound-provider'
+import { DEFAULT_THEME_STEP, themes } from '@/lib/themes'
 import './globals.css'
 
 const openRunde = localFont({
@@ -24,12 +25,12 @@ const ibmPlexMono = IBM_Plex_Mono({
 
 const siteUrl = 'https://ronish.dev'
 const defaultDesc =
-  "hi, i'm ronish rohan, a 21 year old developer and designer from bengaluru, india. currently a founding engineer at ghost."
+  "ronish rohan is a design engineer and AI engineer from Bengaluru, India, building agent-native products, interfaces, and orchestration systems."
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'ronish rohan developer & designer',
+    default: 'ronish rohan, engineer',
     template: '%s | ronish',
   },
   description: defaultDesc,
@@ -38,6 +39,10 @@ export const metadata: Metadata = {
     'ronish rohan',
     'developer',
     'designer',
+    'design engineer',
+    'ai engineer',
+    'agent systems',
+    'agent orchestration',
     'bengaluru',
     'bangalore',
     'india',
@@ -51,7 +56,7 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: siteUrl,
-    title: 'ronish rohan developer & designer',
+    title: 'ronish rohan, engineer',
     description: defaultDesc,
     siteName: 'ronish.dev',
     images: [{ url: '/og.png', width: 1024, height: 576, alt: 'ronish.dev' }],
@@ -86,11 +91,11 @@ const jsonLd = {
     'https://instagram.com/ronish1o',
     'https://linkedin.com/in/ronishrohan',
   ],
-  jobTitle: 'Founding Engineer',
+  jobTitle: 'Design Engineer and AI Engineer',
   worksFor: {
     '@type': 'Organization',
-    name: 'Ghost',
-    url: 'https://tryghost.ai',
+    name: 'Agent Orchestrator',
+    url: 'https://aoagents.dev',
   },
   address: {
     '@type': 'PostalAddress',
@@ -108,10 +113,10 @@ export default function RootLayout({
     <html lang="en" className={`${openRunde.variable} ${ibmPlexMono.variable}`} suppressHydrationWarning>
       <head>
         <script
-          dangerouslySetInnerHTML={{ __html: `(function(){try{var t=[{bg:'#faf5ee',text:'#3d2e1f',muted:'#8c7a68',border:'#e4d8ca',cardHover:'#ea580c',accent:'#ea580c',codeBg:'#f0e8dc',codeBorder:'#e4d8ca',selection:'#ea580c',prose:'#5c4a38',postcardBg:'#efe6d8'},{bg:'#f5f5f4',text:'#1c1917',muted:'#78716c',border:'#d6d3d1',cardHover:'#ea580c',accent:'#ea580c',codeBg:'#ecebe9',codeBorder:'#d6d3d1',selection:'#ea580c',prose:'#44403c',postcardBg:'#e7e5e4'},{bg:'#ffffff',text:'#18181b',muted:'#71717a',border:'#e4e4e7',cardHover:'#ea580c',accent:'#ea580c',codeBg:'#f4f4f5',codeBorder:'#e4e4e7',selection:'#ea580c',prose:'#3f3f46',postcardBg:'#f0f0f0'},{bg:'#1f1b18',text:'#e8e3dd',muted:'#9a8e82',border:'#3a342e',cardHover:'#ea580c',accent:'#ea580c',codeBg:'#2a2521',codeBorder:'#3a342e',selection:'#ea580c',prose:'#b8ada0',postcardBg:'#2a2521'},{bg:'#111111',text:'#e0e0e0',muted:'#6b6b6b',border:'#2a2a2a',cardHover:'#ea580c',accent:'#ea580c',codeBg:'#1a1a1a',codeBorder:'#2a2a2a',selection:'#ea580c',prose:'#9a9a9a',postcardBg:'#1a1a1a'}];var s=localStorage.getItem('theme-step');var i=s!==null?parseInt(s):2;var c=t[i];var d=document.documentElement;d.style.setProperty('--theme-bg',c.bg);d.style.setProperty('--theme-text',c.text);d.style.setProperty('--theme-muted',c.muted);d.style.setProperty('--theme-border',c.border);d.style.setProperty('--theme-card-hover',c.cardHover);d.style.setProperty('--theme-accent',c.accent);d.style.setProperty('--theme-code-bg',c.codeBg);d.style.setProperty('--theme-code-border',c.codeBorder);d.style.setProperty('--theme-selection',c.selection);d.style.setProperty('--theme-prose',c.prose);d.style.setProperty('--postcard-bg',c.postcardBg)}catch(e){}})()` }}
+          dangerouslySetInnerHTML={{ __html: `(function(){try{var t=${JSON.stringify(themes)};var s=localStorage.getItem('theme-step');var i=s!==null?parseInt(s,10):${DEFAULT_THEME_STEP};if(!Number.isInteger(i)||i<0||i>=t.length)i=${DEFAULT_THEME_STEP};var c=t[i];var d=document.documentElement;d.setAttribute('data-theme',c.name);d.setAttribute('data-theme-step',String(i));d.style.setProperty('--theme-slider-fill',(i*25)+'%');d.style.setProperty('--theme-bg',c.bg);d.style.setProperty('--theme-text',c.text);d.style.setProperty('--theme-muted',c.muted);d.style.setProperty('--theme-border',c.border);d.style.setProperty('--theme-card-hover',c.cardHover);d.style.setProperty('--theme-accent',c.accent);d.style.setProperty('--theme-on-accent',c.onAccent);d.style.setProperty('--theme-on-accent-muted',c.onAccentMuted);d.style.setProperty('--theme-code-bg',c.codeBg);d.style.setProperty('--theme-code-border',c.codeBorder);d.style.setProperty('--theme-selection',c.selection);d.style.setProperty('--theme-prose',c.prose);d.style.setProperty('--postcard-bg',c.postcardBg)}catch(e){}})()` }}
         />
         <script
-          dangerouslySetInnerHTML={{ __html: `(function(){try{var s=parseInt(localStorage.getItem('theme-step')||'',10);var i=Number.isInteger(s)&&s>=0&&s<=4?s:2;var d=document.documentElement;d.setAttribute('data-theme-step',String(i));d.style.setProperty('--theme-slider-fill',(i*25)+'%')}catch(e){}})()` }}
+          dangerouslySetInnerHTML={{ __html: `(function(){try{var s=parseInt(localStorage.getItem('theme-step')||'',10);var i=Number.isInteger(s)&&s>=0&&s<${themes.length}?s:${DEFAULT_THEME_STEP};var d=document.documentElement;d.setAttribute('data-theme-step',String(i));d.style.setProperty('--theme-slider-fill',(i*25)+'%')}catch(e){}})()` }}
         />
         <script
           dangerouslySetInnerHTML={{ __html: `(function(){try{var r=JSON.parse(localStorage.getItem('read-posts')||'[]');var d=document.documentElement;if(Array.isArray(r)){r.forEach(function(s){if(typeof s==='string'&&/^[a-z0-9-]+$/i.test(s)){d.style.setProperty('--read-'+s,'var(--theme-muted)')}})}}catch(e){}})()` }}
