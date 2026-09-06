@@ -19,7 +19,7 @@ const STEPS = 5
 const STEP_WIDTH = TRACK_WIDTH / (STEPS - 1)
 
 function applyTheme(index: number) {
-  const t = themes[index]
+  const t = window.__ronishThemes?.[index] ?? themes[index]
   const root = document.documentElement
   root.setAttribute('data-theme', t.name)
   root.setAttribute('data-theme-step', String(index))
@@ -77,7 +77,6 @@ export function ThemeSlider() {
     setStep(clamped)
     applyTheme(clamped)
     if (sound) playTicks[clamped]()
-    localStorage.setItem('theme-step', String(clamped))
   }, [playTicks])
 
   const handlePointerDown = useCallback((e: React.PointerEvent) => {

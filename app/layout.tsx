@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import { IBM_Plex_Mono } from 'next/font/google'
 import { SiteSound } from '@/components/sound-provider'
-import { DEFAULT_THEME_STEP, themes } from '@/lib/themes'
+import { createThemes, DEFAULT_THEME_STEP } from '@/lib/themes'
 import './globals.css'
 
 const openRunde = localFont({
@@ -78,6 +78,8 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 }
 
+export const dynamic = 'force-dynamic'
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
@@ -109,14 +111,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const themes = createThemes(Math.floor(Math.random() * 0xffffffff))
+
   return (
     <html lang="en" className={`${openRunde.variable} ${ibmPlexMono.variable}`} suppressHydrationWarning>
       <head>
         <script
-          dangerouslySetInnerHTML={{ __html: `(function(){try{var t=${JSON.stringify(themes)};var s=localStorage.getItem('theme-step');var i=s!==null?parseInt(s,10):${DEFAULT_THEME_STEP};if(!Number.isInteger(i)||i<0||i>=t.length)i=${DEFAULT_THEME_STEP};var c=t[i];var d=document.documentElement;d.setAttribute('data-theme',c.name);d.setAttribute('data-theme-step',String(i));d.style.setProperty('--theme-slider-fill',(i*25)+'%');d.style.setProperty('--theme-bg',c.bg);d.style.setProperty('--theme-text',c.text);d.style.setProperty('--theme-muted',c.muted);d.style.setProperty('--theme-border',c.border);d.style.setProperty('--theme-card-hover',c.cardHover);d.style.setProperty('--theme-accent',c.accent);d.style.setProperty('--theme-on-accent',c.onAccent);d.style.setProperty('--theme-on-accent-muted',c.onAccentMuted);d.style.setProperty('--theme-code-bg',c.codeBg);d.style.setProperty('--theme-code-border',c.codeBorder);d.style.setProperty('--theme-selection',c.selection);d.style.setProperty('--theme-prose',c.prose);d.style.setProperty('--postcard-bg',c.postcardBg)}catch(e){}})()` }}
-        />
-        <script
-          dangerouslySetInnerHTML={{ __html: `(function(){try{var s=parseInt(localStorage.getItem('theme-step')||'',10);var i=Number.isInteger(s)&&s>=0&&s<${themes.length}?s:${DEFAULT_THEME_STEP};var d=document.documentElement;d.setAttribute('data-theme-step',String(i));d.style.setProperty('--theme-slider-fill',(i*25)+'%')}catch(e){}})()` }}
+          dangerouslySetInnerHTML={{ __html: `(function(){try{var t=${JSON.stringify(themes)};window.__ronishThemes=t;var i=${DEFAULT_THEME_STEP};var c=t[i];var d=document.documentElement;d.setAttribute('data-theme',c.name);d.setAttribute('data-theme-step',String(i));d.style.setProperty('--theme-slider-fill',(i*25)+'%');d.style.setProperty('--theme-bg',c.bg);d.style.setProperty('--theme-text',c.text);d.style.setProperty('--theme-muted',c.muted);d.style.setProperty('--theme-border',c.border);d.style.setProperty('--theme-card-hover',c.cardHover);d.style.setProperty('--theme-accent',c.accent);d.style.setProperty('--theme-on-accent',c.onAccent);d.style.setProperty('--theme-on-accent-muted',c.onAccentMuted);d.style.setProperty('--theme-code-bg',c.codeBg);d.style.setProperty('--theme-code-border',c.codeBorder);d.style.setProperty('--theme-selection',c.selection);d.style.setProperty('--theme-prose',c.prose);d.style.setProperty('--postcard-bg',c.postcardBg)}catch(e){}})()` }}
         />
         <script
           dangerouslySetInnerHTML={{ __html: `(function(){try{var r=JSON.parse(localStorage.getItem('read-posts')||'[]');var d=document.documentElement;if(Array.isArray(r)){r.forEach(function(s){if(typeof s==='string'&&/^[a-z0-9-]+$/i.test(s)){d.style.setProperty('--read-'+s,'var(--theme-muted)')}})}}catch(e){}})()` }}

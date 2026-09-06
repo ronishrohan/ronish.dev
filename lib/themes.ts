@@ -33,8 +33,7 @@ function oklchHex(lightness: number, chroma: number, hue: number) {
   return formatHex(clampRgb({ mode: 'oklch', l: lightness, c: chroma, h: hue }))
 }
 
-function createThemes(): Theme[] {
-  // Keep the generated palette stable so the server preload and client agree.
+export function createThemes(seed = 0x7296a5): Theme[] {
   const random = createRandom(0x7296a5)
   const accentHue = random() * 360
   const accent = oklchHex(0.62, 0.19, accentHue)
@@ -78,3 +77,9 @@ function createThemes(): Theme[] {
 
 export const themes = createThemes()
 export { DEFAULT_THEME_STEP }
+
+declare global {
+  interface Window {
+    __ronishThemes?: Theme[]
+  }
+}
