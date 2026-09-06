@@ -47,8 +47,8 @@ export function createThemes(seed = 0x7296a5): Theme[] {
     { name: 'noon', l: 0.995, c: 0.006 },
   ]
   const darkThemes = [
-    { name: 'evening', l: 0.19, c: 0.018 },
-    { name: 'night', l: 0.08, c: 0.012 },
+    { name: 'evening', l: 0.14, c: 0.018 },
+    { name: 'night', l: 0.06, c: 0.012 },
   ]
 
   return [
