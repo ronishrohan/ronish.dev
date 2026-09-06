@@ -77,6 +77,7 @@ export function ThemeSlider() {
     setStep(clamped)
     applyTheme(clamped)
     if (sound) playTicks[clamped]()
+    localStorage.setItem('theme-step', String(clamped))
   }, [playTicks])
 
   const handlePointerDown = useCallback((e: React.PointerEvent) => {
