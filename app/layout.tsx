@@ -78,8 +78,6 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 }
 
-export const dynamic = 'force-dynamic'
-
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'Person',
