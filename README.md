@@ -1,4 +1,6 @@
-# Astro Starter Kit: Basics
+# ronish.dev
+
+Personal site and writing space, built with Astro.
 
 ```sh
 yarn create astro@latest -- --template basics
