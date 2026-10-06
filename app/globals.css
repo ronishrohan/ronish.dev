@@ -43,6 +43,44 @@ a, button {
   color: var(--theme-text) !important;
 }
 
+.v7-intro {
+  padding: clamp(1.5rem, 4vw, 3.25rem) 0 clamp(2rem, 5vw, 4rem);
+  border-top: 1px solid var(--theme-border);
+  border-bottom: 1px solid var(--theme-border);
+}
+
+.v7-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 0.65rem;
+  border: 1px solid var(--theme-border);
+  border-radius: 999px;
+  color: var(--theme-muted);
+  font-size: 0.75rem;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+.v7-status-dot {
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 999px;
+  background: var(--theme-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--theme-accent) 16%, transparent);
+}
+
+.v7-section-heading {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.55rem;
+  border-bottom: 1px solid var(--theme-border);
+  color: var(--theme-muted);
+  font-size: 0.8rem;
+  letter-spacing: -0.02em;
+}
+
 .postcard-svg {
   transition: filter 0.5s ease;
 }
