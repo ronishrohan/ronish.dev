@@ -22,37 +22,48 @@ export default async function Home() {
   }))
 
   return (
-    <div className="max-w-4xl w-full mx-auto text-base mt-[100px] flex flex-col gap-4 px-6 pb-24">
-      <div className="flex justify-between items-center">
-        <span className="text-2xl">
+    <main className="max-w-5xl w-full mx-auto text-base mt-16 sm:mt-24 flex flex-col gap-5 px-6 pb-24">
+      <header className="flex justify-between items-center">
+        <span className="text-2xl tracking-[-0.06em]">
           <AnimatedName />
         </span>
         <ThemeSlider />
-      </div>
+      </header>
 
-      <div style={{ color: 'var(--theme-muted)' }} className="flex flex-col gap-3">
-        <p>
-          I&apos;m a design engineer and AI engineer in Bengaluru, India. I build
-          agent-native products where interaction design, product systems, and
-          model behavior meet.
-        </p>
-        <p>
-          I work from interface detail to the harness underneath: streamed UX,
-          tool use, approval flows, context, and orchestration.
-        </p>
-        <p>
-          Find my projects on{' '}
-          <a href="https://github.com/ronishrohan" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: 'var(--theme-text)' }}>GitHub</a>
-          {' '}or reach out on{' '}
-          <a href="https://x.com/ronish1o" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: 'var(--theme-text)' }}>X</a>
-          {' '}or{' '}
-          <a href="https://discord.com/users/769140296939470859" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: 'var(--theme-text)' }}>Discord</a>.
-        </p>
-      </div>
+      <section className="v7-intro" aria-labelledby="intro-heading">
+        <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between sm:gap-10">
+          <h1 id="intro-heading" className="max-w-3xl text-[clamp(2rem,5.5vw,4.25rem)] leading-[0.98] tracking-[-0.075em]">
+            Building the layer between people, products, and models.
+          </h1>
+          <div className="v7-status shrink-0 self-start">
+            <span className="v7-status-dot" aria-hidden="true" />
+            <span>In Bengaluru</span>
+          </div>
+        </div>
+        <div style={{ color: 'var(--theme-muted)' }} className="mt-7 flex max-w-2xl flex-col gap-3 leading-relaxed">
+          <p>
+            I&apos;m a design engineer and AI engineer. I build agent-native products
+            where interaction design, product systems, and model behavior meet.
+          </p>
+          <p>
+            From interface detail to the harness underneath: streamed UX, tool use,
+            approval flows, context, and orchestration.
+          </p>
+          <p>
+            Find my projects on{' '}
+            <a href="https://github.com/ronishrohan" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4" style={{ color: 'var(--theme-text)' }}>GitHub</a>
+            {' '}or reach out on{' '}
+            <a href="https://x.com/ronish1o" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4" style={{ color: 'var(--theme-text)' }}>X</a>
+            {' '}or{' '}
+            <a href="https://discord.com/users/769140296939470859" target="_blank" rel="noopener noreferrer" className="underline underline-offset-4" style={{ color: 'var(--theme-text)' }}>Discord</a>.
+          </p>
+        </div>
+      </section>
 
-      <div className="mt-6 flex flex-col gap-3">
-        <div className="pb-2" style={{ borderBottom: '1px solid var(--theme-border)' }}>
-          <span style={{ color: 'var(--theme-muted)' }}>Work</span>
+      <section className="mt-5 flex flex-col gap-3" aria-labelledby="work-heading">
+        <div className="v7-section-heading">
+          <span id="work-heading">01 / Work</span>
+          <span className="hidden sm:inline">Selected experience</span>
         </div>
         <div className="flex flex-col">
           {[
@@ -153,11 +164,12 @@ export default async function Home() {
             </Pressable>
           ))}
         </div>
-      </div>
+      </section>
 
-      <div className="mt-6 flex flex-col gap-3">
-        <div className="pb-2" style={{ borderBottom: '1px solid var(--theme-border)' }}>
-          <span style={{ color: 'var(--theme-muted)' }}>Projects</span>
+      <section className="mt-5 flex flex-col gap-3" aria-labelledby="projects-heading">
+        <div className="v7-section-heading">
+          <span id="projects-heading">02 / Projects</span>
+          <span className="hidden sm:inline">Things I&apos;ve shipped</span>
         </div>
         <div className="flex flex-col">
           {[
@@ -253,18 +265,19 @@ export default async function Home() {
             </Pressable>
           ))}
         </div>
-      </div>
+      </section>
 
       {recentPosts.length > 0 && (
-        <div className="mt-6 flex flex-col gap-3">
-          <div className="pb-2" style={{ borderBottom: '1px solid var(--theme-border)' }}>
-            <span style={{ color: 'var(--theme-muted)' }}>Recent Writing</span>
+        <section className="mt-5 flex flex-col gap-3" aria-labelledby="writing-heading">
+          <div className="v7-section-heading">
+            <span id="writing-heading">03 / Writing</span>
+            <span className="hidden sm:inline">Notes in progress</span>
           </div>
           <WritingList posts={recentPosts} />
-        </div>
+        </section>
       )}
 
       <PostcardGrid />
-    </div>
+    </main>
   )
 }

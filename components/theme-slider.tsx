@@ -136,6 +136,14 @@ export function ThemeSlider() {
     snapTo(nearest)
   }, [snapTo])
 
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight' && e.key !== 'Home' && e.key !== 'End') return
+    e.preventDefault()
+    if (e.key === 'Home') return snapTo(0)
+    if (e.key === 'End') return snapTo(STEPS - 1)
+    snapTo(step + (e.key === 'ArrowRight' ? 1 : -1))
+  }, [snapTo, step])
+
   const spring = { type: 'spring' as const, stiffness: 400, damping: 25 }
 
   return (
@@ -143,7 +151,15 @@ export function ThemeSlider() {
       ref={trackRef}
       className="relative flex touch-none select-none items-center justify-center cursor-grab active:cursor-grabbing"
       style={{ width: TRACK_WIDTH, height: 28, padding: '4px 0', touchAction: 'none' }}
+      role="slider"
+      tabIndex={0}
+      aria-label="Theme brightness"
+      aria-valuemin={0}
+      aria-valuemax={STEPS - 1}
+      aria-valuenow={step}
+      aria-valuetext={themes[step]?.name}
       onClick={handleTrackClick}
+      onKeyDown={handleKeyDown}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
