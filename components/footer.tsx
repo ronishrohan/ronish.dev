@@ -1,15 +1,16 @@
 export function Footer() {
   return (
-    <div className="mt-auto">
-      <div className="w-full mt-24 pb-1 bg-black text-white flex">
-        <div className="max-w-4xl h-full w-full flex flex-col items-baseline mx-auto px-6">
-          <div className="flex text-[28px] h-full items-end justify-between w-full">
-            <div>see</div>
-            <div>you</div>
-            <div>again</div>
-          </div>
+    <footer className="page mt-auto pb-8 pt-24">
+      <div className="rule-heavy grid-12 pt-3">
+        <span className="label">
+          <span className="label-strong">ronish.dev</span>
+        </span>
+        <div className="flex flex-wrap justify-between gap-x-6 gap-y-1">
+          <span className="label">© 2026 Ronish Rohan</span>
+          <span className="label">Bengaluru, India</span>
+          <span className="label">Set in Inter Tight / IBM Plex Mono</span>
         </div>
       </div>
-    </div>
+    </footer>
   )
 }

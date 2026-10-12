@@ -1,18 +1,13 @@
 import type { Metadata } from 'next'
-import localFont from 'next/font/local'
-import { IBM_Plex_Mono } from 'next/font/google'
+import { IBM_Plex_Mono, Inter_Tight } from 'next/font/google'
+import { Footer } from '@/components/footer'
 import { SiteSound } from '@/components/sound-provider'
 import { createThemes, DEFAULT_THEME_STEP } from '@/lib/themes'
 import './globals.css'
 
-const openRunde = localFont({
-  src: [
-    { path: '../public/fonts/OpenRunde-Regular.woff2', weight: '400' },
-    { path: '../public/fonts/OpenRunde-Medium.woff2', weight: '500' },
-    { path: '../public/fonts/OpenRunde-Semibold.woff2', weight: '600' },
-    { path: '../public/fonts/OpenRunde-Bold.woff2', weight: '700' },
-  ],
-  variable: '--font-open-runde',
+const interTight = Inter_Tight({
+  subsets: ['latin'],
+  variable: '--font-inter-tight',
   display: 'swap',
 })
 
@@ -112,7 +107,7 @@ export default function RootLayout({
   const themes = createThemes(Math.floor(Math.random() * 0xffffffff))
 
   return (
-    <html lang="en" className={`${openRunde.variable} ${ibmPlexMono.variable}`} suppressHydrationWarning>
+    <html lang="en" className={`${interTight.variable} ${ibmPlexMono.variable}`} suppressHydrationWarning>
       <head>
         <script
           dangerouslySetInnerHTML={{ __html: `(function(){try{var t=${JSON.stringify(themes)};var h=Math.floor(Math.random()*360);var shade=function(l,s){return 'hsl('+h+' '+s+'% '+l+'%)'};var accent='hsl('+h+' 75% 24%)';var darkAccent='hsl('+h+' 70% 24%)';t.forEach(function(c,i){var dark=i>2;var l=[96,97.5,99.5][i]||14;c.bg=dark?shade(i===4?6:14,12):shade(l, i===2?8:12);c.text=dark?shade(91,8):shade(20,8);c.muted=dark?shade(66,8):shade(50,10);c.border=dark?shade(24,8):shade(Math.max(82,l-10),8);c.cardHover=dark?darkAccent:accent;c.accent=dark?darkAccent:accent;c.onAccent='#ffffff';c.onAccentMuted='rgba(255,255,255,0.7)';c.codeBg=dark?shade(i===4?10:20,8):shade(Math.max(91,l-4),8);c.codeBorder=c.border;c.selection=c.accent;c.prose=dark?shade(76,8):shade(30,8);c.postcardBg=dark?shade(i===4?12:22,8):shade(Math.max(88,l-8),8)});window.__ronishThemes=t;var s=parseInt(localStorage.getItem('theme-step')||'',10);var i=Number.isInteger(s)&&s>=0&&s<t.length?s:${DEFAULT_THEME_STEP};var c=t[i];var d=document.documentElement;d.setAttribute('data-theme',c.name);d.setAttribute('data-theme-step',String(i));d.style.setProperty('--theme-slider-fill',(i*25)+'%');d.style.setProperty('--theme-bg',c.bg);d.style.setProperty('--theme-text',c.text);d.style.setProperty('--theme-muted',c.muted);d.style.setProperty('--theme-border',c.border);d.style.setProperty('--theme-card-hover',c.cardHover);d.style.setProperty('--theme-accent',c.accent);d.style.setProperty('--theme-on-accent',c.onAccent);d.style.setProperty('--theme-on-accent-muted',c.onAccentMuted);d.style.setProperty('--theme-code-bg',c.codeBg);d.style.setProperty('--theme-code-border',c.codeBorder);d.style.setProperty('--theme-selection',c.selection);d.style.setProperty('--theme-prose',c.prose);d.style.setProperty('--postcard-bg',c.postcardBg)}catch(e){}})()` }}
@@ -128,6 +123,7 @@ export default function RootLayout({
       <body>
         <SiteSound>
           {children}
+          <Footer />
         </SiteSound>
       </body>
     </html>

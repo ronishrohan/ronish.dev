@@ -41,5 +41,9 @@ export function AnimatedName() {
     return () => clearTimeout(timeout)
   }, [])
 
-  return <span className="inline-block">{name}</span>
+  return (
+    <span className="inline-block" style={{ letterSpacing: name === 'ronish' ? undefined : 0 }}>
+      {name}
+    </span>
+  )
 }
