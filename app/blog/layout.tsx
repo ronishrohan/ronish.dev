@@ -19,23 +19,23 @@ export default function BlogLayout({
   const playBack = useSound(thockBack)
 
   return (
-    <div className="max-w-4xl w-full mx-auto px-6 mt-[100px] flex flex-col">
+    <div className="page pt-6 flex flex-col">
       <motion.div
         initial={false}
         animate={{
           height: isPost ? 0 : 'auto',
           opacity: isPost ? 0 : 1,
-          marginBottom: isPost ? 0 : 16,
+          marginBottom: isPost ? 0 : 8,
         }}
         transition={fast}
         className="overflow-hidden"
       >
-        <Link href="/" className="text-sm w-fit block" style={{ color: 'var(--theme-muted)' }} onMouseDown={() => playBack()}>
+        <Link href="/" className="label w-fit block" onMouseDown={() => playBack()}>
           ← Home
         </Link>
       </motion.div>
 
-      <Link href="/blog" className="flex items-center w-fit mb-4 text-sm" style={{ color: 'var(--theme-muted)' }} onMouseDown={() => playBack()}>
+      <Link href="/blog" className="label label-strong flex items-center w-fit mb-6" onMouseDown={() => playBack()}>
         <motion.div
           initial={false}
           animate={{

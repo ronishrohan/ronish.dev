@@ -80,27 +80,34 @@ export default async function BlogPost({ params }: Props) {
   }
 
   return (
-    <article className="flex flex-col gap-4">
-      <h1 className="text-2xl mt-2">{post.title}</h1>
-      <span className="text-sm" style={{ color: 'var(--theme-muted)' }}>
-        {formatDate(post.date)}
-      </span>
+    <article className="flex flex-col gap-12">
+      <header className="rule-heavy pt-4">
+        <h1 className="display" style={{ fontSize: 'clamp(2.5rem, 8vw, 5.5rem)', lineHeight: 0.98, maxWidth: '16em' }}>
+          {post.title}
+        </h1>
+      </header>
 
-      <div
-        className="prose mt-2"
-        style={{ fontSize: '1rem' }}
-        dangerouslySetInnerHTML={{ __html: post.content }}
-      />
+      <div className="rule-hair grid-12 pt-3">
+        <div className="label flex gap-3 sm:flex-col sm:gap-1">
+          <span>Published</span>
+          <span className="label-strong numeric">{formatDate(post.date)}</span>
+        </div>
+        <div
+          className="prose"
+          style={{ fontSize: '1.0625rem' }}
+          dangerouslySetInnerHTML={{ __html: post.content }}
+        />
+      </div>
 
-      <Pressable className="mt-6">
-        <Link
-          href="/blog"
-          style={{ color: 'var(--theme-muted)' }}
-        >
-          More Writing &rarr;
-        </Link>
-      </Pressable>
-      <div className="h-40" />
+      <div className="rule-hair grid-12 pt-3 pb-24">
+        <span className="label">Next</span>
+        <Pressable>
+          <Link href="/blog" className="row" style={{ borderTop: 'none' }}>
+            <span className="row-lead row-index">←</span>
+            <span className="row-title">More writing</span>
+          </Link>
+        </Pressable>
+      </div>
 
       <script
         type="application/ld+json"
