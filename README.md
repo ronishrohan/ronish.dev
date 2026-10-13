@@ -1,46 +1,30 @@
-# Astro Starter Kit: Basics
+# ronish.dev
+
+Personal site and blog built with Next.js 15, React 19, Tailwind CSS 4 and Framer Motion.
+
+## Getting started
 
 ```sh
-yarn create astro@latest -- --template basics
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+The dev server runs on [http://localhost:3000](http://localhost:3000).
 
-## 🚀 Project Structure
+## Scripts
 
-Inside of your Astro project, you'll see the following folders and files:
+| Command         | Description                     |
+| --------------- | ------------------------------- |
+| `npm run dev`   | Start the dev server (Turbopack) |
+| `npm run build` | Create a production build       |
+| `npm run start` | Serve the production build      |
+
+## Project structure
 
 ```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+app/         Routes, layout, global styles and sitemap
+components/  UI components
+content/     Blog posts (markdown with frontmatter)
+lib/         Blog loading, themes, sounds and helpers
+public/      Static assets
 ```
-
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `yarn install`             | Installs dependencies                            |
-| `yarn dev`             | Starts local dev server at `localhost:4321`      |
-| `yarn build`           | Build your production site to `./dist/`          |
-| `yarn preview`         | Preview your build locally, before deploying     |
-| `yarn astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `yarn astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
