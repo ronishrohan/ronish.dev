@@ -16,8 +16,6 @@ export function Pressable({
 
   return (
     <motion.div
-      whileTap={{ scale: 0.995 }}
-      transition={{ duration: 0.1, ease: 'easeOut' }}
       onPointerDown={(e) => {
         if (e.pointerType === 'mouse' && e.button === 0) playThock()
       }}

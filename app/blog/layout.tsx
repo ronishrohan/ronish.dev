@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { usePathname } from 'next/navigation'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
@@ -18,8 +19,15 @@ export default function BlogLayout({
 
   const playBack = useSound(thockBack)
 
+  const [fromHome, setFromHome] = useState(false)
+  useEffect(() => {
+    try {
+      setFromHome(isPost && sessionStorage.getItem('blog-referrer') === '/')
+    } catch {}
+  }, [isPost, pathname])
+
   return (
-    <div className="max-w-4xl w-full mx-auto px-6 mt-[100px] flex flex-col">
+    <div className="max-w-4xl w-full p-6 flex flex-col">
       <motion.div
         initial={false}
         animate={{
@@ -30,12 +38,12 @@ export default function BlogLayout({
         transition={fast}
         className="overflow-hidden"
       >
-        <Link href="/" className="text-sm w-fit block" style={{ color: 'var(--theme-muted)' }} onMouseDown={() => playBack()}>
+        <Link href="/" className="w-fit block" style={{ color: 'var(--theme-text)' }} onMouseDown={() => playBack()}>
           ← Home
         </Link>
       </motion.div>
 
-      <Link href="/blog" className="flex items-center w-fit mb-4 text-sm" style={{ color: 'var(--theme-muted)' }} onMouseDown={() => playBack()}>
+      <Link href={fromHome ? '/' : '/blog'} className="flex items-center w-fit mb-4" style={{ color: 'var(--theme-text)' }} onMouseDown={() => playBack()}>
         <motion.div
           initial={false}
           animate={{
@@ -48,7 +56,7 @@ export default function BlogLayout({
           ←&nbsp;
         </motion.div>
         <span>
-          Writing
+          {fromHome ? 'Home' : 'Writing'}
         </span>
       </Link>
 

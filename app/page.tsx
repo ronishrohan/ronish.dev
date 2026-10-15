@@ -1,7 +1,5 @@
-import { AnimatedName } from '@/components/animated-name'
 import { PostcardGrid } from '@/components/postcard-grid'
 import { Pressable } from '@/components/pressable'
-import { ThemeSlider } from '@/components/theme-slider'
 import { WritingList } from '@/components/writing-list'
 import { getAllPosts } from '@/lib/blog'
 
@@ -15,22 +13,19 @@ function formatDate(iso: string) {
 
 export default async function Home() {
   const posts = await getAllPosts()
-  const recentPosts = posts.slice(0, 3).map((p) => ({
+  const recentPosts = posts.map((p) => ({
     slug: p.slug,
     title: p.title,
     date: formatDate(p.date),
   }))
 
   return (
-    <div className="max-w-4xl w-full mx-auto text-base mt-[100px] flex flex-col gap-4 px-6 pb-24">
-      <div className="flex justify-between items-center">
-        <span className="text-2xl">
-          <AnimatedName />
-        </span>
-        <ThemeSlider />
+    <div className="max-w-4xl w-full text-base flex flex-col p-6">
+      <div className="flex flex-col gap-2">
+      <span className="leading-none">Ronish</span>
       </div>
 
-      <div style={{ color: 'var(--theme-muted)' }} className="flex flex-col gap-3">
+      <div style={{ color: 'var(--theme-text)' }} className="flex flex-col gap-3 py-5">
         <p>
           I&apos;m a design engineer and AI engineer in Bengaluru, India. I build
           agent-native products where interaction design, product systems, and
@@ -50,9 +45,10 @@ export default async function Home() {
         </p>
       </div>
 
+      {/*
       <div className="mt-6 flex flex-col gap-3">
-        <div className="pb-2" style={{ borderBottom: '1px solid var(--theme-border)' }}>
-          <span style={{ color: 'var(--theme-muted)' }}>Work</span>
+        <div className="pb-2 -mx-6 px-6 border-b border-[var(--theme-line)]">
+          <span style={{ color: 'var(--theme-text)' }}>Work</span>
         </div>
         <div className="flex flex-col">
           {[
@@ -138,14 +134,14 @@ export default async function Home() {
                 </span>
                 {item.desc && (
                   <>
-                    <span className="z-20 hidden group-hover:!text-[var(--theme-on-accent-muted)] sm:inline" style={{ color: 'var(--theme-muted)' }}>·</span>
-                    <span className="z-20 col-start-2 min-w-0 group-hover:!text-[var(--theme-on-accent-muted)] sm:shrink-0" style={{ color: 'var(--theme-muted)' }}>
+                    <span className="z-20 hidden group-hover:!text-[var(--theme-on-accent-muted)] sm:inline" style={{ color: 'var(--theme-text)' }}>·</span>
+                    <span className="z-20 col-start-2 min-w-0 group-hover:!text-[var(--theme-on-accent-muted)] sm:shrink-0" style={{ color: 'var(--theme-text)' }}>
                       {item.desc}
                     </span>
                   </>
                 )}
                 {item.date && (
-                  <span className="z-20 col-start-2 row-start-3 mt-0.5 group-hover:!text-[var(--theme-on-accent-muted)] text-sm sm:col-start-auto sm:row-start-auto sm:ml-auto sm:mt-0 sm:shrink-0" style={{ color: 'var(--theme-muted)' }}>
+                  <span className="z-20 col-start-2 row-start-3 mt-0.5 group-hover:!text-[var(--theme-on-accent-muted)] sm:col-start-auto sm:row-start-auto sm:ml-auto sm:mt-0 sm:shrink-0" style={{ color: 'var(--theme-text)' }}>
                     {item.date}
                   </span>
                 )}
@@ -156,8 +152,8 @@ export default async function Home() {
       </div>
 
       <div className="mt-6 flex flex-col gap-3">
-        <div className="pb-2" style={{ borderBottom: '1px solid var(--theme-border)' }}>
-          <span style={{ color: 'var(--theme-muted)' }}>Projects</span>
+        <div className="pb-2 -mx-6 px-6 border-b border-[var(--theme-line)]">
+          <span style={{ color: 'var(--theme-text)' }}>Projects</span>
         </div>
         <div className="flex flex-col">
           {[
@@ -243,8 +239,8 @@ export default async function Home() {
                 </span>
                 {item.desc && (
                   <>
-                    <span className="z-20 hidden group-hover:!text-[var(--theme-on-accent-muted)] sm:inline" style={{ color: 'var(--theme-muted)' }}>·</span>
-                    <span className="z-20 col-start-2 min-w-0 group-hover:!text-[var(--theme-on-accent-muted)] sm:truncate" style={{ color: 'var(--theme-muted)' }}>
+                    <span className="z-20 hidden group-hover:!text-[var(--theme-on-accent-muted)] sm:inline" style={{ color: 'var(--theme-text)' }}>·</span>
+                    <span className="z-20 col-start-2 min-w-0 group-hover:!text-[var(--theme-on-accent-muted)] sm:truncate" style={{ color: 'var(--theme-text)' }}>
                       {item.desc}
                     </span>
                   </>
@@ -254,17 +250,18 @@ export default async function Home() {
           ))}
         </div>
       </div>
+      */}
 
       {recentPosts.length > 0 && (
-        <div className="mt-6 flex flex-col gap-3">
-          <div className="pb-2" style={{ borderBottom: '1px solid var(--theme-border)' }}>
-            <span style={{ color: 'var(--theme-muted)' }}>Recent Writing</span>
+        <div className="flex flex-col">
+          <div className="pb-3 border-b border-[var(--theme-line)]">
+            <span>Recent Writing</span>
           </div>
           <WritingList posts={recentPosts} />
         </div>
       )}
 
-      <PostcardGrid />
+      {/* <PostcardGrid /> */}
     </div>
   )
 }

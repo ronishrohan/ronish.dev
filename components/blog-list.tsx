@@ -32,22 +32,12 @@ export function BlogList({ posts }: { posts: Post[] }) {
                 sessionStorage.setItem('blog-referrer', '/blog')
               }}
             >
-              <div className="absolute pointer-events-none group-hover:opacity-100 opacity-0 h-[calc(100%+0px)] w-[calc(100%+16px)] translate-x-[-8px] rounded-lg" style={{ backgroundColor: 'var(--theme-card-hover)' }} />
-              <div className="flex flex-col gap-0.5 min-w-0 z-20">
-                <span className="group-hover:text-white" style={{
-                  color: hovered !== i
-                    ? `var(--read-${post.slug}, var(--theme-text))`
-                    : undefined,
-                }}>
-                  {post.title}
-                </span>
-                {post.description && (
-                  <span className="text-base group-hover:text-white" style={{ color: hovered !== i ? 'var(--theme-muted)' : undefined }}>
-                    {post.description}
-                  </span>
-                )}
+              <div className="absolute pointer-events-none h-[calc(100%+4px)] w-[calc(100%+16px)] translate-x-[-8px] group-hover:bg-[#0000aa]" />
+              <div className="flex flex-col gap-0.5 min-w-0 z-20 group-hover:text-white">
+                <span>{post.title}</span>
+                {post.description && <span>{post.description}</span>}
               </div>
-              <span className="text-base group-hover:text-white shrink-0 z-20" style={{ color: hovered !== i ? 'var(--theme-muted)' : undefined }}>
+              <span className="shrink-0 z-20 group-hover:text-white">
                 {post.date}
               </span>
             </Link>

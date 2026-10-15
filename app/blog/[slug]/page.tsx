@@ -81,8 +81,8 @@ export default async function BlogPost({ params }: Props) {
 
   return (
     <article className="flex flex-col gap-4">
-      <h1 className="text-2xl mt-2">{post.title}</h1>
-      <span className="text-sm" style={{ color: 'var(--theme-muted)' }}>
+      <h1 className="mt-2">{post.title}</h1>
+      <span style={{ color: 'var(--theme-text)' }}>
         {formatDate(post.date)}
       </span>
 
@@ -95,7 +95,7 @@ export default async function BlogPost({ params }: Props) {
       <Pressable className="mt-6">
         <Link
           href="/blog"
-          style={{ color: 'var(--theme-muted)' }}
+          style={{ color: 'var(--theme-text)' }}
         >
           More Writing &rarr;
         </Link>

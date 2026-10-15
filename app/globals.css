@@ -5,6 +5,18 @@ html {
 }
 
 :root {
+  --theme-bg: #f0f0f0;
+  --theme-text: #171717;
+  --theme-muted: #171717;
+  --theme-prose: #171717;
+  --theme-border: #d4d4d4;
+  --theme-line: rgba(0, 0, 0, 0.4);
+  --theme-accent: #171717;
+  --theme-card-hover: #171717;
+  --theme-selection: #0000aa;
+  --theme-code-bg: #e5e5e5;
+  --theme-code-border: #d4d4d4;
+  --postcard-bg: #e5e5e5;
   --theme-on-accent: #fff;
   --theme-on-accent-muted: rgba(255, 255, 255, 0.7);
 }
@@ -14,14 +26,14 @@ html::-webkit-scrollbar {
 }
 
 body {
-  font-family: var(--font-open-runde), system-ui, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   -webkit-font-smoothing: antialiased;
   min-height: 100dvh;
   display: flex;
   flex-direction: column;
-  letter-spacing: -1px;
+  letter-spacing: 0;
   overflow-x: hidden;
-  background: var(--theme-bg, #f5f5f4);
+  background: #f0f0f0;
   color: var(--theme-text, #0a0a0a);
 }
 
@@ -51,7 +63,7 @@ a, button {
 
 .prose {
   line-height: 1.75;
-  color: var(--theme-prose, #3f3f46);
+  color: var(--theme-text, #0a0a0a);
 }
 
 .prose p {
@@ -68,9 +80,9 @@ a, button {
   color: var(--theme-text, #0a0a0a);
 }
 
-.prose h1 { font-size: 1.5em; }
-.prose h2 { font-size: 1.25em; }
-.prose h3 { font-size: 1.1em; }
+.prose h1 { font-size: 1em; }
+.prose h2 { font-size: 1em; }
+.prose h3 { font-size: 1em; }
 
 .prose a {
   text-decoration: underline;
@@ -84,7 +96,7 @@ a, button {
 
 .prose code {
   font-family: var(--font-ibm-mono), monospace;
-  font-size: 0.8em !important;
+  font-size: 1em !important;
   background: var(--theme-code-bg, #f4f4f5);
   border: 1px solid var(--theme-code-border, #e5e5e5);
   padding: 0.1em 0.4em;
@@ -107,7 +119,7 @@ a, button {
   background: none;
   border: none;
   padding: 0;
-  font-size: 0.875em;
+  font-size: 1em;
   color: inherit;
   border-radius: 8px;
 }
@@ -115,7 +127,7 @@ a, button {
 .prose blockquote {
   border-left: 2px solid var(--theme-border, #e4e4e7);
   padding-left: 1em;
-  color: var(--theme-muted, #71717a);
+  color: var(--theme-text, #0a0a0a);
   margin: 1.5em 0;
 }
 

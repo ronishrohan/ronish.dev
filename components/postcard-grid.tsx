@@ -11,7 +11,7 @@ export function PostcardGrid() {
     <div className="mt-6 grid grid-cols-1 gap-4 -mx-2 sm:grid-cols-3">
       {cards.map((card) => (
         <Postcard key={card.src} src={card.src} className={card.className}>
-          <span className="text-sm font-semibold" style={{ color: 'var(--theme-text)' }}>
+          <span className="font-semibold" style={{ color: 'var(--theme-text)' }}>
             {card.label}
           </span>
         </Postcard>
