@@ -44,6 +44,8 @@ const art = `
                    ||||||||                                              ||||||||
 `
 
+const BASE_ALPHA = 0.28
+
 const lines = art.slice(1, -1).split('\n')
 const COLS = Math.max(...lines.map((l) => l.length))
 const ROWS = lines.length
@@ -81,6 +83,7 @@ export function Butterfly() {
       cellW = rect.width / COLS
       cellH = rect.height / ROWS
       fontPx = parseFloat(getComputedStyle(pre!).fontSize)
+      draw()
     }
 
     // radius is in pixels so the brush is circular even though cells are tall
@@ -119,6 +122,12 @@ export function Butterfly() {
       }
       ;[dye, tmpDye] = [tmpDye, dye]
 
+      draw()
+      raf = active ? requestAnimationFrame(step) : 0
+    }
+
+    // the canvas owns the whole butterfly; hovered characters fade toward transparent
+    function draw() {
       ctx!.clearRect(0, 0, canvas!.width, canvas!.height)
       ctx!.font = `${fontPx}px ${getComputedStyle(pre!).fontFamily}`
       ctx!.textAlign = 'center'
@@ -128,12 +137,10 @@ export function Butterfly() {
         for (let x = 0; x < line.length; x++) {
           if (line[x] === ' ') continue
           const v = dye[y * COLS + x]
-          if (v < 0.03) continue
-          ctx!.fillStyle = `rgba(0, 0, 110, ${0.15 + v * 0.5})`
+          ctx!.fillStyle = `rgba(0, 0, 170, ${BASE_ALPHA * (1 - 0.9 * v)})`
           ctx!.fillText(line[x], (x + 0.5) * cellW, (y + 0.5) * cellH)
         }
       }
-      raf = active ? requestAnimationFrame(step) : 0
     }
 
     function onMove(e: PointerEvent) {
@@ -148,7 +155,7 @@ export function Butterfly() {
         const dt = Math.max(1, now - last.t)
         const speed = dist / dt
         if (dist > 0) {
-          const radius = Math.min(6, 2 + speed * 2.5) * cellW
+          const radius = Math.min(11, 4 + speed * 4) * cellW
           const strength = Math.min(0.9, 0.15 + speed * 0.5)
           const steps = Math.max(1, Math.ceil(dist / (cellW * 0.7)))
           const lx = (last.x - rect.left) / cellW
@@ -163,6 +170,7 @@ export function Butterfly() {
       last = { x: e.clientX, y: e.clientY, t: now }
     }
 
+    pre.style.color = 'transparent'
     measure()
     const ro = new ResizeObserver(measure)
     ro.observe(pre)
@@ -171,13 +179,14 @@ export function Butterfly() {
       window.removeEventListener('pointermove', onMove)
       ro.disconnect()
       cancelAnimationFrame(raf)
+      pre.style.color = ''
     }
   }, [])
 
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none select-none fixed left-1/2 top-1/2 -z-10 -translate-x-1/2 -translate-y-1/2 transition-opacity duration-500"
+      className="pointer-events-none select-none fixed right-0 top-1/2 -z-10 translate-x-1/4 -translate-y-1/2 transition-opacity duration-500"
       style={{ opacity: hidden ? 0 : 1 }}
     >
       <pre
@@ -188,7 +197,7 @@ export function Butterfly() {
           fontSize: 'min(1.3vw, 1.8vh)',
           lineHeight: 1.3,
           letterSpacing: 0,
-          color: 'rgba(0, 0, 170, 0.15)',
+          color: `rgba(0, 0, 170, ${BASE_ALPHA})`,
         }}
       >
         {art.slice(1, -1)}

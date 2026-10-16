@@ -11,6 +11,51 @@ function formatDate(iso: string) {
   })
 }
 
+function AoLogo() {
+  return (
+    <span
+      aria-hidden="true"
+      className="inline-block"
+      style={{
+        width: 16,
+        height: 16,
+        backgroundColor: 'currentColor',
+        WebkitMaskImage: 'url(/ao-logo.svg)',
+        WebkitMaskSize: 'contain',
+        WebkitMaskRepeat: 'no-repeat',
+        WebkitMaskPosition: 'center',
+        maskImage: 'url(/ao-logo.svg)',
+        maskSize: 'contain',
+        maskRepeat: 'no-repeat',
+        maskPosition: 'center',
+      }}
+    />
+  )
+}
+
+function SocialChip({ href, path, children }: { href: string; path: string; children: string }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group inline-flex items-center gap-1.5 mx-0.5 px-1.5 py-0.5 align-middle leading-none bg-[#c4c4c4] text-black hover:bg-[#0000aa] hover:text-white"
+    >
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor" aria-hidden="true">
+        <path d={path} />
+      </svg>
+      {children}
+    </a>
+  )
+}
+
+const GITHUB_PATH =
+  'M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'
+const X_PATH =
+  'M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z'
+const DISCORD_PATH =
+  'M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189Z'
+
 export default async function Home() {
   const posts = await getAllPosts()
   const recentPosts = posts.map((p) => ({
@@ -27,21 +72,36 @@ export default async function Home() {
 
       <div style={{ color: 'var(--theme-text)' }} className="flex flex-col gap-3 py-5">
         <p>
-          I&apos;m a design engineer and AI engineer in Bengaluru, India. I build
-          agent-native products where interaction design, product systems, and
-          model behavior meet.
+          I&apos;m a hardcore engineer when I need to be one, and on other
+          occasions I&apos;m the guy who makes sure everything is pleasing to the
+          eye. I was a founding engineer at{' '}
+          <a href="https://ghost.ai" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-1.5 mx-0.5 px-1.5 py-0.5 align-middle leading-none bg-[#c4c4c4] text-black hover:bg-[#0000aa] hover:text-white">
+            <svg viewBox="0 0 106 82" width="18" height="14" aria-hidden="true">
+              <path d="M6.66665 70.4737C14.9561 73.2368 39.8245 76 52.7193 76C75.7456 76 99.693 64.0263 99.693 36.3947C99.693 11.5263 80.3509 6 70.2193 6C53.6403 6 45.3509 17.0526 38.9035 33.6316C34.2522 45.5868 26.9298 64.9474 6.66665 68.6316C5.76402 68.7974 5.79165 70.1789 6.66665 70.4737Z" fill="currentColor" />
+              <path className="fill-[#c4c4c4] group-hover:fill-[#0000aa]" d="M62.8508 20.7368C65.3929 20.7368 67.4561 23.6289 67.4561 27.1842C67.4561 30.7395 65.3929 33.6316 62.8508 33.6316C60.3087 33.6316 58.2456 30.7487 58.2456 27.1842C58.2456 23.6197 60.3087 20.7368 62.8508 20.7368ZM86.7982 20.7368C84.2561 20.7368 82.1929 23.6289 82.1929 27.1842C82.1929 30.7395 84.2561 33.6316 86.7982 33.6316C89.3403 33.6316 91.4035 30.7487 91.4035 27.1842C91.4035 23.6197 89.3403 20.7368 86.7982 20.7368Z" />
+            </svg>
+            Ghost
+          </a>{' '}
+          for a year, where I built a good chunk of the product from the ground
+          up.
         </p>
         <p>
-          I work from interface detail to the harness underneath: streamed UX,
-          tool use, approval flows, context, and orchestration.
+          After that I joined{' '}
+          <a href="https://orchestrator.inc/" target="_blank" rel="noopener noreferrer" className="group inline-flex items-center gap-1.5 mx-0.5 px-1.5 py-0.5 align-middle leading-none bg-[#c4c4c4] text-black hover:bg-[#0000aa] hover:text-white">
+            <AoLogo />
+            Orchestrator Inc
+          </a>
+          {' '}as the guy who just gets shit done, because I just get shit done.
+          If you ever use something I&apos;ve been part of, whatever you see or
+          feel, it has a bit of me in it.
         </p>
         <p>
           Find my projects on{' '}
-          <a href="https://github.com/ronishrohan" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: 'var(--theme-text)' }}>GitHub</a>
+          <SocialChip href="https://github.com/ronishrohan" path={GITHUB_PATH}>GitHub</SocialChip>
           {' '}or reach out on{' '}
-          <a href="https://x.com/ronish1o" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: 'var(--theme-text)' }}>X</a>
+          <SocialChip href="https://x.com/ronish1o" path={X_PATH}>X.com</SocialChip>
           {' '}or{' '}
-          <a href="https://discord.com/users/769140296939470859" target="_blank" rel="noopener noreferrer" className="underline" style={{ color: 'var(--theme-text)' }}>Discord</a>.
+          <SocialChip href="https://discord.com/users/769140296939470859" path={DISCORD_PATH}>Discord</SocialChip>.
         </p>
       </div>
 
@@ -53,7 +113,7 @@ export default async function Home() {
         <div className="flex flex-col">
           {[
             {
-              href: 'https://aoagents.dev/',
+              href: 'https://orchestrator.inc/',
               label: 'Engineer at Agent Orchestrator',
               desc: '',
               date: 'Jul 2026 — Present',
@@ -79,7 +139,7 @@ export default async function Home() {
               ),
             },
             {
-              href: 'https://tryghost.ai',
+              href: 'https://ghost.ai',
               label: 'Founding Engineer at Ghost',
               desc: '',
               date: 'Oct 2025 — Aug 2026',

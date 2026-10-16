@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     'bangalore',
     'india',
     'ghost',
-    'tryghost.ai',
+    'ghost.ai',
     'software engineer',
   ],
   authors: [{ name: 'Ronish Rohan', url: siteUrl }],
@@ -83,7 +83,7 @@ const jsonLd = {
   worksFor: {
     '@type': 'Organization',
     name: 'Agent Orchestrator',
-    url: 'https://aoagents.dev',
+    url: 'https://orchestrator.inc',
   },
   address: {
     '@type': 'PostalAddress',
