@@ -67,7 +67,7 @@ export default async function Home() {
   return (
     <div className="max-w-4xl w-full text-base flex flex-col p-6">
       <div className="flex flex-col gap-2">
-      <span className="leading-none">Ronish</span>
+      <h1 className="leading-none">Ronish</h1>
       </div>
 
       <div style={{ color: 'var(--theme-text)' }} className="flex flex-col gap-3 py-5">

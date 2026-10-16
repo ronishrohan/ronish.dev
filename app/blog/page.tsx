@@ -2,9 +2,31 @@ import { BlogList } from '@/components/blog-list'
 import { getAllPosts } from '@/lib/blog'
 import type { Metadata } from 'next'
 
+const blogDesc =
+  'Notes by Ronish Rohan on building things, design engineering, and AI engineering.'
+
 export const metadata: Metadata = {
-  title: 'writing',
-  description: 'notes on building things, on design, on whatever.',
+  title: 'Writing',
+  description: blogDesc,
+  alternates: {
+    canonical: '/blog',
+    types: { 'application/rss+xml': [{ url: '/feed.xml', title: 'Ronish Rohan, writing' }] },
+  },
+  openGraph: {
+    type: 'website',
+    url: 'https://ronish.dev/blog',
+    title: 'Writing | Ronish Rohan',
+    description: blogDesc,
+    siteName: 'ronish.dev',
+    images: [{ url: '/og.png', width: 1200, height: 630, alt: 'Writing by Ronish Rohan' }],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    site: '@ronish1o',
+    title: 'Writing | Ronish Rohan',
+    description: blogDesc,
+    images: ['/og.png'],
+  },
 }
 
 function formatDate(iso: string) {
@@ -20,6 +42,7 @@ export default async function BlogPage() {
 
   return (
     <>
+      <h1 className="sr-only">Writing by Ronish Rohan</h1>
       <div>I&apos;m new to this so please be nice</div>
 
       {posts.length === 0 ? (
