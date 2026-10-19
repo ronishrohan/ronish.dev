@@ -63,8 +63,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@ronish1o',
-    creator: '@ronish1o',
+    site: '@ronish',
+    creator: '@ronish',
     title: siteTitle,
     description: defaultDesc,
     images: [ogImage.url],
@@ -113,7 +113,7 @@ const jsonLd = [
     description: defaultDesc,
     sameAs: [
       'https://github.com/ronishrohan',
-      'https://x.com/ronish1o',
+      'https://x.com/ronish',
       'https://instagram.com/ronish1o',
       'https://linkedin.com/in/ronishrohan',
     ],

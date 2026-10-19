@@ -22,7 +22,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@ronish1o',
+    site: '@ronish',
     title: 'Writing | Ronish Rohan',
     description: blogDesc,
     images: ['/og.png'],

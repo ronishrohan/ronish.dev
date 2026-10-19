@@ -99,7 +99,7 @@ export default async function Home() {
           Find my projects on{' '}
           <SocialChip href="https://github.com/ronishrohan" path={GITHUB_PATH}>GitHub</SocialChip>
           {' '}or reach out on{' '}
-          <SocialChip href="https://x.com/ronish1o" path={X_PATH}>X.com</SocialChip>
+          <SocialChip href="https://x.com/ronish" path={X_PATH}>X.com</SocialChip>
           {' '}or{' '}
           <SocialChip href="https://discord.com/users/769140296939470859" path={DISCORD_PATH}>Discord</SocialChip>.
         </p>
