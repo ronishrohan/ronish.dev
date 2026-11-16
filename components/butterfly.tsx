@@ -45,6 +45,10 @@ const art = `
 `
 
 const BASE_ALPHA = 0.28
+// hovered characters climb toward fully opaque in discrete steps, not a smooth ramp
+const LEVELS = 3
+// each step also swaps the glyph for a denser one, so hovered wing fills in
+const RAMP = ['|', '▒', '▓', '█']
 
 const lines = art.slice(1, -1).split('\n')
 const COLS = Math.max(...lines.map((l) => l.length))
@@ -126,7 +130,7 @@ export function Butterfly() {
       raf = active ? requestAnimationFrame(step) : 0
     }
 
-    // the canvas owns the whole butterfly; hovered characters fade toward transparent
+    // the canvas owns the whole butterfly; hovered characters step toward opaque
     function draw() {
       ctx!.clearRect(0, 0, canvas!.width, canvas!.height)
       ctx!.font = `${fontPx}px ${getComputedStyle(pre!).fontFamily}`
@@ -136,9 +140,9 @@ export function Butterfly() {
         const line = lines[y]
         for (let x = 0; x < line.length; x++) {
           if (line[x] === ' ') continue
-          const v = dye[y * COLS + x]
-          ctx!.fillStyle = `rgba(0, 0, 170, ${BASE_ALPHA * (1 - 0.9 * v)})`
-          ctx!.fillText(line[x], (x + 0.5) * cellW, (y + 0.5) * cellH)
+          const level = Math.round(dye[y * COLS + x] * LEVELS)
+          ctx!.fillStyle = `rgba(0, 0, 170, ${BASE_ALPHA + ((1 - BASE_ALPHA) * level) / LEVELS})`
+          ctx!.fillText(level ? RAMP[level] : line[x], (x + 0.5) * cellW, (y + 0.5) * cellH)
         }
       }
     }
@@ -155,7 +159,7 @@ export function Butterfly() {
         const dt = Math.max(1, now - last.t)
         const speed = dist / dt
         if (dist > 0) {
-          const radius = Math.min(11, 4 + speed * 4) * cellW
+          const radius = Math.min(5.5, 2 + speed * 2) * cellW
           const strength = Math.min(0.9, 0.15 + speed * 0.5)
           const steps = Math.max(1, Math.ceil(dist / (cellW * 0.7)))
           const lx = (last.x - rect.left) / cellW
@@ -186,7 +190,7 @@ export function Butterfly() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none select-none fixed right-0 top-1/2 -z-10 translate-x-1/4 -translate-y-1/2 transition-opacity duration-500"
+      className="pointer-events-none select-none fixed right-0 top-1/2 -z-10 translate-x-1/4 -translate-y-1/2 transition-opacity duration-500 ease-[steps(4)]"
       style={{ opacity: hidden ? 0 : 1 }}
     >
       <pre
