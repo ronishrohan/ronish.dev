@@ -1,46 +1,38 @@
-# Astro Starter Kit: Basics
+# ronish.dev
 
-```sh
-yarn create astro@latest -- --template basics
-```
+Personal site and writing archive for Ronish Rohan, built with Next.js.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Stack
 
-## 🚀 Project Structure
+- [Next.js](https://nextjs.org) (App Router) with React 19
+- Tailwind CSS 4
+- Markdown posts in `content/blog/`, rendered with `unified` and `remark`
+- Deployed on Vercel
 
-Inside of your Astro project, you'll see the following folders and files:
+## Project structure
 
 ```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+.
+├── app/            # routes: home, blog, RSS feed, sitemap, layouts
+├── components/     # shared UI (nav, footer, butterfly, postcards, ...)
+├── content/blog/   # blog posts as Markdown with frontmatter
+├── lib/            # blog loading, GitHub helpers, sounds, read tracking
+├── public/         # fonts, images, favicons, OG image
+├── resume/         # resume source (LaTeX) and PDF
+└── types/          # ambient type declarations
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Commands
 
-## 🧞 Commands
+Run these from the project root:
 
-All commands are run from the root of the project, from a terminal:
+| Command         | Action                                        |
+| :-------------- | :-------------------------------------------- |
+| `npm install`   | Install dependencies                          |
+| `npm run dev`   | Start the dev server at `localhost:3000`      |
+| `npm run build` | Build the production site                     |
+| `npm run start` | Serve the production build locally            |
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `yarn install`             | Installs dependencies                            |
-| `yarn dev`             | Starts local dev server at `localhost:4321`      |
-| `yarn build`           | Build your production site to `./dist/`          |
-| `yarn preview`         | Preview your build locally, before deploying     |
-| `yarn astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `yarn astro -- --help` | Get help using the Astro CLI                     |
+## Writing a post
 
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Add a Markdown file to `content/blog/`. The filename becomes the URL slug, so `friction.md` is served at `/blog/friction`. The RSS feed at `/feed.xml` and the sitemap are generated from these files.
